@@ -8,9 +8,17 @@ export const links = {
   telegramCommunity: "https://t.me/REPLACE_WITH_TELEGRAM_INVITE",
   communityCheckout: "#REPLACE_WITH_STRIPE_CHECKOUT_LINK",
   mentorshipApplication: "#REPLACE_WITH_APPLICATION_FORM_LINK",
+  indicatorCheckout: "#REPLACE_WITH_STRIPE_CHECKOUT_LINK",
   instagram: "https://instagram.com/REPLACE_WITH_HANDLE",
   tiktok: "https://tiktok.com/@REPLACE_WITH_HANDLE",
 } as const;
+
+/**
+ * No price has been set yet, this is a visible placeholder on purpose
+ * (not a real-looking number) so it can't ship by accident. Replace with
+ * the real one-time price before launch.
+ */
+export const indicatorPrice = "£[PRICE]";
 
 export const siteConfig = {
   name: "Precision HQ",
