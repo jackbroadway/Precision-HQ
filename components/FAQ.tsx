@@ -13,7 +13,7 @@ const FAQS = [
   {
     question: "What markets do you trade?",
     answer:
-      "XAUUSD (gold), GBPUSD and EURUSD. The method is the same top down process across all three. We stay focused on these rather than spreading across dozens of pairs.",
+      "XAUUSD (gold), GBPUSD and EURUSD. The method is the same high to low process across all three. We stay focused on these rather than spreading across dozens of pairs.",
   },
   {
     question: "What is the difference between Community and Mentorship?",

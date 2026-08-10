@@ -9,8 +9,8 @@ export const links = {
   communityCheckout: "#REPLACE_WITH_STRIPE_CHECKOUT_LINK",
   mentorshipApplication: "#REPLACE_WITH_APPLICATION_FORM_LINK",
   indicatorCheckout: "#REPLACE_WITH_STRIPE_CHECKOUT_LINK",
-  instagram: "https://instagram.com/REPLACE_WITH_HANDLE",
-  tiktok: "https://tiktok.com/@REPLACE_WITH_HANDLE",
+  instagram: "https://instagram.com/precisionhq_",
+  tiktok: "https://tiktok.com/@precisionhq_",
 } as const;
 
 export const indicatorPrice = "£19.99";

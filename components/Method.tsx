@@ -33,7 +33,7 @@ export function Method() {
         </Reveal>
         <Reveal delay={0.08}>
           <h2 className="mt-4 text-h2 text-ink">
-            Top Down Analysis, Every Session
+            High To Low Analysis, Every Session
           </h2>
         </Reveal>
         <Reveal delay={0.14}>

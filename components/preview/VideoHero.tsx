@@ -76,7 +76,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
             </h1>
 
             <p className="mt-4 max-w-xl px-2 font-body text-base text-ink-muted sm:mt-6 sm:text-lg">
-              Precision HQ teaches top down analysis across Daily, 4H and 15M
+              Precision HQ teaches high to low analysis across Daily, 4H and 15M
               timeframes so you understand why a trade works, not just when
               to click buy.
             </p>

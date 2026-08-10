@@ -31,7 +31,7 @@ export function Hero() {
 
         <Reveal delay={0.16}>
           <p className="max-w-xl text-balance font-body text-base text-ink-muted sm:text-lg">
-            Precision HQ teaches top down analysis across Daily, 4H and 15M
+            Precision HQ teaches high to low analysis across Daily, 4H and 15M
             timeframes so you understand why a trade works, not just when to
             click buy. Built around XAUUSD, GBPUSD and EURUSD.
           </p>
