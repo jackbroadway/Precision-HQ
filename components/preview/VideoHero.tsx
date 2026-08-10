@@ -1,7 +1,18 @@
 import { ChevronRight } from "lucide-react";
 import { PillNavbar } from "./PillNavbar";
 import { DashboardPreview } from "./DashboardPreview";
+import { Stats } from "../Stats";
 import { links, media, siteConfig } from "@/lib/config";
+
+type VideoHeroProps = {
+  /**
+   * True when mounted under the site's real fixed Nav (which already
+   * provides navigation + the scroll progress bar). Hides the built-in
+   * PillNavbar to avoid a duplicate, and adds top clearance so the
+   * headline doesn't sit under the fixed bar.
+   */
+  embedded?: boolean;
+};
 
 /**
  * Video hero variant, built to preview a floating-pill-nav + full-bleed
@@ -13,10 +24,14 @@ import { links, media, siteConfig } from "@/lib/config";
  * clip once you have one; until then this falls back to the same radial
  * gold glow used on the real homepage hero.
  */
-export function VideoHero() {
+export function VideoHero({ embedded = false }: VideoHeroProps) {
   return (
-    <div className="w-full min-h-screen bg-background p-3 sm:p-4">
-      <div className="relative h-[calc(100vh-24px)] w-full overflow-hidden rounded-2xl bg-surface sm:h-[calc(100vh-32px)] sm:rounded-3xl">
+    <div id="top" className={`w-full bg-background p-3 sm:p-4 ${embedded ? "" : "min-h-screen"}`}>
+      <div
+        className={`relative w-full overflow-hidden rounded-2xl bg-surface sm:rounded-3xl ${
+          embedded ? "" : "h-[calc(100vh-24px)] sm:h-[calc(100vh-32px)]"
+        }`}
+      >
         {media.heroVideoUrl ? (
           <video
             className="pointer-events-none absolute inset-0 h-full w-full object-cover"
@@ -42,9 +57,13 @@ export function VideoHero() {
         />
 
         <div className="relative z-10 flex h-full flex-col">
-          <PillNavbar />
+          {!embedded && <PillNavbar />}
 
-          <div className="flex flex-col items-center px-4 pb-8 pt-10 text-center sm:pb-12 sm:pt-16">
+          <div
+            className={`flex flex-col items-center px-4 pb-8 text-center sm:pb-12 ${
+              embedded ? "pt-28 sm:pt-36 lg:pt-40" : "pt-10 sm:pt-16"
+            }`}
+          >
             <span className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface-raised/80 px-4 py-1.5 font-mono text-[13px] text-ink-muted shadow-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true" />
               {siteConfig.name}
@@ -73,6 +92,10 @@ export function VideoHero() {
                 <ChevronRight className="h-4 w-4" />
               </span>
             </a>
+
+            <div className="mt-12 w-full sm:mt-16">
+              <Stats />
+            </div>
           </div>
 
           <div className="mt-auto">

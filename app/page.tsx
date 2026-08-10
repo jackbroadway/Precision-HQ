@@ -1,5 +1,5 @@
 import { Nav } from "@/components/Nav";
-import { Hero } from "@/components/Hero";
+import { VideoHero } from "@/components/preview/VideoHero";
 import { Problem } from "@/components/Problem";
 import { Method } from "@/components/Method";
 import { Offers } from "@/components/Offers";
@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Nav />
       <main>
-        <Hero />
+        <VideoHero embedded />
         <Problem />
         <Method />
         <Offers />
