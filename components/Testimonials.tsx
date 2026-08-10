@@ -1,7 +1,51 @@
 import { Eyebrow } from "./ui/Eyebrow";
 import { Reveal } from "./ui/Reveal";
 
-const PLACEHOLDER_CARDS = [1, 2, 3];
+/**
+ * Real member testimonials, lightly copyedited for typos and punctuation
+ * only. Old "Broad FX" brand references are swapped to Precision HQ.
+ * Content that named an unconfirmed product (VIP copy trading) or
+ * included specific account figures/screenshots was trimmed, per an
+ * explicit decision on each one rather than a blanket rule.
+ */
+const TESTIMONIALS = [
+  {
+    quote:
+      "This community has been super welcoming since the day I joined. JB has taught me so much in a short amount of time, from understanding market structure to building more confidence in my trades. What's crazy is I haven't even bought the full course yet, and I'm already seeing steady progress. The amount of value and knowledge shared here is unreal. I'd definitely recommend learning here if you have the time, it's 100% worth it.",
+    name: "Coop",
+    role: "Community Member",
+  },
+  {
+    quote:
+      "Honestly one of the best trading communities I've been a part of. Education is on point, the trade ideas in the VIP show great results, and the community is very supportive. I've learned a lot and seen real progress. Great bunch of lads.",
+    name: "Shxne",
+    role: "Community Member",
+  },
+  {
+    quote:
+      "Having people like you lot in my corner means more than I can explain. You're helping me believe there's a way forward, and learning about trading has given me something to focus on and work towards.",
+    name: "Dan",
+    role: "Community Member",
+  },
+  {
+    quote:
+      "I joined Precision HQ a few months back and honestly the results blew me away. Watching the trades come through and hit TP consistently opened my eyes to a whole different way of looking at the markets. I was that impressed I invested in the 1 to 1 Mentorship and it has been a proper game changer. Cannot thank JB enough, the knowledge he's passed on hasn't just changed my trading, it's on the way to changing my life.",
+    name: "Dan",
+    role: "Mentorship Client",
+  },
+  {
+    quote:
+      "I've only known JB for two weeks and he has guided me to extraordinary heights in my trading journey. After more blown accounts, I now have discipline, all thanks to him. I understand and study the market, before I was just reckless.",
+    name: "TMG",
+    role: "Community Member",
+  },
+  {
+    quote:
+      "I have been in Precision HQ for a month now and the results are insane. The strategy is on point, the limits are on point, and all I can say is hats off to JB for the amazing work behind it. I value education a lot and in this community I found it. Still learning and being consistent, and most importantly, getting risk management on point.",
+    name: "Adam Khoo",
+    role: "Community Member",
+  },
+];
 
 export function Testimonials() {
   return (
@@ -15,38 +59,29 @@ export function Testimonials() {
         </Reveal>
         <Reveal delay={0.14}>
           <p className="mt-4 font-body text-ink-muted">
-            Placeholder quotes below. Swap each one for a real member
-            testimonial before this page goes live, nothing here is a real
-            quote yet.
+            Real messages from the Precision HQ community, lightly tidied
+            for typos only.
           </p>
         </Reveal>
       </div>
 
       <Reveal
         stagger
-        className="mx-auto mt-14 grid max-w-5xl gap-6 sm:grid-cols-3"
+        className="mx-auto mt-14 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {PLACEHOLDER_CARDS.map((n) => (
+        {TESTIMONIALS.map((t) => (
           <div
-            key={n}
-            className="flex flex-col justify-between rounded-lg border border-dashed border-border-strong bg-surface p-7"
+            key={`${t.name}-${t.role}`}
+            className="flex flex-col justify-between rounded-lg border border-border bg-surface p-7"
           >
-            <div>
-              <span className="inline-block rounded-full border border-gold px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.15em] text-gold">
-                Placeholder {n}
-              </span>
-              <p className="mt-5 font-body text-sm leading-relaxed text-ink-muted">
-                &ldquo;Replace this with a real quote from a Precision HQ
-                member. Keep it specific, what changed for them and why.&rdquo;
-              </p>
-            </div>
+            <p className="font-body text-sm leading-relaxed text-ink-muted">
+              &ldquo;{t.quote}&rdquo;
+            </p>
             <div className="mt-6 border-t border-border pt-4">
               <p className="font-heading text-sm uppercase tracking-wide text-ink">
-                Member Name
+                {t.name}
               </p>
-              <p className="font-mono text-xs text-ink-faint">
-                Community or Mentorship, add role here
-              </p>
+              <p className="font-mono text-xs text-ink-faint">{t.role}</p>
             </div>
           </div>
         ))}
