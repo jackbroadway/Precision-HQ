@@ -13,12 +13,7 @@ export const links = {
   tiktok: "https://tiktok.com/@REPLACE_WITH_HANDLE",
 } as const;
 
-/**
- * No price has been set yet, this is a visible placeholder on purpose
- * (not a real-looking number) so it can't ship by accident. Replace with
- * the real one-time price before launch.
- */
-export const indicatorPrice = "£[PRICE]";
+export const indicatorPrice = "£19.99";
 
 export const siteConfig = {
   name: "Precision HQ",

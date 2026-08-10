@@ -21,10 +21,22 @@ function Check() {
 }
 
 const FEATURES = [
-  "Marks daily bias zones directly on the chart",
-  "Highlights the Asia session range automatically",
-  "Flags the London Open sweep as it happens",
-  "Colour codes Daily, 4H and 15M context so you always know what you are looking at",
+  {
+    title: "Scalp Layer",
+    body: "Tracks EMA 9 and EMA 21 crosses, filtered by trend direction, trend strength (ADX) and EMA 200 slope, so it does not fire during flat or directionless price.",
+  },
+  {
+    title: "Structure Layer",
+    body: "Marks order blocks only when price leaves a confirmed break of structure or change of character, backed by a genuine fair value gap. Zones are removed automatically once price trades back through them, so only untapped areas stay visible.",
+  },
+  {
+    title: "Higher Probability Flags",
+    body: "Zones where the EMA 200 aligns with the order block at formation are flagged separately from the rest.",
+  },
+  {
+    title: "Bias Table",
+    body: "Shows trend direction and strength across four user selected timeframes for quick multi timeframe context.",
+  },
 ];
 
 export function Indicator() {
@@ -36,25 +48,28 @@ export function Indicator() {
             <Eyebrow>The Indicator</Eyebrow>
           </Reveal>
           <Reveal delay={0.08}>
-            <h2 className="mt-4 text-h2 text-ink">
-              See The Method Live On Your Charts
-            </h2>
+            <h2 className="mt-4 text-h2 text-ink">Precision HQ Sniper</h2>
           </Reveal>
           <Reveal delay={0.14}>
             <p className="mt-4 max-w-xl font-body text-ink-muted">
-              The Sniper Indicator plots the same framework taught in the
-              Method section directly onto TradingView, so you see the
-              structure forming in real time instead of guessing where it
-              might be. Built for XAUUSD, GBPUSD and EURUSD, the same
-              markets covered throughout Precision HQ.
+              Precision HQ Sniper combines a multi EMA scalp system (9, 21,
+              200) with automatic order block detection built on confirmed
+              market structure.
             </p>
           </Reveal>
 
-          <Reveal stagger delay={0.2} className="mt-7 flex flex-col gap-3">
+          <Reveal stagger delay={0.2} className="mt-7 flex flex-col gap-5">
             {FEATURES.map((feature) => (
-              <div key={feature} className="flex items-start gap-2.5">
+              <div key={feature.title} className="flex items-start gap-2.5">
                 <Check />
-                <span className="font-body text-sm text-ink">{feature}</span>
+                <div>
+                  <span className="block font-heading text-sm uppercase tracking-wide text-ink">
+                    {feature.title}
+                  </span>
+                  <span className="mt-1 block font-body text-sm leading-relaxed text-ink-muted">
+                    {feature.body}
+                  </span>
+                </div>
               </div>
             ))}
           </Reveal>
@@ -87,6 +102,16 @@ export function Indicator() {
           </div>
         </Reveal>
       </div>
+
+      <Reveal delay={0.1} className="mx-auto mt-10 max-w-5xl border-t border-border pt-6">
+        <p className="max-w-3xl font-mono text-xs leading-relaxed text-ink-faint">
+          This is a decision support tool built for traders who already
+          understand market structure concepts. It does not provide
+          financial advice, and it does not guarantee results. Past
+          structure does not predict future price movement. Always use
+          your own risk management.
+        </p>
+      </Reveal>
     </section>
   );
 }
