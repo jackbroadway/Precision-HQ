@@ -21,12 +21,11 @@ export const siteConfig = {
 } as const;
 
 /**
- * No real footage exists yet for the video hero variant, so these are left
- * empty on purpose. Nothing hotlinks a third party's video. Fill these in
- * with your own hosted clip/poster when you have one, the hero falls back
- * to a static gradient background until then.
+ * Served from public/video, so this resolves to /video/hero-background.mp4
+ * at runtime. No poster frame set, browsers show the first frame almost
+ * immediately with preload="auto" so it's not been necessary.
  */
 export const media = {
-  heroVideoUrl: "",
+  heroVideoUrl: "/video/hero-background.mp4",
   heroPosterUrl: "",
 } as const;
