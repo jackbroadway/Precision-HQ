@@ -16,3 +16,14 @@ export const siteConfig = {
   name: "Precision HQ",
   founder: "Jack",
 } as const;
+
+/**
+ * No real footage exists yet for the video hero variant, so these are left
+ * empty on purpose. Nothing hotlinks a third party's video. Fill these in
+ * with your own hosted clip/poster when you have one, the hero falls back
+ * to a static gradient background until then.
+ */
+export const media = {
+  heroVideoUrl: "",
+  heroPosterUrl: "",
+} as const;
