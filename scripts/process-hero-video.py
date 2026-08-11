@@ -11,8 +11,17 @@ Turns a raw FlexClip export into a brand-matched hero background:
    kills their legibility.
 3. Duotone-maps every frame from black to the brand's gold, which also
    neutralises the source clip's red/green/blue palette entirely.
-4. Builds a seamless boomerang loop (forward, then reversed) and
-   encodes with PyAV's bundled libx264, muxed faststart, no audio.
+4. Trims the source's black fade-in, then loops forward only (no
+   boomerang) with a short crossfade at the seam so the cut is
+   invisible, encoded with PyAV's bundled libx264, muxed faststart, no
+   audio.
+
+   Earlier version boomeranged (played forward then reversed) to get a
+   seamless loop, but for footage that reads as continuously scrolling
+   in one direction (like this chart ticker), reversing direction at
+   each turnaround kills the sense of forward motion and reads as
+   "slow". A forward-only loop with a crossfaded seam keeps the
+   momentum and is still seamless.
 """
 import sys
 
@@ -31,6 +40,9 @@ GAMMA = 3.0
 
 WATERMARK_BOX = (1060, 0, 1280, 95)  # left, top, right, bottom
 CRF = 24
+FADE_IN_DELTA_THRESHOLD = 0.5  # brightness units/frame; below this, fade-in is over
+FADE_IN_SEARCH_WINDOW = 40  # frames; only look for the fade-in this early
+CROSSFADE_FRAMES = 8
 
 
 def feathered_patch_mask(size):
@@ -84,23 +96,56 @@ def process_frame(img: Image.Image, watermark_mask) -> Image.Image:
     return Image.fromarray(np.clip(graded, 0, 255).astype("uint8"))
 
 
+def find_fade_in_end(raw_frames):
+    """Skip the source's black fade-in so the loop never sits on a near
+    black frame. Finds where brightness stops rising quickly (the
+    fade-in ramp), rather than where it nears the clip's overall peak,
+    since unrelated gradual brightening later in the clip can be higher
+    still without being part of the fade-in at all."""
+    window = raw_frames[: FADE_IN_SEARCH_WINDOW + 1]
+    brightness = [np.array(f.to_image()).mean() for f in window]
+    for i in range(len(brightness) - 3):
+        deltas = [brightness[i + k + 1] - brightness[i + k] for k in range(3)]
+        if all(d < FADE_IN_DELTA_THRESHOLD for d in deltas):
+            return i
+    return 0
+
+
+def crossfade_loop(frames, n):
+    """Blend the tail of the sequence into its own head so frame -1
+    matches frame 0 almost exactly, the loop cut becomes invisible
+    without needing to reverse playback direction."""
+    frames = [f.astype(float) for f in frames]
+    n = min(n, len(frames) // 2)
+    for i in range(n):
+        alpha = (i + 1) / n
+        pos = len(frames) - n + i
+        frames[pos] = frames[pos] * (1 - alpha) + frames[i] * alpha
+    return [np.clip(f, 0, 255).astype("uint8") for f in frames]
+
+
 def main():
     src = av.open(SRC)
     vs = src.streams.video[0]
     watermark_mask = feathered_patch_mask((vs.width, vs.height))
 
+    raw_frames = list(src.decode(vs))
+    src.close()
+    skip = find_fade_in_end(raw_frames)
+    print(f"source frames: {len(raw_frames)}, skipping {skip} fade-in frames")
+    raw_frames = raw_frames[skip:]
+
     frames = []
-    for i, frame in enumerate(src.decode(vs)):
+    for i, frame in enumerate(raw_frames):
         img = frame.to_image()
         graded = process_frame(img, watermark_mask)
         frames.append(np.array(graded))
         if i % 20 == 0:
             print(f"processed frame {i}", flush=True)
-    src.close()
     print(f"total frames: {len(frames)}")
 
-    sequence = frames + frames[-2:0:-1]
-    print(f"looped frames: {len(sequence)}")
+    sequence = crossfade_loop(frames, CROSSFADE_FRAMES)
+    print(f"looped frames: {len(sequence)} (forward only, crossfaded seam)")
 
     out = av.open(OUT, mode="w", format="mp4")
     stream = out.add_stream("libx264", rate=vs.average_rate)
