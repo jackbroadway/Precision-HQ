@@ -1,11 +1,15 @@
 /**
- * Placeholder outbound links. Swap these for real Stripe checkout URLs,
- * the mentorship application form, and social profiles when ready. Every
- * component that renders a CTA takes its href as a prop defaulting to
- * these constants, so a single edit here updates the whole site.
+ * Placeholder outbound links. Swap these for real Stripe checkout URLs
+ * and the mentorship application form when ready. Every component that
+ * renders a CTA takes its href as a prop defaulting to these constants,
+ * so a single edit here updates the whole site.
  */
+const telegramUsername = "Broadfxsupport";
+const telegramPrefilledMessage =
+  "Hey, I'm interested in joining Precision HQ. Can you send me the details?";
+
 export const links = {
-  telegramCommunity: "https://t.me/REPLACE_WITH_TELEGRAM_INVITE",
+  telegramCommunity: `https://t.me/${telegramUsername}?text=${encodeURIComponent(telegramPrefilledMessage)}`,
   communityCheckout: "#REPLACE_WITH_STRIPE_CHECKOUT_LINK",
   mentorshipApplication: "#REPLACE_WITH_APPLICATION_FORM_LINK",
   indicatorCheckout: "#REPLACE_WITH_STRIPE_CHECKOUT_LINK",
