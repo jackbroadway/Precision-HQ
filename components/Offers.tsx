@@ -90,7 +90,7 @@ export function Offers() {
             ))}
           </ul>
 
-          <div className="mt-6">
+          <div className="mt-auto pt-6">
             <Button
               href={links.communityCheckout}
               variant="primary"
@@ -138,7 +138,7 @@ export function Offers() {
             ))}
           </ul>
 
-          <div className="mt-6">
+          <div className="mt-auto pt-6">
             <Button
               href={links.mentorshipApplication}
               variant="secondary"

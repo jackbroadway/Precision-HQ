@@ -23,19 +23,19 @@ function Check() {
 const FEATURES = [
   {
     title: "Scalp Layer",
-    body: "Tracks EMA 9 and EMA 21 crosses, filtered by trend direction, trend strength (ADX) and EMA 200 slope, so it does not fire during flat or directionless price.",
+    body: "EMA based, filtered so it only fires in genuine trending conditions.",
   },
   {
     title: "Structure Layer",
-    body: "Marks order blocks only when price leaves a confirmed break of structure or change of character, backed by a genuine fair value gap. Zones are removed automatically once price trades back through them, so only untapped areas stay visible.",
+    body: "Automatic order block detection built on confirmed market structure.",
   },
   {
     title: "Higher Probability Flags",
-    body: "Zones where the EMA 200 aligns with the order block at formation are flagged separately from the rest.",
+    body: "Surfaces the strongest zones separately from the rest.",
   },
   {
     title: "Bias Table",
-    body: "Shows trend direction and strength across four user selected timeframes for quick multi timeframe context.",
+    body: "Trend direction and strength across four timeframes, at a glance.",
   },
 ];
 
@@ -52,9 +52,9 @@ export function Indicator() {
           </Reveal>
           <Reveal delay={0.14}>
             <p className="mt-4 max-w-xl font-body text-ink-muted">
-              Precision HQ Sniper combines a multi EMA scalp system (9, 21,
-              200) with automatic order block detection built on confirmed
-              market structure.
+              Precision HQ Sniper combines a multi EMA scalp system with
+              automatic order block detection built on confirmed market
+              structure.
             </p>
           </Reveal>
 
