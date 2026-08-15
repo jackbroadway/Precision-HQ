@@ -52,6 +52,7 @@ const config: Config = {
         "pulse-gold": "pulseGold 2s ease-in-out infinite",
         marquee: "marquee 32s linear infinite",
         "marquee-reverse": "marquee-reverse 32s linear infinite",
+        "marquee-slow": "marquee 70s linear infinite",
       },
     },
   },

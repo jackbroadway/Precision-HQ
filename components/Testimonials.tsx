@@ -8,7 +8,7 @@ import { Reveal } from "./ui/Reveal";
  * included specific account figures/screenshots was trimmed, per an
  * explicit decision on each one rather than a blanket rule.
  */
-const TESTIMONIALS = [
+const TESTIMONIALS_BASE = [
   {
     quote:
       "This community has been super welcoming since the day I joined. JB has taught me so much in a short amount of time, from understanding market structure to building more confidence in my trades. What's crazy is I haven't even bought the full course yet, and I'm already seeing steady progress. The amount of value and knowledge shared here is unreal. I'd definitely recommend learning here if you have the time, it's 100% worth it.",
@@ -47,10 +47,12 @@ const TESTIMONIALS = [
   },
 ];
 
+const TESTIMONIALS = [...TESTIMONIALS_BASE, ...TESTIMONIALS_BASE];
+
 export function Testimonials() {
   return (
-    <section id="results" className="section-y container-px">
-      <div className="mx-auto max-w-2xl text-center">
+    <section id="results" className="section-y">
+      <div className="container-px mx-auto max-w-2xl text-center">
         <Reveal>
           <Eyebrow>Results</Eyebrow>
         </Reveal>
@@ -64,26 +66,25 @@ export function Testimonials() {
         </Reveal>
       </div>
 
-      <Reveal
-        stagger
-        className="mx-auto mt-14 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        {TESTIMONIALS.map((t) => (
-          <div
-            key={`${t.name}-${t.role}`}
-            className="flex flex-col justify-between rounded-lg border border-border bg-surface p-7"
-          >
-            <p className="font-body text-sm leading-relaxed text-ink-muted">
-              &ldquo;{t.quote}&rdquo;
-            </p>
-            <div className="mt-6 border-t border-border pt-4">
-              <p className="font-heading text-sm uppercase tracking-wide text-ink">
-                {t.name}
+      <Reveal delay={0.2} className="group mt-14 overflow-hidden">
+        <div className="flex w-max animate-marquee-slow gap-6 group-hover:[animation-play-state:paused]">
+          {TESTIMONIALS.map((t, i) => (
+            <div
+              key={`${t.name}-${t.role}-${i}`}
+              className="flex w-80 shrink-0 flex-col justify-between rounded-lg border border-border bg-surface p-7 sm:w-96"
+            >
+              <p className="font-body text-sm leading-relaxed text-ink-muted">
+                &ldquo;{t.quote}&rdquo;
               </p>
-              <p className="font-mono text-xs text-ink-faint">{t.role}</p>
+              <div className="mt-6 border-t border-border pt-4">
+                <p className="font-heading text-sm uppercase tracking-wide text-ink">
+                  {t.name}
+                </p>
+                <p className="font-mono text-xs text-ink-faint">{t.role}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </Reveal>
     </section>
   );
