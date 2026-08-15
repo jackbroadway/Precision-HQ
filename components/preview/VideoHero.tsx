@@ -1,5 +1,4 @@
 import { PillNavbar } from "./PillNavbar";
-import { DashboardPreview } from "./DashboardPreview";
 import { Stats } from "../Stats";
 import { Button } from "../ui/Button";
 import { links, media, siteConfig } from "@/lib/config";
@@ -76,9 +75,8 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
             </h1>
 
             <p className="mt-4 max-w-xl px-2 font-body text-base text-ink-muted sm:mt-6 sm:text-lg">
-              Precision HQ teaches high to low analysis across Daily, 4H and 15M
-              timeframes so you understand why a trade works, not just when
-              to click buy.
+              No chasing moves. Just a method that waits for the market to
+              confirm itself.
             </p>
 
             <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:flex-row">
@@ -93,10 +91,6 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
             <div className="mt-12 w-full sm:mt-16">
               <Stats />
             </div>
-          </div>
-
-          <div className="mt-auto">
-            <DashboardPreview />
           </div>
         </div>
       </div>
