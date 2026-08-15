@@ -2,6 +2,7 @@ import { Nav } from "@/components/Nav";
 import { VideoHero } from "@/components/preview/VideoHero";
 import { Problem } from "@/components/Problem";
 import { Method } from "@/components/Method";
+import { Credibility } from "@/components/Credibility";
 import { Indicator } from "@/components/Indicator";
 import { Offers } from "@/components/Offers";
 import { Testimonials } from "@/components/Testimonials";
@@ -17,6 +18,7 @@ export default function Home() {
         <VideoHero embedded />
         <Problem />
         <Method />
+        <Credibility />
         <Offers />
         <Indicator />
         <Testimonials />
