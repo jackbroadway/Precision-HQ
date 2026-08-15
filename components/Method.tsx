@@ -5,22 +5,22 @@ const STEPS = [
   {
     step: "01",
     title: "Daily Bias",
-    body: "Every session starts on the Daily chart. We read where price sits relative to key levels and order blocks to form a directional bias before anything else, long, short or no trade at all.",
+    body: "Where every session starts, before anything else.",
   },
   {
     step: "02",
     title: "4H and Asia Range Structure",
-    body: "The 4H chart shows how the current move is structured. The Asia session range marks out a pocket of liquidity resting above and below price that the rest of the day tends to react around.",
+    body: "How the day's structure takes shape.",
   },
   {
     step: "03",
     title: "London Open Sweep",
-    body: "London Open is where the Asia range is often swept. We watch how price behaves around that sweep, the reaction matters far more than the size of the first move.",
+    body: "Where volatility tends to begin.",
   },
   {
     step: "04",
     title: "15M and New York Confirmation",
-    body: "The 15M chart is used to confirm the idea into New York. Order blocks and market structure on the lower timeframe are lined up against the bias formed earlier in the day.",
+    body: "Where the idea gets confirmed or dropped.",
   },
 ];
 
