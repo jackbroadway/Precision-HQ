@@ -80,6 +80,15 @@ export function Problem() {
           </div>
         ))}
       </Reveal>
+
+      <Reveal delay={0.24} className="mx-auto mt-10 max-w-3xl text-center">
+        <p className="font-body text-sm leading-relaxed text-ink-muted">
+          That is exactly why Precision HQ is built around a News &amp;
+          Updates feed, Announcements, a Mindset section, a full Education
+          hub for trade breakdowns and analysis, and ongoing direct support
+          from Jack and the community chat, not just calls.
+        </p>
+      </Reveal>
     </section>
   );
 }

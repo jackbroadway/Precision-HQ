@@ -22,10 +22,11 @@ function Check() {
 
 const COMMUNITY_FEATURES = [
   "Daily trade ideas, called using the same method",
-  "Private trading channel and live session breakdowns",
+  "News, updates and announcements as they happen",
+  "Education hub with trade breakdowns and market analysis",
+  "Mindset section to keep discipline and psychology in check",
   "Daily bias, Asia range and London Open notes posted each morning",
-  "Trade idea archive so you can review past reasoning",
-  "Direct access to Jack and the wider community",
+  "Ongoing direct support from Jack and the community chat",
 ];
 
 const MENTORSHIP_FEATURES = [
