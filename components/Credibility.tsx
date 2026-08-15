@@ -51,12 +51,11 @@ export function Credibility() {
           <Eyebrow>Proof It Works</Eyebrow>
         </Reveal>
         <Reveal delay={0.08}>
-          <h2 className="mt-4 text-h2 text-ink">Passes, Not Promises</h2>
+          <h2 className="mt-4 text-h2 text-ink">Real Certificates</h2>
         </Reveal>
         <Reveal delay={0.14}>
           <p className="mt-4 font-body text-ink-muted">
-            A few of the challenge and verification certificates cleared
-            using this same method.
+            A few of the certificates cleared using this same method.
           </p>
         </Reveal>
       </div>
