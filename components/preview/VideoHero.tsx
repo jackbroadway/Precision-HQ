@@ -1,7 +1,7 @@
 import { PillNavbar } from "./PillNavbar";
 import { Stats } from "../Stats";
 import { Button } from "../ui/Button";
-import { links, media, siteConfig } from "@/lib/config";
+import { links, media } from "@/lib/config";
 
 type VideoHeroProps = {
   /**
@@ -63,12 +63,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               embedded ? "pt-28 sm:pt-36 lg:pt-40" : "pt-10 sm:pt-16"
             }`}
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface-raised/80 px-4 py-1.5 font-mono text-[13px] text-ink-muted shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true" />
-              {siteConfig.name}
-            </span>
-
-            <h1 className="mt-5 max-w-4xl text-display text-ink sm:mt-6">
+            <h1 className="max-w-4xl text-display text-ink">
               Patience Is
               <br />
               <span className="text-gold-underline text-gold">Precision</span>
