@@ -21,7 +21,7 @@ function Check() {
 }
 
 const COMMUNITY_FEATURES = [
-  "Daily trade ideas with full reasoning behind every level",
+  "Daily trade ideas, called using the same method",
   "Private trading channel and live session breakdowns",
   "Daily bias, Asia range and London Open notes posted each morning",
   "Trade idea archive so you can review past reasoning",

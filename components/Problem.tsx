@@ -10,7 +10,7 @@ const CARDS = [
       />
     ),
     title: "No Reasoning",
-    body: "You get an entry and a stop loss with no explanation attached. When the trade loses you have nothing to learn from and no idea what actually changed on the chart.",
+    body: "You get an entry and a stop loss copied from someone else, no bias, no structure, nothing behind it. When the trade loses you have no idea what actually changed on the chart.",
   },
   {
     icon: (
