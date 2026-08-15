@@ -43,10 +43,15 @@ const config: Config = {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        "marquee-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
       },
       animation: {
         "pulse-gold": "pulseGold 2s ease-in-out infinite",
         marquee: "marquee 32s linear infinite",
+        "marquee-reverse": "marquee-reverse 32s linear infinite",
       },
     },
   },
