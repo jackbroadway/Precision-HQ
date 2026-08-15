@@ -19,9 +19,9 @@ export default function Home() {
         <Problem />
         <Method />
         <Credibility />
+        <Testimonials />
         <Offers />
         <Indicator />
-        <Testimonials />
         <FAQ />
         <FinalCTA />
       </main>
