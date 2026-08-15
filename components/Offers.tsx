@@ -26,7 +26,7 @@ const COMMUNITY_FEATURES = [
   "Education hub with trade breakdowns and market analysis",
   "Mindset section to keep discipline and psychology in check",
   "Daily bias, Asia range and London Open notes posted each morning",
-  "Ongoing direct support from Jack and the community chat",
+  "Ongoing direct support from Jack, Shane and the community chat",
 ];
 
 const MENTORSHIP_FEATURES = [

@@ -22,7 +22,7 @@ const TESTIMONIALS_BASE = [
     quote:
       "Honestly one of the best trading communities I've been a part of. Education is on point, the trade ideas in the VIP show great results, and the community is very supportive. I've learned a lot and seen real progress. Great bunch of lads.",
     name: "Shane",
-    role: "Community Member",
+    role: "Community Trader",
   },
   {
     quote:

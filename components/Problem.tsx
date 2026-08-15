@@ -86,7 +86,7 @@ export function Problem() {
           That is exactly why Precision HQ is built around a News &amp;
           Updates feed, Announcements, a Mindset section, a full Education
           hub for trade breakdowns and analysis, and ongoing direct support
-          from Jack and the community chat, not just calls.
+          from Jack, Shane and the community chat, not just calls.
         </p>
       </Reveal>
     </section>
