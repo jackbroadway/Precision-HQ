@@ -18,7 +18,7 @@ const TESTIMONIALS = [
   {
     quote:
       "Honestly one of the best trading communities I've been a part of. Education is on point, the trade ideas in the VIP show great results, and the community is very supportive. I've learned a lot and seen real progress. Great bunch of lads.",
-    name: "Shxne",
+    name: "Shane",
     role: "Community Member",
   },
   {
@@ -59,8 +59,7 @@ export function Testimonials() {
         </Reveal>
         <Reveal delay={0.14}>
           <p className="mt-4 font-body text-ink-muted">
-            Real messages from the Precision HQ community, lightly tidied
-            for typos only.
+            Real messages from the Precision HQ community.
           </p>
         </Reveal>
       </div>
