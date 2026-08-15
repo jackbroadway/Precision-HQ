@@ -10,6 +10,7 @@ const telegramPrefilledMessage =
 
 export const links = {
   telegramCommunity: `https://t.me/${telegramUsername}?text=${encodeURIComponent(telegramPrefilledMessage)}`,
+  dailyResults: "https://t.me/precisionhqresults",
   communityCheckout: "#REPLACE_WITH_STRIPE_CHECKOUT_LINK",
   mentorshipApplication: "#REPLACE_WITH_APPLICATION_FORM_LINK",
   indicatorCheckout: "#REPLACE_WITH_STRIPE_CHECKOUT_LINK",

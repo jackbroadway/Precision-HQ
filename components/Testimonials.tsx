@@ -1,5 +1,7 @@
+import { Button } from "./ui/Button";
 import { Eyebrow } from "./ui/Eyebrow";
 import { Reveal } from "./ui/Reveal";
+import { links } from "@/lib/config";
 
 /**
  * Real member testimonials, lightly copyedited for typos and punctuation
@@ -85,6 +87,12 @@ export function Testimonials() {
             </div>
           ))}
         </div>
+      </Reveal>
+
+      <Reveal delay={0.26} className="container-px mx-auto mt-12 text-center">
+        <Button href={links.dailyResults} variant="secondary">
+          Track Members&rsquo; Daily Results
+        </Button>
       </Reveal>
     </section>
   );
