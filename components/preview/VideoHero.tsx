@@ -1,7 +1,7 @@
-import { ChevronRight } from "lucide-react";
 import { PillNavbar } from "./PillNavbar";
 import { DashboardPreview } from "./DashboardPreview";
 import { Stats } from "../Stats";
+import { Button } from "../ui/Button";
 import { links, media, siteConfig } from "@/lib/config";
 
 type VideoHeroProps = {
@@ -81,17 +81,14 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               to click buy.
             </p>
 
-            <a
-              href={links.telegramCommunity}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-3 rounded-full bg-ink py-2 pl-6 pr-2 font-mono text-sm text-background transition-opacity hover:opacity-90 sm:mt-8 sm:py-2.5 sm:pl-7"
-            >
-              Join Community
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-background/15 sm:h-7 sm:w-7">
-                <ChevronRight className="h-4 w-4" />
-              </span>
-            </a>
+            <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:flex-row">
+              <Button href={links.telegramCommunity} variant="primary">
+                Join Community
+              </Button>
+              <Button href={links.mentorshipApplication} variant="secondary">
+                Apply For Mentorship
+              </Button>
+            </div>
 
             <div className="mt-12 w-full sm:mt-16">
               <Stats />
