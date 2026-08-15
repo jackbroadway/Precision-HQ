@@ -153,7 +153,7 @@ export function Credibility() {
       <div className="container-px mx-auto mt-16 max-w-2xl text-center">
         <Reveal>
           <h3 className="font-heading text-lg uppercase tracking-wide text-ink">
-            And So Do Our Members
+            A Few Of Our Members Too
           </h3>
         </Reveal>
       </div>
