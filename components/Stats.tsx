@@ -3,7 +3,7 @@ import { Reveal } from "./ui/Reveal";
 
 const STATS = [
   { end: 200, suffix: "+", label: "Active Members" },
-  { end: 6, suffix: "+", label: "Years Trading Full Time" },
+  { end: 6, suffix: "+", label: "Years Trading" },
   { end: 1000, suffix: "+", label: "Trade Ideas Shared" },
   { end: 3, suffix: "", label: "Core Markets Traded" },
 ];

@@ -74,10 +74,14 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               <span className="text-gold-underline text-gold">Precision</span>
             </h1>
 
-            <p className="mt-4 max-w-xl px-2 font-body text-base text-ink-muted sm:mt-6 sm:text-lg">
-              No chasing moves. Just a method that waits for the market to
-              confirm itself.
-            </p>
+            <div className="mt-4 max-w-xl px-2 sm:mt-6">
+              <p className="font-body text-lg text-ink sm:text-xl">
+                No chasing moves.
+              </p>
+              <p className="mt-2 font-body text-base text-ink-muted sm:text-lg">
+                Just a method that waits for the market to confirm itself.
+              </p>
+            </div>
 
             <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:flex-row">
               <Button href={links.telegramCommunity} variant="primary">
