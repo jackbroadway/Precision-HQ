@@ -116,11 +116,11 @@ export function Offers() {
             </span>
           </div>
           <div className="mt-3 flex items-baseline gap-2">
-            <span className="font-mono text-2xl text-ink">Priced Individually</span>
+            <span className="font-mono text-2xl text-ink">Discussed On Your Onboarding Call</span>
           </div>
           <p className="mt-3 font-body text-sm text-ink-muted">
-            8 weeks working directly with Jack, 1:1. Klarna is available at
-            checkout for approved applicants.
+            8 weeks working directly with Jack, 1:1. A 3 month interest free
+            payment plan is available for approved applicants.
           </p>
 
           <ul className="mt-7 flex flex-col">
