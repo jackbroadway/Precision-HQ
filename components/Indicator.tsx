@@ -77,9 +77,9 @@ export function Indicator() {
 
         <Reveal
           delay={0.1}
-          className="flex flex-col rounded-lg border border-border bg-surface p-7 lg:h-fit"
+          className="flex flex-col rounded-2xl border border-gold bg-gradient-to-b from-surface-raised to-surface p-7 shadow-[0_0_40px_-12px_rgba(201,168,76,0.35)] lg:h-fit"
         >
-          <span className="font-mono text-xs uppercase tracking-[0.15em] text-ink-muted">
+          <span className="font-mono text-xs uppercase tracking-[0.15em] text-gold">
             Sniper Indicator
           </span>
           <div className="mt-3 flex items-baseline gap-2">
@@ -93,10 +93,14 @@ export function Indicator() {
           </p>
 
           <div className="mt-7">
-            <Button href={links.indicatorCheckout} variant="primary" className="w-full">
+            <Button
+              href={links.indicatorCheckout}
+              variant="primary"
+              className="w-full bg-gradient-to-r from-gold-dim via-gold to-gold-bright hover:opacity-90"
+            >
               Get The Indicator
             </Button>
-            <p className="mt-3 font-mono text-xs text-ink-faint">
+            <p className="mt-3 text-center font-mono text-xs text-ink-faint">
               One time payment. Non refundable.
             </p>
           </div>

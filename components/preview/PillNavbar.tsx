@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, Menu, X } from "lucide-react";
-import { links, siteConfig } from "@/lib/config";
+import { links } from "@/lib/config";
 
 const NAV_LINKS = [
   { label: "Method", href: "#method" },
@@ -20,12 +21,14 @@ export function PillNavbar() {
     <div className="flex justify-center px-3 pt-4 sm:px-4 sm:pt-6">
       <div className="relative z-20 w-full max-w-[760px] rounded-full border border-border-strong bg-surface-raised/95 py-2 pl-4 pr-2 shadow-lg backdrop-blur-sm">
         <div className="flex items-center">
-          <Link
-            href="#top"
-            className="shrink-0 font-heading text-base uppercase tracking-wide text-ink"
-          >
-            {siteConfig.name.split(" ")[0]}
-            <span className="text-gold"> {siteConfig.name.split(" ").slice(1).join(" ")}</span>
+          <Link href="#top" className="shrink-0">
+            <Image
+              src="/brand/logo.png"
+              alt="Precision HQ"
+              width={1013}
+              height={251}
+              className="h-7 w-auto"
+            />
           </Link>
 
           <ul className="ml-8 hidden items-center gap-6 md:flex">

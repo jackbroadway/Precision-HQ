@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { Button } from "./ui/Button";
-import { links, siteConfig } from "@/lib/config";
+import { links } from "@/lib/config";
 
 const NAV_LINKS = [
   { label: "Method", href: "#method" },
@@ -54,12 +55,15 @@ export function Nav() {
       }`}
     >
       <nav className="container-px flex h-16 items-center justify-between sm:h-20">
-        <Link
-          href="#top"
-          className="font-heading text-xl uppercase tracking-wide text-ink sm:text-2xl"
-        >
-          {siteConfig.name.split(" ")[0]}
-          <span className="text-gold"> {siteConfig.name.split(" ").slice(1).join(" ")}</span>
+        <Link href="#top" className="shrink-0">
+          <Image
+            src="/brand/logo.png"
+            alt="Precision HQ"
+            width={1013}
+            height={251}
+            priority
+            className="h-8 w-auto sm:h-10"
+          />
         </Link>
 
         <ul className="hidden items-center gap-8 lg:flex">

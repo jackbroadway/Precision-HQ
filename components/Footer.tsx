@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { links, siteConfig } from "@/lib/config";
 
@@ -40,12 +41,14 @@ export function Footer() {
     <footer className="border-t border-border">
       <div className="container-px flex flex-col gap-10 py-14">
         <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
-          <Link
-            href="#top"
-            className="font-heading text-xl uppercase tracking-wide text-ink"
-          >
-            {siteConfig.name.split(" ")[0]}
-            <span className="text-gold"> {siteConfig.name.split(" ").slice(1).join(" ")}</span>
+          <Link href="#top" className="shrink-0">
+            <Image
+              src="/brand/logo.png"
+              alt="Precision HQ"
+              width={1013}
+              height={251}
+              className="h-8 w-auto"
+            />
           </Link>
 
           <div className="flex items-center gap-5">

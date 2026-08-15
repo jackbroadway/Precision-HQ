@@ -54,12 +54,16 @@ export function Offers() {
         </Reveal>
       </div>
 
-      <div className="mx-auto mt-14 grid max-w-4xl gap-6 lg:grid-cols-2">
+      <div className="mx-auto mt-16 grid max-w-4xl gap-8 pt-3 lg:grid-cols-2">
         <Reveal
           delay={0.05}
-          className="flex flex-col rounded-lg border border-border bg-surface p-8"
+          className="relative flex flex-col rounded-2xl border border-gold bg-gradient-to-b from-surface-raised to-surface p-8 shadow-[0_0_40px_-12px_rgba(201,168,76,0.35)]"
         >
-          <span className="font-mono text-xs uppercase tracking-[0.15em] text-ink-muted">
+          <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-gold-dim via-gold to-gold-bright px-4 py-1 font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-background shadow-md">
+            Most Popular
+          </span>
+
+          <span className="font-mono text-xs uppercase tracking-[0.15em] text-gold">
             Community
           </span>
           <div className="mt-3 flex items-baseline gap-2">
@@ -71,20 +75,29 @@ export function Offers() {
             publish inside it.
           </p>
 
-          <ul className="mt-7 flex flex-col gap-3">
-            {COMMUNITY_FEATURES.map((feature) => (
-              <li key={feature} className="flex items-start gap-2.5">
+          <ul className="mt-7 flex flex-col">
+            {COMMUNITY_FEATURES.map((feature, i) => (
+              <li
+                key={feature}
+                className={`flex items-start gap-2.5 py-3 ${
+                  i > 0 ? "border-t border-border" : ""
+                }`}
+              >
                 <Check />
                 <span className="font-body text-sm text-ink">{feature}</span>
               </li>
             ))}
           </ul>
 
-          <div className="mt-8">
-            <Button href={links.communityCheckout} variant="primary" className="w-full">
+          <div className="mt-6">
+            <Button
+              href={links.communityCheckout}
+              variant="primary"
+              className="w-full bg-gradient-to-r from-gold-dim via-gold to-gold-bright hover:opacity-90"
+            >
               Get Instant Access
             </Button>
-            <p className="mt-3 font-mono text-xs text-ink-faint">
+            <p className="mt-3 text-center font-mono text-xs text-ink-faint">
               One time payment. Non refundable.
             </p>
           </div>
@@ -92,10 +105,10 @@ export function Offers() {
 
         <Reveal
           delay={0.12}
-          className="flex flex-col rounded-lg border border-gold bg-surface-raised p-8"
+          className="flex flex-col rounded-2xl border border-border-strong bg-gradient-to-b from-surface to-surface p-8"
         >
           <div className="flex items-center justify-between">
-            <span className="font-mono text-xs uppercase tracking-[0.15em] text-gold">
+            <span className="font-mono text-xs uppercase tracking-[0.15em] text-ink-muted">
               Mentorship
             </span>
             <span className="rounded-full border border-border-strong px-3 py-1 font-mono text-[11px] uppercase tracking-wide text-ink-muted">
@@ -110,20 +123,29 @@ export function Offers() {
             checkout for approved applicants.
           </p>
 
-          <ul className="mt-7 flex flex-col gap-3">
-            {MENTORSHIP_FEATURES.map((feature) => (
-              <li key={feature} className="flex items-start gap-2.5">
+          <ul className="mt-7 flex flex-col">
+            {MENTORSHIP_FEATURES.map((feature, i) => (
+              <li
+                key={feature}
+                className={`flex items-start gap-2.5 py-3 ${
+                  i > 0 ? "border-t border-border" : ""
+                }`}
+              >
                 <Check />
                 <span className="font-body text-sm text-ink">{feature}</span>
               </li>
             ))}
           </ul>
 
-          <div className="mt-8">
-            <Button href={links.mentorshipApplication} variant="primary" className="w-full">
+          <div className="mt-6">
+            <Button
+              href={links.mentorshipApplication}
+              variant="secondary"
+              className="w-full"
+            >
               Apply For Mentorship
             </Button>
-            <p className="mt-3 font-mono text-xs text-ink-faint">
+            <p className="mt-3 text-center font-mono text-xs text-ink-faint">
               Application required. Non refundable once accepted.
             </p>
           </div>
