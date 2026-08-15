@@ -1,5 +1,6 @@
 import { Button } from "./ui/Button";
 import { Eyebrow } from "./ui/Eyebrow";
+import { FeaturedVideoCard } from "./ui/FeaturedVideoCard";
 import { Reveal } from "./ui/Reveal";
 import { links } from "@/lib/config";
 
@@ -68,24 +69,30 @@ export function Testimonials() {
         </Reveal>
       </div>
 
-      <Reveal delay={0.2} className="group mt-14 overflow-hidden">
-        <div className="flex w-max animate-marquee-slow gap-6 group-hover:[animation-play-state:paused]">
-          {TESTIMONIALS.map((t, i) => (
-            <div
-              key={`${t.name}-${t.role}-${i}`}
-              className="flex w-80 shrink-0 flex-col justify-between rounded-lg border border-border bg-surface p-7 sm:w-96"
-            >
-              <p className="font-body text-sm leading-relaxed text-ink-muted">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div className="mt-6 border-t border-border pt-4">
-                <p className="font-heading text-sm uppercase tracking-wide text-ink">
-                  {t.name}
+      <Reveal
+        delay={0.2}
+        className="mt-14 flex items-stretch gap-6 pl-5 sm:pl-8 lg:pl-10"
+      >
+        <FeaturedVideoCard />
+        <div className="group flex-1 overflow-hidden">
+          <div className="flex h-full w-max animate-marquee-slow gap-6 group-hover:[animation-play-state:paused]">
+            {TESTIMONIALS.map((t, i) => (
+              <div
+                key={`${t.name}-${t.role}-${i}`}
+                className="flex w-80 shrink-0 flex-col justify-between rounded-lg border border-border bg-surface p-7 sm:w-96"
+              >
+                <p className="font-body text-sm leading-relaxed text-ink-muted">
+                  &ldquo;{t.quote}&rdquo;
                 </p>
-                <p className="font-mono text-xs text-ink-faint">{t.role}</p>
+                <div className="mt-6 border-t border-border pt-4">
+                  <p className="font-heading text-sm uppercase tracking-wide text-ink">
+                    {t.name}
+                  </p>
+                  <p className="font-mono text-xs text-ink-faint">{t.role}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </Reveal>
 
