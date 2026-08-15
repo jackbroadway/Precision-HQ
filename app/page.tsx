@@ -17,8 +17,8 @@ export default function Home() {
         <VideoHero embedded />
         <Problem />
         <Method />
-        <Indicator />
         <Offers />
+        <Indicator />
         <Testimonials />
         <FAQ />
         <FinalCTA />
