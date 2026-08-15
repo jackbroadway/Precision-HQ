@@ -23,9 +23,9 @@ export function Hero() {
 
         <Reveal delay={0.08}>
           <h1 className="max-w-4xl text-display text-ink">
-            Trade With A Method
+            Patience Is
             <br />
-            <span className="text-gold-underline text-gold">Not A Hunch</span>
+            <span className="text-gold-underline text-gold">Precision</span>
           </h1>
         </Reveal>
 

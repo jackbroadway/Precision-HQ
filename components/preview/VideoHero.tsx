@@ -70,9 +70,9 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
             </span>
 
             <h1 className="mt-5 max-w-4xl text-display text-ink sm:mt-6">
-              Trade With A Method
+              Patience Is
               <br />
-              <span className="text-gold-underline text-gold">Not A Hunch</span>
+              <span className="text-gold-underline text-gold">Precision</span>
             </h1>
 
             <p className="mt-4 max-w-xl px-2 font-body text-base text-ink-muted sm:mt-6 sm:text-lg">
