@@ -15,7 +15,7 @@ function PlayIcon() {
   );
 }
 
-export function FeaturedVideoCard() {
+export function FeaturedVideoCard({ src }: { src: string }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export function FeaturedVideoCard() {
         className="group/video relative aspect-[640/352] h-52 shrink-0 overflow-hidden rounded-lg border border-gold bg-surface sm:h-64"
       >
         <video
-          src="/video/member-testimonial.mp4"
+          src={src}
           muted
           playsInline
           preload="metadata"
@@ -62,7 +62,7 @@ export function FeaturedVideoCard() {
             onClick={(e) => e.stopPropagation()}
           >
             <video
-              src="/video/member-testimonial.mp4"
+              src={src}
               controls
               autoPlay
               playsInline

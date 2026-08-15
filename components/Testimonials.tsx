@@ -52,6 +52,8 @@ const TESTIMONIALS_BASE = [
 
 const TESTIMONIALS = [...TESTIMONIALS_BASE, ...TESTIMONIALS_BASE];
 
+const MEMBER_VIDEOS = ["/video/member-testimonial.mp4"];
+
 export function Testimonials() {
   return (
     <section id="results" className="section-y">
@@ -70,29 +72,32 @@ export function Testimonials() {
       </div>
 
       <Reveal
-        delay={0.2}
-        className="mt-14 flex items-stretch gap-6 pl-5 sm:pl-8 lg:pl-10"
+        stagger
+        className="container-px mx-auto mt-10 flex flex-wrap justify-center gap-6"
       >
-        <FeaturedVideoCard />
-        <div className="group flex-1 overflow-hidden">
-          <div className="flex h-full w-max animate-marquee-slow gap-6 group-hover:[animation-play-state:paused]">
-            {TESTIMONIALS.map((t, i) => (
-              <div
-                key={`${t.name}-${t.role}-${i}`}
-                className="flex w-80 shrink-0 flex-col justify-between rounded-lg border border-border bg-surface p-7 sm:w-96"
-              >
-                <p className="font-body text-sm leading-relaxed text-ink-muted">
-                  &ldquo;{t.quote}&rdquo;
+        {MEMBER_VIDEOS.map((src) => (
+          <FeaturedVideoCard key={src} src={src} />
+        ))}
+      </Reveal>
+
+      <Reveal delay={0.2} className="group mt-10 overflow-hidden">
+        <div className="flex w-max animate-marquee-slow gap-6 group-hover:[animation-play-state:paused]">
+          {TESTIMONIALS.map((t, i) => (
+            <div
+              key={`${t.name}-${t.role}-${i}`}
+              className="flex w-80 shrink-0 flex-col justify-between rounded-lg border border-border bg-surface p-7 sm:w-96"
+            >
+              <p className="font-body text-sm leading-relaxed text-ink-muted">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <div className="mt-6 border-t border-border pt-4">
+                <p className="font-heading text-sm uppercase tracking-wide text-ink">
+                  {t.name}
                 </p>
-                <div className="mt-6 border-t border-border pt-4">
-                  <p className="font-heading text-sm uppercase tracking-wide text-ink">
-                    {t.name}
-                  </p>
-                  <p className="font-mono text-xs text-ink-faint">{t.role}</p>
-                </div>
+                <p className="font-mono text-xs text-ink-faint">{t.role}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </Reveal>
 
