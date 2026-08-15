@@ -43,7 +43,7 @@ export function Problem() {
         </Reveal>
         <Reveal delay={0.08}>
           <h2 className="mt-4 text-h2 text-ink">
-            Why Most Signal Groups Fail Traders
+            Why Blind Signal Groups Fail Traders
           </h2>
         </Reveal>
         <Reveal delay={0.14}>
