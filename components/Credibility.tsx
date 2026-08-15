@@ -24,8 +24,14 @@ const CERTIFICATES = [
   {
     src: "/credibility/alpha-capital-verification.jpg",
     alt: "Alpha Capital Group Passed Verification certificate",
-    width: 1200,
-    height: 904,
+    width: 1196,
+    height: 900,
+  },
+  {
+    src: "/credibility/alpha-capital-phase1.jpg",
+    alt: "Alpha Capital Group Phase 1 Certificate of Achievement",
+    width: 1175,
+    height: 860,
   },
   {
     src: "/credibility/ftmo-challenge-2.jpg",
@@ -38,12 +44,6 @@ const CERTIFICATES = [
     alt: "FTMO Passed Verification certificate, 13 Oct 2025",
     width: 900,
     height: 900,
-  },
-  {
-    src: "/credibility/alpha-capital-phase1.jpg",
-    alt: "Alpha Capital Group Phase 1 Certificate of Achievement",
-    width: 1179,
-    height: 864,
   },
   {
     src: "/credibility/ftmo-challenge-3.jpg",
