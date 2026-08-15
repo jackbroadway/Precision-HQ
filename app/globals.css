@@ -10,10 +10,30 @@
   html {
     scroll-behavior: smooth;
     color-scheme: dark;
+    scrollbar-color: #8a7233 #0a0800;
+    scrollbar-width: thin;
   }
 
   body {
     @apply bg-background text-ink font-body antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #8a7233;
+    border-radius: 999px;
+    border: 2px solid #0a0800;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c9a84c;
   }
 
   h1,
