@@ -8,7 +8,7 @@ const telegramUsername = "Broadfxsupport";
 const telegramPrefilledMessage =
   "Hey, I'm interested in joining Precision HQ. Can you send me the details?";
 const affiliatePrefilledMessage =
-  "Hey, I'm interested in becoming an affiliate for Precision HQ. Can you send me the details?";
+  "Hey, I'm interested in becoming a sub IB affiliate. Can you send me the details?";
 
 export const links = {
   telegramCommunity: `https://t.me/${telegramUsername}?text=${encodeURIComponent(telegramPrefilledMessage)}`,
