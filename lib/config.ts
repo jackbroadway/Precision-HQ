@@ -31,6 +31,8 @@ export const links = {
 } as const;
 
 export const indicatorPrice = "£19.99";
+export const indicatorOriginalPrice = "£49.99";
+export const indicatorOfferEndsLabel = "31 Aug 2026";
 
 /**
  * Post-payment broker sign-up step, shown on /welcome (the page Stripe

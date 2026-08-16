@@ -1,7 +1,12 @@
 import { Button } from "./ui/Button";
 import { Eyebrow } from "./ui/Eyebrow";
 import { Reveal } from "./ui/Reveal";
-import { links, indicatorPrice } from "@/lib/config";
+import {
+  links,
+  indicatorPrice,
+  indicatorOriginalPrice,
+  indicatorOfferEndsLabel,
+} from "@/lib/config";
 
 function Check() {
   return (
@@ -77,15 +82,25 @@ export function Indicator() {
 
         <Reveal
           delay={0.1}
-          className="flex flex-col rounded-2xl border border-gold bg-gradient-to-b from-surface-raised to-surface p-7 shadow-[0_0_40px_-12px_rgba(201,168,76,0.35)] lg:h-fit"
+          className="relative flex flex-col rounded-2xl border border-gold bg-gradient-to-b from-surface-raised to-surface p-7 shadow-[0_0_40px_-12px_rgba(201,168,76,0.35)] lg:h-fit"
         >
+          <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-gold-dim via-gold to-gold-bright px-4 py-1 font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-background shadow-md">
+            Limited Time Offer
+          </span>
+
           <span className="font-mono text-xs uppercase tracking-[0.15em] text-gold">
             Sniper Indicator
           </span>
           <div className="mt-3 flex items-baseline gap-2">
+            <span className="font-mono text-sm text-ink-faint line-through">
+              {indicatorOriginalPrice}
+            </span>
             <span className="font-mono text-4xl text-ink">{indicatorPrice}</span>
             <span className="font-mono text-sm text-ink-muted">one time</span>
           </div>
+          <p className="mt-2 font-mono text-xs uppercase tracking-wide text-gold">
+            Offer ends {indicatorOfferEndsLabel}
+          </p>
           <p className="mt-3 font-body text-sm text-ink-muted">
             TradingView invite-only access. You will be asked for your
             TradingView username at checkout so access can be granted
