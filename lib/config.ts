@@ -29,8 +29,12 @@ export const indicatorPrice = "£19.99";
  * Payment Link's after-payment settings in the Stripe dashboard, not
  * something configurable from this codebase).
  */
-export const brokerAccountNote =
-  "When signing up, create a Live MT5 (Platform 5) Standard account in GBP. We recommend starting with a £300 deposit.";
+export const welcomeChecklist = [
+  "Sign up or transfer to one of the brokers below, using a Live MT5 (Platform 5) Standard account in GBP.",
+  "Verify your ID and proof of address, most brokers require this before you can deposit.",
+  "Make a deposit, we recommend starting with £300.",
+  "Send a screenshot of your funded account to support to get your community invite.",
+] as const;
 
 export const brokers = [
   {
@@ -61,7 +65,7 @@ export const brokers = [
       "Enter the IB number below in the New CPA ID/IB Number field.",
       "Submit the request.",
     ],
-    transferNote: "Applications can only be submitted once every 72 hours.",
+    transferNote: null as string | null,
   },
   {
     name: "IC Markets",

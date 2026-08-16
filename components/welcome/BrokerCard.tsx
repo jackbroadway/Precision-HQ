@@ -44,7 +44,7 @@ export function BrokerCard({
   transferEmail,
   transferEmailBody,
 }: BrokerCardProps) {
-  const [tab, setTab] = useState<"new" | "existing">("new");
+  const [tab, setTab] = useState<"new" | "existing">("existing");
 
   return (
     <div className="flex flex-col rounded-lg border border-border bg-surface p-6">
