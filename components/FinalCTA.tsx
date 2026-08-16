@@ -21,7 +21,7 @@ export function FinalCTA() {
             mentorship if you are ready to go through it directly with Jack.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button href={links.telegramCommunity} variant="primary">
+            <Button href="/#offers" variant="primary">
               Join Community
             </Button>
             <Button href={links.mentorshipApplication} variant="secondary">
