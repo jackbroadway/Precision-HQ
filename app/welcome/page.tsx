@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { BrokerCard } from "@/components/welcome/BrokerCard";
-import { brokers, links } from "@/lib/config";
+import { brokerAccountNote, brokers, links } from "@/lib/config";
 
 export const metadata = {
   title: "Welcome — Precision HQ",
@@ -32,6 +32,11 @@ export default function WelcomePage() {
                 them, both are covered.
               </p>
             </Reveal>
+            <Reveal delay={0.22}>
+              <p className="mx-auto mt-4 max-w-xl font-mono text-xs text-ink-faint">
+                {brokerAccountNote}
+              </p>
+            </Reveal>
           </div>
         </section>
 
@@ -41,12 +46,7 @@ export default function WelcomePage() {
             className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-3"
           >
             {brokers.map((broker) => (
-              <BrokerCard
-                key={broker.name}
-                name={broker.name}
-                signupUrl={broker.signupUrl}
-                transferInstructions={broker.transferInstructions}
-              />
+              <BrokerCard key={broker.name} {...broker} />
             ))}
           </Reveal>
         </section>

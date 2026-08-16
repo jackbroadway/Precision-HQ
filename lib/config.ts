@@ -24,31 +24,52 @@ export const links = {
 export const indicatorPrice = "£19.99";
 
 /**
- * Post-payment broker sign-up step. Fill in the real referral link and
- * transfer instructions for each broker when ready, both currently
- * placeholders. Used on /welcome, the page Stripe should redirect to
- * after a successful Community payment (set in the Payment Link's
- * after-payment settings in the Stripe dashboard, not something
- * configurable from this codebase).
+ * Post-payment broker sign-up step, shown on /welcome (the page Stripe
+ * should redirect to after a successful Community payment, set in the
+ * Payment Link's after-payment settings in the Stripe dashboard, not
+ * something configurable from this codebase).
  */
+export const brokerAccountNote =
+  "When signing up, create a Live MT5 (Platform 5) Standard account in GBP. We recommend starting with a £300 deposit.";
+
 export const brokers = [
   {
-    name: "PU Prime",
-    signupUrl: "#REPLACE_WITH_PUPRIME_REFERRAL_LINK",
-    transferInstructions:
-      "#REPLACE_WITH_PUPRIME_TRANSFER_INSTRUCTIONS",
+    name: "Vantage",
+    signupUrl: "https://vigco.co/la-com-inv/Broadfx10",
+    transferMethod: "form" as const,
+    ibNumber: "7367369",
+    ibFieldLabel: "New Affiliate Code/IB Number",
+    transferSteps: [
+      "Log in and go to Profile.",
+      'Open the "Transfer IB/Affiliate" tab.',
+      "Set Partnership Type to IB.",
+      "Enter the IB number below in the New Affiliate Code/IB Number field.",
+      "Confirm you've closed all open positions and agree to the transfer, then submit.",
+    ],
+    transferNote: null as string | null,
   },
   {
-    name: "Vantage",
-    signupUrl: "#REPLACE_WITH_VANTAGE_REFERRAL_LINK",
-    transferInstructions:
-      "#REPLACE_WITH_VANTAGE_TRANSFER_INSTRUCTIONS",
+    name: "PU Prime",
+    signupUrl: "https://puvip.co/la-partners/k8MqFkpw",
+    transferMethod: "form" as const,
+    ibNumber: "23216265",
+    ibFieldLabel: "New CPA ID/IB Number",
+    transferSteps: [
+      "Log in and go to Profile.",
+      'Open the "Transfer IB/CPA" tab.',
+      "Set Partnership Type to IB.",
+      "Enter the IB number below in the New CPA ID/IB Number field.",
+      "Submit the request.",
+    ],
+    transferNote: "Applications can only be submitted once every 72 hours.",
   },
   {
     name: "IC Markets",
-    signupUrl: "#REPLACE_WITH_ICMARKETS_REFERRAL_LINK",
-    transferInstructions:
-      "#REPLACE_WITH_ICMARKETS_TRANSFER_INSTRUCTIONS",
+    signupUrl: "https://ic.com/?camp=89932",
+    transferMethod: "email" as const,
+    transferEmail: "partners@icmarkets.com",
+    transferEmailBody:
+      "Hello, I hope this email finds you well.\n\nCan I please transfer my account under 89932.\n\nThanks",
   },
 ] as const;
 

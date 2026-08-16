@@ -6,13 +6,43 @@ import { Button } from "../ui/Button";
 type BrokerCardProps = {
   name: string;
   signupUrl: string;
-  transferInstructions: string;
+  transferMethod: "form" | "email";
+  ibNumber?: string;
+  ibFieldLabel?: string;
+  transferSteps?: readonly string[];
+  transferNote?: string | null;
+  transferEmail?: string;
+  transferEmailBody?: string;
 };
+
+function CopyButton({ value }: { value: string }) {
+  const [copied, setCopied] = useState(false);
+
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        navigator.clipboard.writeText(value);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1500);
+      }}
+      className="font-mono text-[11px] uppercase tracking-wide text-gold hover:text-gold-bright"
+    >
+      {copied ? "Copied" : "Copy"}
+    </button>
+  );
+}
 
 export function BrokerCard({
   name,
   signupUrl,
-  transferInstructions,
+  transferMethod,
+  ibNumber,
+  ibFieldLabel,
+  transferSteps,
+  transferNote,
+  transferEmail,
+  transferEmailBody,
 }: BrokerCardProps) {
   const [tab, setTab] = useState<"new" | "existing">("new");
 
@@ -60,10 +90,68 @@ export function BrokerCard({
               </Button>
             </div>
           </>
+        ) : transferMethod === "form" ? (
+          <>
+            <ol className="flex flex-col gap-2.5">
+              {transferSteps?.map((step, i) => (
+                <li
+                  key={step}
+                  className="flex gap-2.5 font-body text-sm leading-relaxed text-ink-muted"
+                >
+                  <span className="shrink-0 font-mono text-xs text-gold-dim">
+                    {i + 1}.
+                  </span>
+                  {step}
+                </li>
+              ))}
+            </ol>
+            {ibNumber && (
+              <div className="mt-4 rounded-sm border border-border bg-background p-3">
+                <p className="font-mono text-[11px] uppercase tracking-wide text-gold-dim">
+                  {ibFieldLabel}
+                </p>
+                <div className="mt-1.5 flex items-center justify-between gap-2">
+                  <span className="font-mono text-sm text-ink">
+                    {ibNumber}
+                  </span>
+                  <CopyButton value={ibNumber} />
+                </div>
+              </div>
+            )}
+            {transferNote && (
+              <p className="mt-4 font-mono text-xs text-ink-faint">
+                {transferNote}
+              </p>
+            )}
+          </>
         ) : (
-          <p className="font-body text-sm leading-relaxed text-ink-muted">
-            {transferInstructions}
-          </p>
+          <>
+            <p className="font-body text-sm leading-relaxed text-ink-muted">
+              {name} doesn&rsquo;t have a self-service transfer form. Email
+              their partners team with the message below.
+            </p>
+            <div className="mt-4 rounded-sm border border-border bg-background p-3">
+              <p className="font-mono text-[11px] uppercase tracking-wide text-gold-dim">
+                Email To
+              </p>
+              <p className="mt-1.5 font-mono text-sm text-ink">
+                {transferEmail}
+              </p>
+            </div>
+            {transferEmailBody && (
+              <div className="mt-3 rounded-sm border border-border bg-background p-3">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-mono text-[11px] uppercase tracking-wide text-gold-dim">
+                    Message
+                  </p>
+                  <CopyButton value={transferEmailBody} />
+                </div>
+                <p className="mt-1.5 whitespace-pre-line font-body text-sm leading-relaxed text-ink-muted">
+                  {transferEmailBody}
+                </p>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
