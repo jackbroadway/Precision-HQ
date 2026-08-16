@@ -9,9 +9,10 @@ import { Button } from "./ui/Button";
 import { links } from "@/lib/config";
 
 const NAV_LINKS = [
+  { label: "Home", href: "/#top" },
   { label: "Method", href: "/#method" },
   { label: "Community", href: "/#offers" },
-  { label: "Mentorship", href: "/#offers" },
+  { label: "Mentorship", href: "/apply#jack" },
   { label: "Results", href: "/#results" },
   { label: "FAQ", href: "/#faq" },
 ];
