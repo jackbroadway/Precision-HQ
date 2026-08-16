@@ -13,12 +13,15 @@ const accountSetupPrefilledMessage =
   "Hey, I have paid for access into Precision HQ and setup my trading account.";
 const needHelpSetupPrefilledMessage =
   "Hey, I need help setting up my trading account for Precision HQ.";
+const needAccountCreationPrefilledMessage =
+  "Hey, I need to create an account for Precision HQ.";
 
 export const links = {
   telegramCommunity: `https://t.me/${telegramUsername}?text=${encodeURIComponent(telegramPrefilledMessage)}`,
   affiliateApplication: `https://t.me/${telegramUsername}?text=${encodeURIComponent(affiliatePrefilledMessage)}`,
   confirmAccountSetup: `https://t.me/${telegramUsername}?text=${encodeURIComponent(accountSetupPrefilledMessage)}`,
   needHelpSetup: `https://t.me/${telegramUsername}?text=${encodeURIComponent(needHelpSetupPrefilledMessage)}`,
+  needAccountCreation: `https://t.me/${telegramUsername}?text=${encodeURIComponent(needAccountCreationPrefilledMessage)}`,
   dailyResults: "https://t.me/precisionhqresults",
   communityCheckout: "https://buy.stripe.com/7sYfZa6QV3kibfb9yv2cg3i",
   mentorshipApplication: "/apply",
@@ -38,8 +41,8 @@ export const indicatorPrice = "£19.99";
 export const welcomeChecklist = [
   "Sign up or transfer to one of the brokers below, using a Live MT5 (Platform 5) Standard account in GBP.",
   "Verify your ID and proof of address, most brokers require this before you can deposit.",
-  "Make a deposit, we recommend starting with £300.",
-  "Send a screenshot of your funded account to support to get your community invite.",
+  "Make a deposit, £300 recommended minimum.",
+  "Send us a screenshot of your IB transfer confirmation or your new account setup to get your community invite.",
 ] as const;
 
 export const brokers = [

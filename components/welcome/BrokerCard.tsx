@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "../ui/Button";
+import { links } from "@/lib/config";
 
 type BrokerCardProps = {
   name: string;
@@ -77,7 +78,7 @@ export function BrokerCard({
         </button>
       </div>
 
-      <div className="mt-5 flex-1">
+      <div className="mt-5 flex flex-1 flex-col">
         {tab === "new" ? (
           <>
             <p className="font-body text-sm leading-relaxed text-ink-muted">
@@ -90,6 +91,14 @@ export function BrokerCard({
                 Sign Up To {name}
               </Button>
             </div>
+            <a
+              href={links.needAccountCreation}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-auto block pt-4 text-center font-mono text-xs uppercase tracking-wide text-ink-faint hover:text-gold"
+            >
+              I Need Help Creating An Account
+            </a>
           </>
         ) : transferMethod === "form" ? (
           <>
@@ -106,24 +115,26 @@ export function BrokerCard({
                 </li>
               ))}
             </ol>
-            {ibNumber && (
-              <div className="mt-4 rounded-sm border border-border bg-background p-3">
-                <p className="font-mono text-[11px] uppercase tracking-wide text-gold-dim">
-                  {ibFieldLabel}
-                </p>
-                <div className="mt-1.5 flex items-center justify-between gap-2">
-                  <span className="font-mono text-sm text-ink">
-                    {ibNumber}
-                  </span>
-                  <CopyButton value={ibNumber} />
+            <div className="mt-auto pt-4">
+              {ibNumber && (
+                <div className="rounded-sm border border-border bg-background p-3">
+                  <p className="font-mono text-[11px] uppercase tracking-wide text-gold-dim">
+                    {ibFieldLabel}
+                  </p>
+                  <div className="mt-1.5 flex items-center justify-between gap-2">
+                    <span className="font-mono text-sm text-ink">
+                      {ibNumber}
+                    </span>
+                    <CopyButton value={ibNumber} />
+                  </div>
                 </div>
-              </div>
-            )}
-            {transferNote && (
-              <p className="mt-4 font-mono text-xs text-ink-faint">
-                {transferNote}
-              </p>
-            )}
+              )}
+              {transferNote && (
+                <p className="mt-4 font-mono text-xs text-ink-faint">
+                  {transferNote}
+                </p>
+              )}
+            </div>
           </>
         ) : (
           <>

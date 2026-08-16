@@ -38,8 +38,9 @@ export function Method() {
         </Reveal>
         <Reveal delay={0.14}>
           <p className="mt-4 font-body text-ink-muted">
-            Four timeframes, one framework. This is the concept behind every
-            trade idea we share, not a set of exact entry rules.
+            Four timeframes, one framework. This is just one of the
+            concepts behind every trade idea we share, not a set of exact
+            entry rules.
           </p>
         </Reveal>
       </div>
