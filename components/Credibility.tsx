@@ -91,6 +91,30 @@ const MEMBER_CERTIFICATES: Cert[] = [
     width: 900,
     height: 680,
   },
+  {
+    src: "/credibility/members/manj22-ftmo-challenge-1.jpg",
+    alt: "FTMO Passed Challenge certificate, 9 Apr 2026, member Manj22",
+    width: 1080,
+    height: 1080,
+  },
+  {
+    src: "/credibility/members/manj22-ftmo-verification-1.jpg",
+    alt: "FTMO Passed Verification certificate, 14 Apr 2026, member Manj22",
+    width: 1080,
+    height: 1080,
+  },
+  {
+    src: "/credibility/members/manj22-ftmo-challenge-2.jpg",
+    alt: "FTMO Passed Challenge certificate, 6 May 2026, member Manj22",
+    width: 1080,
+    height: 1080,
+  },
+  {
+    src: "/credibility/members/manj22-ftmo-verification-2.jpg",
+    alt: "FTMO Passed Verification certificate, 18 May 2026, member Manj22",
+    width: 1080,
+    height: 1080,
+  },
 ];
 
 const SLIDES = [...CERTIFICATES, ...CERTIFICATES];
