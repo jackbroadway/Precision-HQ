@@ -81,7 +81,7 @@ export function Nav() {
 
         <div className="hidden lg:block">
           <Button href={links.telegramCommunity} variant="primary" className="px-5 py-2.5 text-sm">
-            Join Community
+            Contact Support
           </Button>
         </div>
 
@@ -136,7 +136,7 @@ export function Nav() {
             variant="primary"
             className="mt-4 w-full"
           >
-            Join Community
+            Contact Support
           </Button>
         </div>
       )}
