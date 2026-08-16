@@ -23,6 +23,35 @@ export const links = {
 
 export const indicatorPrice = "£19.99";
 
+/**
+ * Post-payment broker sign-up step. Fill in the real referral link and
+ * transfer instructions for each broker when ready, both currently
+ * placeholders. Used on /welcome, the page Stripe should redirect to
+ * after a successful Community payment (set in the Payment Link's
+ * after-payment settings in the Stripe dashboard, not something
+ * configurable from this codebase).
+ */
+export const brokers = [
+  {
+    name: "PU Prime",
+    signupUrl: "#REPLACE_WITH_PUPRIME_REFERRAL_LINK",
+    transferInstructions:
+      "#REPLACE_WITH_PUPRIME_TRANSFER_INSTRUCTIONS",
+  },
+  {
+    name: "Vantage",
+    signupUrl: "#REPLACE_WITH_VANTAGE_REFERRAL_LINK",
+    transferInstructions:
+      "#REPLACE_WITH_VANTAGE_TRANSFER_INSTRUCTIONS",
+  },
+  {
+    name: "IC Markets",
+    signupUrl: "#REPLACE_WITH_ICMARKETS_REFERRAL_LINK",
+    transferInstructions:
+      "#REPLACE_WITH_ICMARKETS_TRANSFER_INSTRUCTIONS",
+  },
+] as const;
+
 export const siteConfig = {
   name: "Precision HQ",
   founder: "Jack",
