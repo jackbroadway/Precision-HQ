@@ -81,8 +81,9 @@ export function BrokerCard({
         {tab === "new" ? (
           <>
             <p className="font-body text-sm leading-relaxed text-ink-muted">
-              Brand new to {name}? Sign up using the link below so your
-              account is linked to Precision HQ.
+              Brand new to {name}? Sign up using the link below, then create
+              a Live MT5 (Platform 5) Standard account in GBP so it&rsquo;s
+              linked to Precision HQ.
             </p>
             <div className="mt-5">
               <Button href={signupUrl} variant="primary" className="w-full">
