@@ -101,7 +101,8 @@ export function Offers() {
               Get Instant Access
             </Button>
             <p className="mt-3 text-center font-mono text-xs text-ink-faint">
-              One time payment. Non refundable.
+              One time payment. Non refundable. Includes a quick guided
+              broker setup step before you&rsquo;re in.
             </p>
           </div>
         </Reveal>
