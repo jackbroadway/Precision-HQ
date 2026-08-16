@@ -25,7 +25,7 @@ export const links = {
   dailyResults: "https://t.me/precisionhqresults",
   communityCheckout: "https://buy.stripe.com/7sYfZa6QV3kibfb9yv2cg3i",
   mentorshipApplication: "/apply",
-  indicatorCheckout: "#REPLACE_WITH_STRIPE_CHECKOUT_LINK",
+  indicatorCheckout: "https://buy.stripe.com/aFa28k3EJg74dnj2632cg3o",
   instagram: "https://instagram.com/precisionhq_",
   tiktok: "https://tiktok.com/@precisionhq_",
 } as const;
