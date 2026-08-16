@@ -83,9 +83,9 @@ export function Problem() {
 
       <Reveal delay={0.24} className="mx-auto mt-10 max-w-3xl text-center">
         <p className="font-body text-sm leading-relaxed text-ink-muted">
-          That is exactly why Precision HQ is built around a News &amp;
-          Updates feed, Announcements, a Mindset section, a full Education
-          hub for trade breakdowns and analysis, and ongoing direct support
+          That is exactly why Precision HQ is built around a full Education
+          hub for trade breakdowns and analysis, a Mindset section, a News
+          &amp; Updates feed with announcements, and ongoing direct support
           from Jack, Shane and the community chat, not just calls.
         </p>
       </Reveal>

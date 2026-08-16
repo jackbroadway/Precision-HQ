@@ -22,9 +22,9 @@ function Check() {
 
 const COMMUNITY_FEATURES = [
   "Daily trade ideas, called using the same method",
-  "News, updates and announcements as they happen",
   "Education hub with trade breakdowns and market analysis",
   "Mindset section to keep discipline and psychology in check",
+  "News, updates and announcements as they happen",
   "Daily bias, Asia range and London Open notes posted each morning",
   "Ongoing direct support from Jack, Shane and the community chat",
 ];
@@ -50,7 +50,9 @@ export function Offers() {
         <Reveal delay={0.14}>
           <p className="mt-4 font-body text-ink-muted">
             Learn alongside the community or go through the method with Jack
-            directly. Both are built around the same framework.
+            directly.
+            <br />
+            Both are built around the same framework.
           </p>
         </Reveal>
       </div>
@@ -144,7 +146,7 @@ export function Offers() {
               variant="secondary"
               className="w-full"
             >
-              Apply For Mentorship
+              View &amp; Apply For Mentorship
             </Button>
             <p className="mt-3 text-center font-mono text-xs text-ink-faint">
               Application required. Non refundable once accepted.

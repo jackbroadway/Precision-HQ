@@ -28,7 +28,7 @@ const FAQS = [
   {
     question: "How do I apply for mentorship?",
     answer:
-      "Use the Apply For Mentorship button on this page. You will be asked a few questions about your trading so far and your goals. Jack reviews every application personally.",
+      "Use the View & Apply For Mentorship button on this page. It takes you to an overview of the program before a short application. You will be asked a few questions about your trading so far and your goals, and Jack reviews every application personally.",
   },
 ];
 

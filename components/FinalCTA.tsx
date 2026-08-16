@@ -25,7 +25,7 @@ export function FinalCTA() {
               Join Community
             </Button>
             <Button href={links.mentorshipApplication} variant="secondary">
-              Apply For Mentorship
+              View &amp; Apply For Mentorship
             </Button>
           </div>
         </div>
