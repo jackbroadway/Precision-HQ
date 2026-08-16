@@ -41,7 +41,7 @@ export function Footer() {
     <footer className="border-t border-border">
       <div className="container-px flex flex-col gap-10 py-14">
         <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
-          <Link href="#top" className="shrink-0">
+          <Link href="/#top" className="shrink-0">
             <Image
               src="/brand/logo.png"
               alt="Precision HQ"
@@ -87,6 +87,17 @@ export function Footer() {
           <p className="whitespace-nowrap font-mono text-xs text-ink-faint">
             © {new Date().getFullYear()} {siteConfig.name}
           </p>
+        </div>
+
+        <div className="border-t border-border pt-6 text-center">
+          <Link
+            href={links.affiliateApplication}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs uppercase tracking-wide text-ink-faint transition-colors hover:text-gold"
+          >
+            Become An Affiliate
+          </Link>
         </div>
       </div>
     </footer>

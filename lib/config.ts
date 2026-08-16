@@ -7,9 +7,12 @@
 const telegramUsername = "Broadfxsupport";
 const telegramPrefilledMessage =
   "Hey, I'm interested in joining Precision HQ. Can you send me the details?";
+const affiliatePrefilledMessage =
+  "Hey, I'm interested in becoming an affiliate for Precision HQ. Can you send me the details?";
 
 export const links = {
   telegramCommunity: `https://t.me/${telegramUsername}?text=${encodeURIComponent(telegramPrefilledMessage)}`,
+  affiliateApplication: `https://t.me/${telegramUsername}?text=${encodeURIComponent(affiliatePrefilledMessage)}`,
   dailyResults: "https://t.me/precisionhqresults",
   communityCheckout: "https://buy.stripe.com/7sYfZa6QV3kibfb9yv2cg3i",
   mentorshipApplication: "/apply",
