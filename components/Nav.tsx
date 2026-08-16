@@ -9,11 +9,11 @@ import { Button } from "./ui/Button";
 import { links } from "@/lib/config";
 
 const NAV_LINKS = [
-  { label: "Method", href: "#method" },
-  { label: "Community", href: "#offers" },
-  { label: "Mentorship", href: "#offers" },
-  { label: "Results", href: "#results" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Method", href: "/#method" },
+  { label: "Community", href: "/#offers" },
+  { label: "Mentorship", href: "/#offers" },
+  { label: "Results", href: "/#results" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export function Nav() {
@@ -55,7 +55,7 @@ export function Nav() {
       }`}
     >
       <nav className="container-px flex h-16 items-center justify-between sm:h-20">
-        <Link href="#top" className="shrink-0">
+        <Link href="/#top" className="shrink-0">
           <Image
             src="/brand/logo.png"
             alt="Precision HQ"

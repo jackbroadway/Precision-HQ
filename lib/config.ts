@@ -12,7 +12,7 @@ export const links = {
   telegramCommunity: `https://t.me/${telegramUsername}?text=${encodeURIComponent(telegramPrefilledMessage)}`,
   dailyResults: "https://t.me/precisionhqresults",
   communityCheckout: "https://buy.stripe.com/7sYfZa6QV3kibfb9yv2cg3i",
-  mentorshipApplication: "#REPLACE_WITH_APPLICATION_FORM_LINK",
+  mentorshipApplication: "/apply",
   indicatorCheckout: "#REPLACE_WITH_STRIPE_CHECKOUT_LINK",
   instagram: "https://instagram.com/precisionhq_",
   tiktok: "https://tiktok.com/@precisionhq_",
