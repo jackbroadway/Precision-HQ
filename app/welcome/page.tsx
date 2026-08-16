@@ -70,11 +70,14 @@ export default function WelcomePage() {
             <p className="mt-3 font-body text-sm text-ink-muted">
               Message support with a screenshot of your verified, funded
               account and you&rsquo;ll get your community invite straight
-              away.
+              away. Stuck on any step? We can help with that too.
             </p>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-col justify-center gap-4 sm:flex-row">
               <Button href={links.confirmAccountSetup} variant="primary">
                 Confirm With Support
+              </Button>
+              <Button href={links.needHelpSetup} variant="secondary">
+                Get Setup Help
               </Button>
             </div>
           </Reveal>

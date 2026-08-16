@@ -11,11 +11,14 @@ const affiliatePrefilledMessage =
   "Hey, I'm interested in becoming a sub IB affiliate. Can you send me the details?";
 const accountSetupPrefilledMessage =
   "Hey, I have paid for access into Precision HQ and setup my trading account.";
+const needHelpSetupPrefilledMessage =
+  "Hey, I need help setting up my trading account for Precision HQ.";
 
 export const links = {
   telegramCommunity: `https://t.me/${telegramUsername}?text=${encodeURIComponent(telegramPrefilledMessage)}`,
   affiliateApplication: `https://t.me/${telegramUsername}?text=${encodeURIComponent(affiliatePrefilledMessage)}`,
   confirmAccountSetup: `https://t.me/${telegramUsername}?text=${encodeURIComponent(accountSetupPrefilledMessage)}`,
+  needHelpSetup: `https://t.me/${telegramUsername}?text=${encodeURIComponent(needHelpSetupPrefilledMessage)}`,
   dailyResults: "https://t.me/precisionhqresults",
   communityCheckout: "https://buy.stripe.com/7sYfZa6QV3kibfb9yv2cg3i",
   mentorshipApplication: "/apply",
