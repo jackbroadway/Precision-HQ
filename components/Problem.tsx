@@ -49,7 +49,9 @@ export function Problem() {
         <Reveal delay={0.14}>
           <p className="mt-4 font-body text-ink-muted">
             Copying trade ideas with no context feels like progress. It is
-            not. Here is what it actually costs you.
+            not.
+            <br />
+            Here is what it actually costs you.
           </p>
         </Reveal>
       </div>
