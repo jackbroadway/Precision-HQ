@@ -74,7 +74,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
                 No chasing moves.
               </p>
               <p className="mt-2 font-body text-base text-ink-muted sm:text-lg">
-                Just a method that waits for the market to confirm itself.
+                Just methods that wait for the market to confirm itself.
               </p>
             </div>
 
