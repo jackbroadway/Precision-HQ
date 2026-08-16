@@ -73,7 +73,7 @@ export default function WelcomePage() {
               away.
             </p>
             <div className="mt-6">
-              <Button href={links.telegramCommunity} variant="primary">
+              <Button href={links.confirmAccountSetup} variant="primary">
                 Confirm With Support
               </Button>
             </div>
