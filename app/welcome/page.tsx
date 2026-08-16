@@ -68,9 +68,10 @@ export default function WelcomePage() {
           <Reveal className="mx-auto max-w-2xl rounded-lg border border-gold-dim/40 bg-gold/5 p-8 text-center">
             <h2 className="text-h3 text-gold">Done All Of That?</h2>
             <p className="mt-3 font-body text-sm text-ink-muted">
-              Message support with a screenshot of your verified, funded
-              account and you&rsquo;ll get your community invite straight
-              away. Stuck on any step? We can help with that too.
+              Message support with a screenshot of your submitted IB
+              transfer, or your new account setup if you&rsquo;re brand new,
+              and you&rsquo;ll get your community invite straight away.
+              Stuck on any step? We can help with that too.
             </p>
             <div className="mt-6 flex flex-col justify-center gap-4 sm:flex-row">
               <Button href={links.confirmAccountSetup} variant="primary">
