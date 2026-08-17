@@ -36,6 +36,13 @@ const SOCIALS = [
   },
 ];
 
+const LEGAL_LINKS = [
+  { label: "Terms", href: "/terms" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Refund Policy", href: "/refund-policy" },
+  { label: "Risk Disclaimer", href: "/risk-disclaimer" },
+];
+
 export function Footer() {
   return (
     <footer className="border-t border-border">
@@ -82,14 +89,29 @@ export function Footer() {
             Risk disclaimer: trading involves risk. Past results and trade
             ideas shared inside Precision HQ are no guarantee of future
             profit. Nothing on this site is financial advice. Content is for
-            educational purposes only.
+            educational purposes only. Read the full{" "}
+            <Link href="/risk-disclaimer" className="underline hover:text-gold">
+              risk disclaimer
+            </Link>
+            .
           </p>
           <p className="whitespace-nowrap font-mono text-xs text-ink-faint">
             © {new Date().getFullYear()} {siteConfig.name}
           </p>
         </div>
 
-        <div className="border-t border-border pt-6 text-center">
+        <div className="flex flex-col items-center gap-4 border-t border-border pt-6 sm:flex-row sm:justify-between">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            {LEGAL_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="font-mono text-xs uppercase tracking-wide text-ink-faint transition-colors hover:text-gold"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
           <Link
             href={links.affiliateApplication}
             target="_blank"
