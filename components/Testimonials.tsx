@@ -52,10 +52,10 @@ const TESTIMONIALS_BASE = [
 
 const TESTIMONIALS = [...TESTIMONIALS_BASE, ...TESTIMONIALS_BASE];
 
-const MEMBER_VIDEOS = [
-  "/video/member-testimonial.mp4",
-  "/video/member-testimonial-2.mp4",
-  "/video/member-testimonial-3.mp4",
+const MEMBER_VIDEOS: { src: string; posterPosition?: "center" | "top" }[] = [
+  { src: "/video/member-testimonial.mp4" },
+  { src: "/video/member-testimonial-3.mp4", posterPosition: "top" },
+  { src: "/video/member-testimonial-2.mp4" },
 ];
 
 export function Testimonials() {
@@ -79,8 +79,12 @@ export function Testimonials() {
         stagger
         className="container-px mx-auto mt-10 flex flex-wrap justify-center gap-6"
       >
-        {MEMBER_VIDEOS.map((src) => (
-          <FeaturedVideoCard key={src} src={src} />
+        {MEMBER_VIDEOS.map((video) => (
+          <FeaturedVideoCard
+            key={video.src}
+            src={video.src}
+            posterPosition={video.posterPosition}
+          />
         ))}
       </Reveal>
 

@@ -15,7 +15,13 @@ function PlayIcon() {
   );
 }
 
-export function FeaturedVideoCard({ src }: { src: string }) {
+export function FeaturedVideoCard({
+  src,
+  posterPosition = "center",
+}: {
+  src: string;
+  posterPosition?: "center" | "top";
+}) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -33,21 +39,23 @@ export function FeaturedVideoCard({ src }: { src: string }) {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Play member video testimonial"
-        className="group/video relative aspect-[640/352] h-52 shrink-0 overflow-hidden rounded-lg border border-gold bg-surface sm:h-64"
+        className="group/video relative aspect-[640/352] h-40 shrink-0 overflow-hidden rounded-lg border border-gold bg-surface sm:h-48"
       >
         <video
           src={src}
           muted
           playsInline
           preload="metadata"
-          className="h-full w-full object-cover"
+          className={`h-full w-full object-cover ${
+            posterPosition === "top" ? "object-top" : "object-center"
+          }`}
         />
         <div className="absolute inset-0 flex items-center justify-center bg-background/40 transition-colors group-hover/video:bg-background/20">
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gold text-background">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-background sm:h-12 sm:w-12">
             <PlayIcon />
           </span>
         </div>
-        <span className="absolute bottom-3 left-3 rounded-full bg-background/70 px-3 py-1 font-mono text-[11px] uppercase tracking-wide text-ink">
+        <span className="absolute bottom-2 left-2 rounded-full bg-background/70 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-ink">
           Watch
         </span>
       </button>
