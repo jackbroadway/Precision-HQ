@@ -15,6 +15,8 @@ const needHelpSetupPrefilledMessage =
   "Hey, I need help setting up my trading account for Precision HQ.";
 const needAccountCreationPrefilledMessage =
   "Hey, I need to create an account for Precision HQ.";
+const indicatorAccessPrefilledMessage =
+  "Hey, I've just purchased the Sniper indicator. Here's my TradingView username in case it's needed again:";
 
 export const links = {
   telegramCommunity: `https://t.me/${telegramUsername}?text=${encodeURIComponent(telegramPrefilledMessage)}`,
@@ -22,6 +24,7 @@ export const links = {
   confirmAccountSetup: `https://t.me/${telegramUsername}?text=${encodeURIComponent(accountSetupPrefilledMessage)}`,
   needHelpSetup: `https://t.me/${telegramUsername}?text=${encodeURIComponent(needHelpSetupPrefilledMessage)}`,
   needAccountCreation: `https://t.me/${telegramUsername}?text=${encodeURIComponent(needAccountCreationPrefilledMessage)}`,
+  indicatorAccessHelp: `https://t.me/${telegramUsername}?text=${encodeURIComponent(indicatorAccessPrefilledMessage)}`,
   dailyResults: "https://t.me/precisionhqresults",
   communityCheckout: "https://buy.stripe.com/7sYfZa6QV3kibfb9yv2cg3i",
   mentorshipApplication: "/apply",
