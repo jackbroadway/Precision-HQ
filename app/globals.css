@@ -12,6 +12,15 @@
     color-scheme: dark;
     scrollbar-color: #8a7233 #0a0800;
     scrollbar-width: thin;
+    /* Offsets anchor-link jumps (#method, #offers, #jack, etc.) so the
+       fixed Nav bar doesn't cover the top of the target section. */
+    scroll-padding-top: 88px;
+  }
+
+  @media (min-width: 640px) {
+    html {
+      scroll-padding-top: 104px;
+    }
   }
 
   body {

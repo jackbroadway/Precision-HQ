@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { label: "Home", href: "/#top" },
   { label: "Method", href: "/#method" },
   { label: "Community", href: "/#offers" },
-  { label: "Mentorship", href: "/apply#jack" },
+  { label: "Mentorship", href: "/apply" },
   { label: "Results", href: "/#results" },
   { label: "FAQ", href: "/#faq" },
 ];
