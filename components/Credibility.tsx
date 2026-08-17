@@ -144,6 +144,7 @@ function CertRow({
               alt={cert.alt}
               width={cert.width}
               height={cert.height}
+              loading="eager"
               className="h-full w-auto"
             />
           </div>

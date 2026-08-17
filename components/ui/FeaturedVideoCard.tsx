@@ -17,9 +17,11 @@ function PlayIcon() {
 
 export function FeaturedVideoCard({
   src,
+  poster,
   posterPosition = "center",
 }: {
   src: string;
+  poster?: string;
   posterPosition?: "center" | "top";
 }) {
   const [open, setOpen] = useState(false);
@@ -43,6 +45,7 @@ export function FeaturedVideoCard({
       >
         <video
           src={src}
+          poster={poster}
           muted
           playsInline
           preload="metadata"

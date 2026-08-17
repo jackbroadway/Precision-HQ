@@ -52,10 +52,24 @@ const TESTIMONIALS_BASE = [
 
 const TESTIMONIALS = [...TESTIMONIALS_BASE, ...TESTIMONIALS_BASE];
 
-const MEMBER_VIDEOS: { src: string; posterPosition?: "center" | "top" }[] = [
-  { src: "/video/member-testimonial.mp4" },
-  { src: "/video/member-testimonial-3.mp4", posterPosition: "top" },
-  { src: "/video/member-testimonial-2.mp4" },
+const MEMBER_VIDEOS: {
+  src: string;
+  poster: string;
+  posterPosition?: "center" | "top";
+}[] = [
+  {
+    src: "/video/member-testimonial.mp4",
+    poster: "/video/member-testimonial-poster.jpg",
+  },
+  {
+    src: "/video/member-testimonial-3.mp4",
+    poster: "/video/member-testimonial-3-poster.jpg",
+    posterPosition: "top",
+  },
+  {
+    src: "/video/member-testimonial-2.mp4",
+    poster: "/video/member-testimonial-2-poster.jpg",
+  },
 ];
 
 export function Testimonials() {
@@ -83,6 +97,7 @@ export function Testimonials() {
           <FeaturedVideoCard
             key={video.src}
             src={video.src}
+            poster={video.poster}
             posterPosition={video.posterPosition}
           />
         ))}
