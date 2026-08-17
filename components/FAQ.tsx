@@ -23,7 +23,7 @@ const FAQS = [
   {
     question: "What is your refund policy?",
     answer:
-      "Both Community and Mentorship are non refundable. Community is a one time payment for instant access to existing content. Mentorship spots are limited and reserved for you once accepted, so refunds are not offered there either.",
+      "Community, Mentorship and the Sniper indicator are all non refundable. Community is a one time payment for instant access to existing content. Mentorship spots are limited and reserved for you once accepted. The Sniper indicator grants invite-only access directly to your TradingView account shortly after checkout, so refunds are not offered on any of these.",
   },
   {
     question: "How do I apply for mentorship?",
