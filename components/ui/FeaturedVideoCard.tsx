@@ -58,7 +58,7 @@ export function FeaturedVideoCard({ src }: { src: string }) {
           onClick={() => setOpen(false)}
         >
           <div
-            className="relative w-full max-w-2xl"
+            className="relative flex max-h-full max-w-2xl justify-center"
             onClick={(e) => e.stopPropagation()}
           >
             <video
@@ -66,7 +66,7 @@ export function FeaturedVideoCard({ src }: { src: string }) {
               controls
               autoPlay
               playsInline
-              className="w-full rounded-lg"
+              className="max-h-[85vh] w-auto max-w-full rounded-lg"
             />
             <button
               type="button"

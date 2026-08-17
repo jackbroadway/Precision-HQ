@@ -52,7 +52,10 @@ const TESTIMONIALS_BASE = [
 
 const TESTIMONIALS = [...TESTIMONIALS_BASE, ...TESTIMONIALS_BASE];
 
-const MEMBER_VIDEOS = ["/video/member-testimonial.mp4"];
+const MEMBER_VIDEOS = [
+  "/video/member-testimonial.mp4",
+  "/video/member-testimonial-2.mp4",
+];
 
 export function Testimonials() {
   return (
