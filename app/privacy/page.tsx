@@ -94,11 +94,22 @@ export default function PrivacyPage() {
         </p>
       </LegalSection>
 
-      <LegalSection heading="Cookies">
+      <LegalSection heading="Analytics">
         <p>
-          This website does not currently use analytics or advertising
-          cookies. If that changes, this policy will be updated to describe
-          what&rsquo;s collected and how to opt out.
+          We use Plausible Analytics to understand how visitors use this
+          website, for example which pages are viewed and which buttons are
+          clicked. Plausible is cookie-free and does not collect or store
+          any personal data or track you across other websites; it only
+          reports aggregated statistics. See{" "}
+          <a
+            href="https://plausible.io/data-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gold hover:underline"
+          >
+            Plausible&rsquo;s data policy
+          </a>{" "}
+          for detail. We do not use advertising cookies or trackers.
         </p>
       </LegalSection>
 

@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 type ButtonProps = {
   href: string;
@@ -24,10 +27,12 @@ export function Button({
   className = "",
 }: ButtonProps) {
   const isExternal = href.startsWith("http");
+  const label = typeof children === "string" ? children : href;
 
   return (
     <Link
       href={href}
+      onClick={() => trackEvent("Button Click", { label, href })}
       className={`${base} ${variants[variant]} ${className}`}
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >

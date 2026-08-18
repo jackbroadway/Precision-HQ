@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Barlow_Condensed, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -38,7 +39,18 @@ export default function RootLayout({
       lang="en"
       className={`${barlowCondensed.variable} ${inter.variable} ${ibmPlexMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script
+          defer
+          data-domain="precisionhq.io"
+          src="https://plausible.io/js/script.outbound-links.js"
+          strategy="afterInteractive"
+        />
+        <Script id="plausible-queue" strategy="beforeInteractive">
+          {`window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }`}
+        </Script>
+      </body>
     </html>
   );
 }
