@@ -48,7 +48,7 @@ export function FeaturedVideoCard({
           poster={poster}
           muted
           playsInline
-          preload="metadata"
+          preload="none"
           className={`h-full w-full object-cover ${
             posterPosition === "top" ? "object-top" : "object-center"
           }`}
