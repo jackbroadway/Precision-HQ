@@ -41,7 +41,7 @@ export function FeaturedVideoCard({
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Play member video testimonial"
-        className="group/video relative aspect-[640/352] h-40 shrink-0 overflow-hidden rounded-lg border border-gold bg-surface sm:h-48"
+        className="group/video relative aspect-[640/352] h-32 shrink-0 overflow-hidden rounded-lg border border-gold bg-surface sm:h-36"
       >
         <video
           src={src}
@@ -54,7 +54,7 @@ export function FeaturedVideoCard({
           }`}
         />
         <div className="absolute inset-0 flex items-center justify-center bg-background/40 transition-colors group-hover/video:bg-background/20">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-background sm:h-12 sm:w-12">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gold text-background sm:h-10 sm:w-10">
             <PlayIcon />
           </span>
         </div>

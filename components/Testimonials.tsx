@@ -70,6 +70,10 @@ const MEMBER_VIDEOS: {
     src: "/video/member-testimonial-2.mp4",
     poster: "/video/member-testimonial-2-poster.jpg",
   },
+  {
+    src: "/video/member-testimonial-4.mp4",
+    poster: "/video/member-testimonial-4-poster.jpg",
+  },
 ];
 
 export function Testimonials() {
