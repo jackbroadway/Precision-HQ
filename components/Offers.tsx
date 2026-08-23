@@ -98,7 +98,7 @@ export function Offers() {
               variant="primary"
               className="w-full bg-gradient-to-r from-gold-dim via-gold to-gold-bright hover:opacity-90"
             >
-              Get Instant Access
+              Get Access
             </Button>
             <p className="mt-3 text-center font-mono text-xs text-ink-faint">
               One time payment. Non refundable. Includes a quick guided
