@@ -28,8 +28,6 @@ function FormRow({
   );
 }
 
-const INSTRUMENTS = ["Forex", "Gold (XAUUSD)", "Indices", "Crypto"];
-
 export function ApplyForm() {
   const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
 
@@ -124,73 +122,11 @@ export function ApplyForm() {
             </select>
           </FormRow>
 
-          <FormRow label="What Do You Currently Trade?">
-            <div className="flex flex-wrap gap-2">
-              {INSTRUMENTS.map((instrument) => (
-                <label
-                  key={instrument}
-                  className="flex cursor-pointer items-center gap-2 rounded-sm border border-border bg-surface px-3.5 py-2.5 font-body text-sm text-ink"
-                >
-                  <input type="checkbox" name="instruments" value={instrument} className="accent-gold" />
-                  {instrument}
-                </label>
-              ))}
-            </div>
-          </FormRow>
-
-          <FormRow label="What Is Your Biggest Struggle In Trading?" htmlFor="struggle">
-            <textarea id="struggle" name="struggle" required rows={3} className={`${inputClass} resize-y`} />
-          </FormRow>
-
-          <FormRow label="Have You Ever Been Profitable?" htmlFor="profitable">
-            <select id="profitable" name="profitable" required defaultValue="" className={inputClass}>
-              <option value="" disabled>Select one</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-          </FormRow>
-
-          <FormRow label="What Are Your Goals With This Mentorship?" htmlFor="goals">
-            <textarea id="goals" name="goals" required rows={3} className={`${inputClass} resize-y`} />
-          </FormRow>
-
-          <FormRow label="How Serious Are You About Becoming Consistently Profitable? (1 to 5)">
-            <div className="flex gap-2">
-              {[1, 2, 3, 4, 5].map((n) => (
-                <label
-                  key={n}
-                  className="flex flex-1 cursor-pointer items-center justify-center rounded-sm border border-border bg-surface py-2.5 font-body text-sm text-ink"
-                >
-                  <input type="radio" name="seriousness" value={n} required className="peer sr-only" />
-                  <span className="peer-checked:text-gold">{n}</span>
-                </label>
-              ))}
-            </div>
-          </FormRow>
-
-          <FormRow label="Weekly Time You Can Commit To Trading And Calls" htmlFor="timeCommitment">
-            <select id="timeCommitment" name="timeCommitment" required defaultValue="" className={inputClass}>
-              <option value="" disabled>Select one</option>
-              <option value="1-3 Hours">1-3 Hours</option>
-              <option value="4-7 Hours">4-7 Hours</option>
-              <option value="8+ Hours">8+ Hours</option>
-            </select>
-          </FormRow>
-
           <FormRow label="Are You Ready To Invest In Your Trading Education?" htmlFor="readyToInvest">
             <select id="readyToInvest" name="readyToInvest" required defaultValue="" className={inputClass}>
               <option value="" disabled>Select one</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
-            </select>
-          </FormRow>
-
-          <FormRow label="What Is Your Current Trading Capital?" htmlFor="capital">
-            <select id="capital" name="capital" required defaultValue="" className={inputClass}>
-              <option value="" disabled>Select one</option>
-              <option value="£0-£500">£0-£500</option>
-              <option value="£500-£2000">£500-£2000</option>
-              <option value="£2000+">£2000+</option>
             </select>
           </FormRow>
 
