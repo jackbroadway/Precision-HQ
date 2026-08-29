@@ -33,6 +33,14 @@ For a **long/buy**: `SL = entry - 100 pips`, `TP1/2/3 = entry + 80/200/300 pips`
 For a **short/sell**, it's mirrored: `SL = entry + 100 pips`, `TP1/2/3 = entry - 80/200/300 pips`.
 Pip sizes and levels are configurable (see `.env.example`).
 
+**Breakeven:** once TP1 hits, the SL is automatically moved to the entry
+price (so the trade can no longer close at a loss), Telegram gets a
+"🟨 SL moved to breakeven" reply, and the signal message updates to show
+`🟨 SL (breakeven)`. If price then comes back to entry, it's reported as
+"🟨 BREAKEVEN HIT — closed flat" rather than a stop-loss. Configurable via
+`BREAKEVEN_AFTER_TP` (default `1`; set to `0` to disable, or e.g. `2` to
+wait until TP2 instead).
+
 ## How it works
 
 Two long-running processes, sharing state via `positions.json`:

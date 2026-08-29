@@ -94,6 +94,7 @@ def webhook():
         "pip_size": pip_size,
         "sl": sl,
         "sl_hit": False,
+        "breakeven_moved": False,
         "tps": [{"pips": pips, "price": price, "hit": False} for pips, price in zip(common.TP_PIPS, tps)],
         "status": "open",
         "created_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),

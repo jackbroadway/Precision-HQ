@@ -42,13 +42,20 @@ def apply_price(position, price):
     if not position["sl_hit"] and sl_hit():
         position["sl_hit"] = True
         position["status"] = "closed"
-        events.append(f"🔴 SL HIT on {position['symbol']} @ {price:.{decimals}f}")
+        if position.get("breakeven_moved"):
+            events.append(f"🟨 BREAKEVEN HIT on {position['symbol']} @ {price:.{decimals}f} — closed flat, no loss")
+        else:
+            events.append(f"🔴 SL HIT on {position['symbol']} @ {price:.{decimals}f}")
         return events  # SL closes the position; no point checking TPs after
 
     for i, tp in enumerate(position["tps"], start=1):
         if not tp["hit"] and tp_hit(tp):
             tp["hit"] = True
             events.append(f"✅ TP{i} HIT on {position['symbol']} @ {price:.{decimals}f}")
+            if common.BREAKEVEN_AFTER_TP and i == common.BREAKEVEN_AFTER_TP and not position.get("breakeven_moved"):
+                position["sl"] = position["entry"]
+                position["breakeven_moved"] = True
+                events.append(f"🟨 SL moved to breakeven ({position['entry']:.{decimals}f}) on {position['symbol']}")
 
     if all(tp["hit"] for tp in position["tps"]):
         position["status"] = "closed"

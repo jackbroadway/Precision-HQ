@@ -28,6 +28,10 @@ SL_PIPS = float(os.environ.get("SL_PIPS", "100"))
 TP_PIPS = [float(x) for x in os.environ.get("TP_PIPS", "80,200,300").split(",") if x.strip()]
 POLL_INTERVAL_SECONDS = int(os.environ.get("POLL_INTERVAL_SECONDS", "30"))
 
+# After this TP number hits, move the SL to breakeven (the entry price) so
+# the trade can no longer close at a loss. Set to 0 to disable.
+BREAKEVEN_AFTER_TP = int(os.environ.get("BREAKEVEN_AFTER_TP", "1"))
+
 # Only take new alerts during the Asia trading session (Tokyo session by
 # default). Positions already open keep being monitored for TP/SL 24/7
 # regardless of session — price can still hit a level after the session
@@ -151,14 +155,18 @@ def format_signal_message(position):
         lines.append(position["label"])
     lines.append("")
     lines.append(f"Entry: {position['entry']:.{decimals}f}")
-    sl_mark = "🔴" if position["sl_hit"] else "⬜"
-    lines.append(f"{sl_mark} SL: {position['sl']:.{decimals}f}  (-{SL_PIPS:g} pips)")
+    sl_mark = "🔴" if position["sl_hit"] else ("🟨" if position.get("breakeven_moved") else "⬜")
+    sl_label = "SL (breakeven)" if position.get("breakeven_moved") else "SL"
+    sl_note = "" if position.get("breakeven_moved") else f"  (-{SL_PIPS:g} pips)"
+    lines.append(f"{sl_mark} {sl_label}: {position['sl']:.{decimals}f}{sl_note}")
     for i, tp in enumerate(position["tps"], start=1):
         mark = "✅" if tp["hit"] else "⬜"
         lines.append(f"{mark} TP{i}: {tp['price']:.{decimals}f}  (+{tp['pips']:g} pips)")
     if position["status"] == "closed":
         lines.append("")
-        if position["sl_hit"]:
+        if position["sl_hit"] and position.get("breakeven_moved"):
+            lines.append("🟨 Position closed — breakeven stop hit (no loss).")
+        elif position["sl_hit"]:
             lines.append("❌ Position closed — stop loss hit.")
         else:
             lines.append("🏁 Position closed — all targets hit.")
