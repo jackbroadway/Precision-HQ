@@ -28,7 +28,6 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_NEWS_TOPIC_ID: ${{ secrets.TELEGRAM_NEWS_TOPIC_ID }}
-          DIGEST_TIMEZONE: Europe/London
         run: python economic-digest-telegram/newsalert.py
 
       - name: Save seen-news state
