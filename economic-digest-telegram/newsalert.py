@@ -15,10 +15,7 @@ import re
 import sys
 import urllib.parse
 import xml.etree.ElementTree as ET
-from datetime import datetime
-from email.utils import parsedate_to_datetime
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
 import requests
 
@@ -28,7 +25,6 @@ import requests
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "PASTE_YOUR_BOT_TOKEN_HERE")
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "PASTE_YOUR_GROUP_CHAT_ID_HERE")
 TOPIC_ID = os.environ.get("TELEGRAM_NEWS_TOPIC_ID", "")  # leave blank to post to the group's main chat
-TIMEZONE = os.environ.get("DIGEST_TIMEZONE", "Europe/London")
 
 # ============================================================
 # Internals
@@ -81,14 +77,9 @@ def fetch_headlines():
         raw_title = (item.findtext("title") or "").strip()
         link = (item.findtext("link") or "").strip()
         guid = (item.findtext("guid") or link).strip()
-        pub_date = item.findtext("pubDate")
-        try:
-            pub_dt = parsedate_to_datetime(pub_date) if pub_date else None
-        except (TypeError, ValueError, IndexError):
-            pub_dt = None
         if not raw_title or not guid:
             continue
-        items.append({"guid": guid, "title": clean_title(raw_title), "pub_dt": pub_dt})
+        items.append({"guid": guid, "title": clean_title(raw_title)})
     return items
 
 
@@ -115,7 +106,6 @@ def send_telegram_message(text):
 
 def run():
     validate_config()
-    tz = ZoneInfo(TIMEZONE)
     try:
         items = fetch_headlines()
     except Exception as exc:  # noqa: BLE001 - don't spam Telegram on transient fetch failures
@@ -131,8 +121,7 @@ def run():
         if item["guid"] in seen_set:
             continue
         if not bootstrap:
-            when = item["pub_dt"].astimezone(tz).strftime("%H:%M") if item["pub_dt"] else datetime.now(tz).strftime("%H:%M")
-            send_telegram_message(f"🚨 {when} BREAKING — {item['title']}")
+            send_telegram_message(f"🚨 BREAKING — {item['title']}")
         new_seen.append(item["guid"])
         seen_set.add(item["guid"])
 

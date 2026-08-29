@@ -56,7 +56,7 @@ API key needed. Each story only ever posts once (tracked in
 `.posted_news.json`, auto-committed like the file above), in the same style
 as the other alerts:
 ```
-🚨 08:15 BREAKING — Russia launches missile strikes on Kyiv power grid
+🚨 BREAKING — Russia launches missile strikes on Kyiv power grid
 ```
 
 This one needs its own Telegram topic (it'll get noisy mixed in with the
