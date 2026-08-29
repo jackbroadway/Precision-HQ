@@ -108,7 +108,32 @@ the bot is actually a member of the group.
 
 ## 7. Schedule it to run every morning
 
-The simplest and most reliable option is **cron** (Mac/Linux) — it runs the
+### Recommended: GitHub Actions (no computer needed at all)
+
+This repo includes `.github/workflows/daily-digest.yml`, which runs the
+script automatically on GitHub's own servers, Monday–Friday at 6am London
+time (it accounts for daylight saving automatically). Your laptop doesn't
+need to be on, or even exist, for this to work.
+
+Setup:
+1. In the repo on GitHub, go to **Settings → Secrets and variables →
+   Actions**, and add three repository secrets: `TELEGRAM_BOT_TOKEN`,
+   `TELEGRAM_CHAT_ID`, `TELEGRAM_TOPIC_ID` (values from steps 1–4 above).
+2. That's it — the schedule in the workflow file handles the rest.
+
+**Important:** GitHub only runs *scheduled* workflows from your repo's
+**default branch** (usually `main`). If this workflow currently lives on a
+different branch, merge it into `main` before the 6am schedule will
+actually start firing.
+
+**To test it immediately** without waiting until 6am: go to the repo's
+**Actions** tab → click **"Daily Economic Digest"** in the left sidebar →
+click the **"Run workflow"** button → **"Run workflow"** again to confirm.
+Check your Telegram topic a few seconds later.
+
+### Alternative: cron (Mac/Linux) or Windows Task Scheduler, on your own machine
+
+The simplest and most reliable *local* option is **cron** (Mac/Linux) — it runs the
 script once at a fixed time each day, then exits, using no memory in between.
 
 1. Open your crontab:
