@@ -1,0 +1,43 @@
+name: Breaking Market News Alerts
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # every 15 minutes, all day, every day
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  check-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r economic-digest-telegram/requirements.txt
+
+      - name: Check for breaking news
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_NEWS_TOPIC_ID: ${{ secrets.TELEGRAM_NEWS_TOPIC_ID }}
+          DIGEST_TIMEZONE: Europe/London
+        run: python economic-digest-telegram/newsalert.py
+
+      - name: Save seen-news state
+        run: |
+          cd economic-digest-telegram
+          if ! git diff --quiet -- .posted_news.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add .posted_news.json
+            git commit -m "Update seen-news state [skip ci]"
+            git push
+          fi

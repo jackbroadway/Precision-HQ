@@ -42,6 +42,40 @@ digest. Each event only ever triggers one ping; this is tracked in
 `.warned_events.json`, which the workflow updates and commits back to the
 repo automatically — you don't need to touch it.
 
+## Breaking geopolitical / market-moving news alerts
+
+A third workflow (`.github/workflows/news-alerts.yml`) checks every 15
+minutes, all day, for breaking news that's likely to move markets — real
+war/conflict escalation (Russia/Ukraine, Israel/Iran/Gaza, China/Taiwan) or
+Trump news paired with something market-relevant (tariffs, the Fed,
+interest rates, sanctions, a shutdown). It's deliberately narrow to avoid
+noise: plain political headlines that don't touch markets are left out on
+purpose. Headlines are pulled only from major wire services (Reuters, AP,
+Bloomberg, BBC, Al Jazeera) via a filtered Google News search — no signup or
+API key needed. Each story only ever posts once (tracked in
+`.posted_news.json`, auto-committed like the file above), in the same style
+as the other alerts:
+```
+🚨 08:15 BREAKING — Russia launches missile strikes on Kyiv power grid
+```
+
+This one needs its own Telegram topic (it'll get noisy mixed in with the
+calendar events). Set it up the same way as your other topic (see step 4
+above — create the topic, send a test message, copy its link to get the
+topic ID), then add one more GitHub secret:
+- `TELEGRAM_NEWS_TOPIC_ID` → the new topic's ID
+
+If you'd rather it post into the same topic as the calendar digest, just
+reuse that topic's ID (or your group's main chat, if you leave it blank).
+
+**Note on Actions minutes:** this workflow runs 24/7 (news doesn't keep
+office hours), which uses considerably more GitHub Actions minutes than the
+other two. If your repo is private, this will likely exceed the free
+2,000 min/month tier; making the repo public removes that cap entirely
+(Settings → scroll to "Danger Zone" → Change visibility). Your bot
+token and chat/topic IDs stay hidden either way, since they're stored as
+encrypted secrets, never written into the code.
+
 ---
 
 ## 1. Create your Telegram bot
