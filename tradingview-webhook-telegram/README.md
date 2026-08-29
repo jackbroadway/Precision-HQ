@@ -2,22 +2,28 @@
 
 Receives TradingView Pine Script alerts over a webhook, auto-calculates
 SL/TP levels from the entry price, posts a formatted trade signal to a
-Telegram channel/group, and keeps watching the price so it can edit that
+Telegram channel/group, and keeps watching the price so it can update that
 same message (and ping a reply) the moment each TP or the SL is hit.
 
 ```
-📊 BUY EURUSD
-Asia Range Breakout
+BUY NOW - EURUSD 1.08500
 
-Entry: 1.08500
-⬜ SL: 1.07500  (-100 pips)
-⬜ TP1: 1.08580  (+80 pips)
-⬜ TP2: 1.09700  (+200 pips)
-⬜ TP3: 1.10800  (+300 pips)
+SL - 1.07500
+
+TP1 - 1.08580
+
+TP2 - 1.09700
+
+TP3 - 1.10800
+
+TP4 - OPEN
+
+NOT FINANCIAL ADVICE. THIS IS A PERSONAL TRADE IDEA.
 ```
 
-When TP1 hits, the message above is edited in place (⬜ → ✅) and a reply
-is posted:
+When TP1 hits, the message above is edited in place to append " ✅ HIT" to
+the `TP1` line, the SL line moves to breakeven (see below), and a reply is
+posted:
 ```
 ✅ TP1 HIT on EURUSD @ 1.08582
 ```
@@ -33,13 +39,29 @@ For a **long/buy**: `SL = entry - 100 pips`, `TP1/2/3 = entry + 80/200/300 pips`
 For a **short/sell**, it's mirrored: `SL = entry + 100 pips`, `TP1/2/3 = entry - 80/200/300 pips`.
 Pip sizes and levels are configurable (see `.env.example`).
 
+**TP4 - OPEN**: a fourth, open-ended runner target with no fixed price —
+shown for style/consistency, never auto-marked "hit" since it has no
+level to check. The position keeps being monitored for SL after TP1–3
+hit; it only actually closes on an SL (or breakeven) hit. Disable with
+`OPEN_RUNNER_ENABLED=false` to go back to auto-closing once TP1–3 have
+all hit.
+
 **Breakeven:** once TP1 hits, the SL is automatically moved to the entry
 price (so the trade can no longer close at a loss), Telegram gets a
-"🟨 SL moved to breakeven" reply, and the signal message updates to show
-`🟨 SL (breakeven)`. If price then comes back to entry, it's reported as
-"🟨 BREAKEVEN HIT — closed flat" rather than a stop-loss. Configurable via
-`BREAKEVEN_AFTER_TP` (default `1`; set to `0` to disable, or e.g. `2` to
-wait until TP2 instead).
+"🟨 SL moved to breakeven" reply, and the SL line updates to
+`SL - {entry} (moved to breakeven)`. If price then comes back to entry,
+it's reported as "🟨 BREAKEVEN HIT — closed flat" rather than a stop-loss.
+Configurable via `BREAKEVEN_AFTER_TP` (default `1`; set to `0` to disable,
+or e.g. `2` to wait until TP2 instead).
+
+**Entry range:** if your alert sends both `entry` and `entry_high`, the
+header shows a range (`BUY NOW - EURUSD 1.08500-1.08520`) instead of a
+single price; `entry` (the low/reference price) is still what SL/TP are
+calculated from.
+
+The disclaimer footer text is configurable via `DISCLAIMER_TEXT`; the
+symbol in the header can be turned off with `INCLUDE_SYMBOL_IN_HEADER=false`
+if every alert already goes to its own symbol-specific Telegram topic.
 
 ## How it works
 
@@ -120,11 +142,13 @@ Field reference:
 | Field | Required | Notes |
 |---|---|---|
 | `secret` | recommended | must match `TRADINGVIEW_WEBHOOK_SECRET` |
-| `symbol` | yes | e.g. `EURUSD`, `USDJPY`, `XAUUSD` |
+| `symbol` | yes | e.g. `EURUSD`, `USDJPY`, `XAUUSD`, `US30` |
 | `side` | yes | `buy`/`long` or `sell`/`short` |
-| `entry` | yes | the entry price — use `{{close}}` or `{{strategy.order.price}}` in Pine so TradingView fills in the real fill price. `price`/`close` are accepted as aliases. |
+| `entry` | yes | the entry price (or the low end of an entry zone) — use `{{close}}` or `{{strategy.order.price}}` in Pine so TradingView fills in the real fill price. `price`/`close` are accepted as aliases. |
+| `entry_high` | no | high end of an entry zone, for a range header like `1.08500-1.08520` |
 | `label` | no | shown under the signal header, e.g. your strategy/setup name |
-| `pip_size` | no | override auto-detected pip size (0.0001 normal, 0.01 for JPY pairs, 0.1 for gold) — useful for indices/crypto |
+| `pip_size` | no | override auto-detected pip size (0.0001 normal, 0.01 for JPY pairs, 0.1 for gold, use `1` for a points-based index) — useful for indices/crypto |
+| `decimals` | no | override how many decimal places are shown (auto-detected from `pip_size` otherwise; indices default to `0`) |
 
 Test it with `curl` before wiring up TradingView:
 ```bash
@@ -181,26 +205,34 @@ A `Dockerfile` and `docker-compose.yml` are included, running the
 for `positions.json`) — this is the config to point any of the options
 below at.
 
-**Free, always-on, no laptop needed — [Fly.io](https://fly.io):**
+**Cheap, always-on, no laptop needed — [Fly.io](https://fly.io) (~$2-5/mo):**
+Fly.io dropped its unconditional free tier in late 2024 — new accounts get
+a short trial, then need a card on file. A small always-on VM this size
+still runs only a couple of dollars a month.
 ```bash
 # one-time: https://fly.io/docs/hands-on/install-flyctl/, then:
 fly auth login
 cd tradingview-webhook-telegram
-fly launch --dockerfile Dockerfile --no-deploy   # creates a fly.toml, pick a free-tier region/size when asked
+fly launch --dockerfile Dockerfile --no-deploy   # creates a fly.toml, pick a small region/size when asked
 fly volumes create positions_data --size 1        # persistent disk for positions.json
 fly secrets set TELEGRAM_BOT_TOKEN=... TELEGRAM_CHAT_ID=... TRADINGVIEW_WEBHOOK_SECRET=...
 fly deploy
 ```
-Fly's free allowance covers a couple of small always-on VMs, which is
-enough for this (`webhook` + `monitor` as two Fly "processes" sharing the
-app, or two separate small Fly apps — either works with the same
-Dockerfile). Your webhook URL becomes `https://your-app-name.fly.dev/webhook`.
+Your webhook URL becomes `https://your-app-name.fly.dev/webhook`.
+
+**Genuinely free, always-on — Oracle Cloud's "Always Free" tier:**
+Oracle's Always Free VM instances stay free indefinitely (no trial, no
+expiry) — more manual setup than Fly.io (you provision the VM yourself in
+Oracle's console and SSH in), but zero ongoing cost:
+1. Create a free account at [cloud.oracle.com](https://cloud.oracle.com) and provision an "Always Free"
+   compute instance (Ampere A1 or the VM.Standard.E2.1.Micro shape).
+2. Install Docker on it, open port 443/80 in the instance's security list,
+   `git clone` this repo (or `scp` the `tradingview-webhook-telegram`
+   folder over), fill in `.env`, then `docker compose up -d`.
+3. Point a domain (or the VM's public IP) at it, behind Caddy/nginx for
+   TLS, and use that as your TradingView webhook URL.
 
 **Other options:**
-- **A small always-on VPS** (Oracle Cloud's free tier VM works well and
-  is free indefinitely) — `docker compose up -d` runs both services
-  behind nginx/Caddy for TLS. Most robust option; `positions.json`
-  persists across restarts via the named volume.
 - **Render / Railway** (free/hobby tier) — same Docker setup; check each
   platform's free-tier disk persistence, since some ephemeral filesystems
   lose `positions.json` on redeploy (fine for testing, less ideal for

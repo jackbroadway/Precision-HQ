@@ -4,8 +4,9 @@ Webhook receiver for TradingView Pine Script alerts.
 
 On each alert (entry price + buy/sell side), computes SL (-100 pips) and
 three TPs (+80/+200/+300 pips), posts a formatted trade signal to
-Telegram, and hands the position off to monitor.py to watch for TP/SL
-hits.
+Telegram (with an open-ended TP4 runner and a disclaimer footer — see
+common.format_signal_message), and hands the position off to monitor.py
+to watch for TP/SL hits.
 
 Only takes new alerts during the Asia trading session (see
 ASIA_SESSION_START_UTC / ASIA_SESSION_END_UTC in common.py); positions
@@ -82,6 +83,22 @@ def webhook():
     except (TypeError, ValueError):
         return jsonify({"error": "'entry' must be a number"}), 400
 
+    entry_high_raw = data.get("entry_high")
+    entry_high = None
+    if entry_high_raw not in (None, ""):
+        try:
+            entry_high = float(entry_high_raw)
+        except (TypeError, ValueError):
+            return jsonify({"error": "'entry_high' must be a number"}), 400
+
+    decimals_raw = data.get("decimals")
+    decimals = None
+    if decimals_raw not in (None, ""):
+        try:
+            decimals = int(decimals_raw)
+        except (TypeError, ValueError):
+            return jsonify({"error": "'decimals' must be an integer"}), 400
+
     pip_size = common.pip_size_for(symbol, data.get("pip_size"))
     sl, tps = common.compute_levels(entry, side, pip_size)
 
@@ -91,7 +108,9 @@ def webhook():
         "label": str(data.get("label") or data.get("signal") or ""),
         "side": side,
         "entry": entry,
+        "entry_high": entry_high,
         "pip_size": pip_size,
+        "decimals": decimals,
         "sl": sl,
         "sl_hit": False,
         "breakeven_moved": False,

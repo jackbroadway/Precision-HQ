@@ -32,6 +32,20 @@ POLL_INTERVAL_SECONDS = int(os.environ.get("POLL_INTERVAL_SECONDS", "30"))
 # the trade can no longer close at a loss. Set to 0 to disable.
 BREAKEVEN_AFTER_TP = int(os.environ.get("BREAKEVEN_AFTER_TP", "1"))
 
+# After the last fixed TP, show one more "TPn - OPEN" runner target with no
+# fixed price — it's never auto-closed by a price hit, only ever by SL/BE.
+# Set to "false" to go back to closing once every fixed TP has hit.
+OPEN_RUNNER_ENABLED = os.environ.get("OPEN_RUNNER_ENABLED", "true").lower() in ("1", "true", "yes")
+
+# Shown at the end of every signal message.
+DISCLAIMER_TEXT = os.environ.get(
+    "DISCLAIMER_TEXT", "NOT FINANCIAL ADVICE. THIS IS A PERSONAL TRADE IDEA."
+)
+
+# Include the symbol in the "BUY NOW - ..." header line. Turn off if every
+# alert already goes to its own symbol-specific Telegram topic.
+INCLUDE_SYMBOL_IN_HEADER = os.environ.get("INCLUDE_SYMBOL_IN_HEADER", "true").lower() in ("1", "true", "yes")
+
 # Only take new alerts during the Asia trading session (Tokyo session by
 # default). Positions already open keep being monitored for TP/SL 24/7
 # regardless of session — price can still hit a level after the session
@@ -105,7 +119,7 @@ def decimals_for_pip_size(pip_size):
     if pip_size == 0.1:
         return 2
     if pip_size >= 1:
-        return 2
+        return 0  # indices/points-based instruments are usually quoted as whole numbers
     return 5
 
 
@@ -128,7 +142,7 @@ def _telegram_api(method, payload):
 
 
 def send_message(text, reply_to=None):
-    payload = {"chat_id": CHAT_ID, "text": text, "parse_mode": "HTML"}
+    payload = {"chat_id": CHAT_ID, "text": text}
     if TOPIC_ID:
         payload["message_thread_id"] = int(TOPIC_ID)
     if reply_to:
@@ -138,7 +152,7 @@ def send_message(text, reply_to=None):
 
 
 def edit_message(message_id, text):
-    payload = {"chat_id": CHAT_ID, "message_id": message_id, "text": text, "parse_mode": "HTML"}
+    payload = {"chat_id": CHAT_ID, "message_id": message_id, "text": text}
     try:
         _telegram_api("editMessageText", payload)
     except RuntimeError as exc:
@@ -148,28 +162,53 @@ def edit_message(message_id, text):
 
 
 def format_signal_message(position):
-    side_label = "🟢 BUY" if position["side"] == "buy" else "🔴 SELL"
-    decimals = decimals_for_pip_size(position["pip_size"])
-    lines = [f"📊 <b>{side_label} {position['symbol']}</b>"]
+    side_word = "BUY" if position["side"] == "buy" else "SELL"
+    decimals = position.get("decimals")
+    if decimals is None:
+        decimals = decimals_for_pip_size(position["pip_size"])
+
+    entry_high = position.get("entry_high")
+    if entry_high is not None:
+        entry_str = f"{position['entry']:.{decimals}f}-{entry_high:.{decimals}f}"
+    else:
+        entry_str = f"{position['entry']:.{decimals}f}"
+    symbol_str = f"{position['symbol']} " if (INCLUDE_SYMBOL_IN_HEADER and position.get("symbol")) else ""
+
+    lines = [f"{side_word} NOW - {symbol_str}{entry_str}"]
     if position.get("label"):
+        lines.append("")
         lines.append(position["label"])
     lines.append("")
-    lines.append(f"Entry: {position['entry']:.{decimals}f}")
-    sl_mark = "🔴" if position["sl_hit"] else ("🟨" if position.get("breakeven_moved") else "⬜")
-    sl_label = "SL (breakeven)" if position.get("breakeven_moved") else "SL"
-    sl_note = "" if position.get("breakeven_moved") else f"  (-{SL_PIPS:g} pips)"
-    lines.append(f"{sl_mark} {sl_label}: {position['sl']:.{decimals}f}{sl_note}")
+
+    sl_line = f"SL - {position['sl']:.{decimals}f}"
+    if position["sl_hit"] and position.get("breakeven_moved"):
+        sl_line += " 🟨 BREAKEVEN HIT — closed flat"
+    elif position["sl_hit"]:
+        sl_line += " 🔴 HIT"
+    elif position.get("breakeven_moved"):
+        sl_line += " (moved to breakeven)"
+    lines.append(sl_line)
+    lines.append("")
+
     for i, tp in enumerate(position["tps"], start=1):
-        mark = "✅" if tp["hit"] else "⬜"
-        lines.append(f"{mark} TP{i}: {tp['price']:.{decimals}f}  (+{tp['pips']:g} pips)")
-    if position["status"] == "closed":
+        tp_line = f"TP{i} - {tp['price']:.{decimals}f}"
+        if tp["hit"]:
+            tp_line += " ✅ HIT"
+        lines.append(tp_line)
         lines.append("")
-        if position["sl_hit"] and position.get("breakeven_moved"):
-            lines.append("🟨 Position closed — breakeven stop hit (no loss).")
-        elif position["sl_hit"]:
-            lines.append("❌ Position closed — stop loss hit.")
-        else:
-            lines.append("🏁 Position closed — all targets hit.")
+
+    if OPEN_RUNNER_ENABLED:
+        lines.append(f"TP{len(position['tps']) + 1} - OPEN")
+        lines.append("")
+
+    if position["status"] == "closed" and position["sl_hit"] and not position.get("breakeven_moved"):
+        lines.append("❌ Position closed — stop loss hit.")
+        lines.append("")
+    elif position["status"] == "closed" and not OPEN_RUNNER_ENABLED and not position["sl_hit"]:
+        lines.append("🏁 Position closed — all targets hit.")
+        lines.append("")
+
+    lines.append(DISCLAIMER_TEXT)
     return "\n".join(lines)
 
 

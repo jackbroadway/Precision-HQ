@@ -18,20 +18,15 @@ import time
 import common
 
 
-def _first_unhit_index(tps):
-    for i, tp in enumerate(tps):
-        if not tp["hit"]:
-            return i
-    return None
-
-
 def apply_price(position, price):
     """Mutates position in place. Returns a list of human-readable event
     strings for anything that just triggered (usually 0 or 1, but a big
     price gap between polls could trigger more than one at once)."""
     events = []
     side = position["side"]
-    decimals = common.decimals_for_pip_size(position["pip_size"])
+    decimals = position.get("decimals")
+    if decimals is None:
+        decimals = common.decimals_for_pip_size(position["pip_size"])
 
     def sl_hit():
         return price <= position["sl"] if side == "buy" else price >= position["sl"]
@@ -57,7 +52,7 @@ def apply_price(position, price):
                 position["breakeven_moved"] = True
                 events.append(f"🟨 SL moved to breakeven ({position['entry']:.{decimals}f}) on {position['symbol']}")
 
-    if all(tp["hit"] for tp in position["tps"]):
+    if not common.OPEN_RUNNER_ENABLED and all(tp["hit"] for tp in position["tps"]):
         position["status"] = "closed"
 
     return events
