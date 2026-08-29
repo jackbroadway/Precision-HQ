@@ -1,0 +1,44 @@
+name: Daily Economic Digest
+
+on:
+  schedule:
+    - cron: '0 5 * * 1-5'   # 06:00 London time during BST (UTC+1)
+    - cron: '0 6 * * 1-5'   # 06:00 London time during GMT (UTC+0)
+  workflow_dispatch: {}
+
+jobs:
+  send-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Only proceed if it's actually 6am in London right now
+        id: check
+        run: |
+          hour=$(TZ=Europe/London date +%H)
+          if [ "$hour" = "06" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.check.outputs.run == 'true'
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        if: steps.check.outputs.run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        if: steps.check.outputs.run == 'true'
+        run: pip install -r economic-digest-telegram/requirements.txt
+
+      - name: Run digest script
+        if: steps.check.outputs.run == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_TOPIC_ID: ${{ secrets.TELEGRAM_TOPIC_ID }}
+          DIGEST_TIMEZONE: Europe/London
+        run: python economic-digest-telegram/digest.py
