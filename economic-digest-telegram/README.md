@@ -15,10 +15,32 @@ topic inside a Telegram group.
 On a day with no high/medium impact events, it posts a short "quiet day"
 message instead of nothing, so you know the script is still alive.
 
+On a day with a market holiday (an exchange closure flagged by the feed), the
+digest also lists it, e.g.:
+```
+🏦 Market Holidays:
+🏦 JPY — Bank Holiday
+```
+
 Data source: Forex Factory's public calendar feed (no signup or API key
 needed). If that feed is ever unreachable, the script retries a few times
 and, failing that, posts a message telling you the fetch failed instead of
 staying silent.
+
+## 15-minute warnings for High-impact events
+
+A second workflow (`.github/workflows/event-warnings.yml`) checks every 15
+minutes during the trading day (Mon–Fri, 06:00–21:45 UTC) for any
+**High-impact** event about to start, and sends a one-off ping shortly
+before it:
+```
+⏰ In 15 min: 🔴 15:00 USD — FOMC Statement
+```
+Medium-impact events aren't included here (to keep the pings to the ones
+that actually move markets) — they still show up in the once-a-day 6am
+digest. Each event only ever triggers one ping; this is tracked in
+`.warned_events.json`, which the workflow updates and commits back to the
+repo automatically — you don't need to touch it.
 
 ---
 

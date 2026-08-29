@@ -1,0 +1,44 @@
+name: High Impact Event Warnings
+
+on:
+  schedule:
+    # Every 15 minutes, 06:00-21:45 UTC, Monday-Friday (covers the UK/EU/US trading day)
+    - cron: '0,15,30,45 6-21 * * 1-5'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  warn:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r economic-digest-telegram/requirements.txt
+
+      - name: Check for events starting soon
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_TOPIC_ID: ${{ secrets.TELEGRAM_TOPIC_ID }}
+          DIGEST_TIMEZONE: Europe/London
+        run: python economic-digest-telegram/digest.py --warn
+
+      - name: Save warning state
+        run: |
+          cd economic-digest-telegram
+          if ! git diff --quiet -- .warned_events.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add .warned_events.json
+            git commit -m "Update warned-events state [skip ci]"
+            git push
+          fi
