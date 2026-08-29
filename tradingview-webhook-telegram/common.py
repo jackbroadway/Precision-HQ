@@ -46,6 +46,10 @@ DISCLAIMER_TEXT = os.environ.get(
 # alert already goes to its own symbol-specific Telegram topic.
 INCLUDE_SYMBOL_IN_HEADER = os.environ.get("INCLUDE_SYMBOL_IN_HEADER", "true").lower() in ("1", "true", "yes")
 
+# Only take alerts for these symbols (comma-separated, case-insensitive).
+# Defaults to gold only. Leave blank to accept any symbol.
+ALLOWED_SYMBOLS = {s.strip().upper() for s in os.environ.get("ALLOWED_SYMBOLS", "XAUUSD").split(",") if s.strip()}
+
 # Only take new alerts during the Asia trading session (Tokyo session by
 # default). Positions already open keep being monitored for TP/SL 24/7
 # regardless of session — price can still hit a level after the session
@@ -210,6 +214,12 @@ def format_signal_message(position):
 
     lines.append(DISCLAIMER_TEXT)
     return "\n".join(lines)
+
+
+def symbol_allowed(symbol):
+    if not ALLOWED_SYMBOLS:
+        return True
+    return symbol.upper() in ALLOWED_SYMBOLS
 
 
 def in_asia_session(now_utc=None):

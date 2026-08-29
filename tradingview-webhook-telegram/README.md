@@ -28,6 +28,10 @@ posted:
 ✅ TP1 HIT on EURUSD @ 1.08582
 ```
 
+**Only takes alerts for XAUUSD by default** (`ALLOWED_SYMBOLS`, comma-separated
+— set it to a wider list, or leave it blank, to accept other symbols too).
+Anything else is acknowledged but not posted.
+
 **Only new alerts arriving during the Asia trading session are taken**
 (Tokyo session, `00:00`–`09:00` UTC by default — adjust with
 `ASIA_SESSION_START_UTC` / `ASIA_SESSION_END_UTC`, see below). Alerts
@@ -255,8 +259,10 @@ real-time monitoring for free with no rewrite.
   `TELEGRAM_CHAT_ID` aren't set in the environment.
 - **403 "invalid or missing secret"** — the alert's `secret` field
   doesn't match `TRADINGVIEW_WEBHOOK_SECRET`.
-- **`{"status": "ignored", ...}` and nothing posts** — the alert arrived
-  outside your configured Asia session window; that's by design.
+- **`{"status": "ignored", ...}` and nothing posts** — either the alert's
+  `symbol` isn't in `ALLOWED_SYMBOLS` (default: XAUUSD only), or it arrived
+  outside your configured Asia session window; both are by design. The
+  `reason` field in the response says which.
 - **No Telegram message, no error** — check the bot is a member of the
   group/channel and allowed to post (make it an admin if the group
   restricts posting).

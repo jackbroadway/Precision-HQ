@@ -66,9 +66,6 @@ def webhook():
     if not common.secret_matches(data.get("secret")):
         return jsonify({"error": "invalid or missing secret"}), 403
 
-    if not common.in_asia_session():
-        return jsonify({"status": "ignored", "reason": "outside Asia trading session"}), 200
-
     symbol = str(data.get("symbol") or "").upper().strip()
     side = common.normalize_side(data.get("side") or data.get("action") or data.get("direction"))
     entry_raw = data.get("entry", data.get("price", data.get("close")))
@@ -78,6 +75,13 @@ def webhook():
             jsonify({"error": "payload must include 'symbol', 'side' ('buy'/'sell'), and 'entry' (price)"}),
             400,
         )
+
+    if not common.symbol_allowed(symbol):
+        return jsonify({"status": "ignored", "reason": f"symbol {symbol} not in ALLOWED_SYMBOLS"}), 200
+
+    if not common.in_asia_session():
+        return jsonify({"status": "ignored", "reason": "outside Asia trading session"}), 200
+
     try:
         entry = float(entry_raw)
     except (TypeError, ValueError):
