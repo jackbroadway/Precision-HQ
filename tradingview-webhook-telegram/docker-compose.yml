@@ -1,0 +1,27 @@
+services:
+  webhook:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - RUN_MONITOR_IN_PROCESS=false
+      - POSITIONS_FILE=/app/data/positions.json
+    env_file:
+      - .env
+    volumes:
+      - positions-data:/app/data
+    restart: unless-stopped
+
+  monitor:
+    build: .
+    command: ["python3", "monitor.py"]
+    environment:
+      - POSITIONS_FILE=/app/data/positions.json
+    env_file:
+      - .env
+    volumes:
+      - positions-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  positions-data:

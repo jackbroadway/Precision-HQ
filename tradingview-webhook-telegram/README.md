@@ -170,22 +170,52 @@ you'd get duplicate Telegram updates.
 
 ## 5. Deployment (needs a public URL TradingView can reach)
 
-Pick whichever fits what you already use:
-- **A small always-on VPS** (systemd services for each process, or
-  Docker Compose with `webhook_server` + `monitor` services, behind
-  nginx/Caddy for TLS). Most robust option, and `positions.json` persists
-  across restarts.
-- **Render / Railway / Fly.io** (free/hobby tier): deploy as a web
-  service running `gunicorn -w 1 -b 0.0.0.0:$PORT webhook_server:app`
-  (single worker keeps `RUN_MONITOR_IN_PROCESS=true` safe) or as two
-  services if the platform supports a background worker type. Note
-  ephemeral filesystems on some free tiers will lose `positions.json` on
-  redeploy/restart — fine for testing, less ideal for long-lived
-  positions.
-- **Testing on your own machine**: run `python3 webhook_server.py`, then
-  expose it with `ngrok http 8080` and use the printed `https://...`
-  URL as your TradingView webhook URL. Only good while ngrok/your
-  machine stays running.
+**This needs to run on a server, not your laptop.** Once it's deployed to
+any of the options below, it runs continuously on that host — your own
+machine doesn't need to be on at all. (The only case where your machine
+matters is the "testing on your own machine" option below, which is for
+trying it out, not for real use.)
+
+A `Dockerfile` and `docker-compose.yml` are included, running the
+`webhook` and `monitor` services separately (sharing a persistent volume
+for `positions.json`) — this is the config to point any of the options
+below at.
+
+**Free, always-on, no laptop needed — [Fly.io](https://fly.io):**
+```bash
+# one-time: https://fly.io/docs/hands-on/install-flyctl/, then:
+fly auth login
+cd tradingview-webhook-telegram
+fly launch --dockerfile Dockerfile --no-deploy   # creates a fly.toml, pick a free-tier region/size when asked
+fly volumes create positions_data --size 1        # persistent disk for positions.json
+fly secrets set TELEGRAM_BOT_TOKEN=... TELEGRAM_CHAT_ID=... TRADINGVIEW_WEBHOOK_SECRET=...
+fly deploy
+```
+Fly's free allowance covers a couple of small always-on VMs, which is
+enough for this (`webhook` + `monitor` as two Fly "processes" sharing the
+app, or two separate small Fly apps — either works with the same
+Dockerfile). Your webhook URL becomes `https://your-app-name.fly.dev/webhook`.
+
+**Other options:**
+- **A small always-on VPS** (Oracle Cloud's free tier VM works well and
+  is free indefinitely) — `docker compose up -d` runs both services
+  behind nginx/Caddy for TLS. Most robust option; `positions.json`
+  persists across restarts via the named volume.
+- **Render / Railway** (free/hobby tier) — same Docker setup; check each
+  platform's free-tier disk persistence, since some ephemeral filesystems
+  lose `positions.json` on redeploy (fine for testing, less ideal for
+  long-lived positions).
+- **Testing on your own machine only**: run `python3 webhook_server.py`,
+  then expose it with `ngrok http 8080` and use the printed `https://...`
+  URL as your TradingView webhook URL. Only works while your machine and
+  ngrok stay running — not a real deployment.
+
+**Why not Netlify:** Netlify is serverless (no persistent process, no
+local disk), so the continuous 30-second price-monitoring loop can't run
+there as-is — it would need a rewrite to JavaScript/TypeScript plus
+Netlify Blobs for storage and Scheduled Functions for polling (realistically
+capped around once a minute instead of 30s). The Docker route above gets
+real-time monitoring for free with no rewrite.
 
 ## Troubleshooting
 
