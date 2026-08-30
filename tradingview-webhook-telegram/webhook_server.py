@@ -130,7 +130,10 @@ def webhook():
         "message_id": None,
         "chat_id": chat_id,
     }
-    position["message_id"] = common.send_message(common.format_signal_message(position), chat_id=chat_id)
+    try:
+        position["message_id"] = common.send_message(common.format_signal_message(position), chat_id=chat_id)
+    except RuntimeError as exc:
+        return jsonify({"error": f"failed to post to Telegram: {exc}"}), 502
 
     with common.locked_positions() as all_positions:
         all_positions.append(position)
