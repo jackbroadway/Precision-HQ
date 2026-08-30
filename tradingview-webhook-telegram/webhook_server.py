@@ -79,8 +79,13 @@ def webhook():
     if not common.symbol_allowed(symbol):
         return jsonify({"status": "ignored", "reason": f"symbol {symbol} not in ALLOWED_SYMBOLS"}), 200
 
-    if not common.in_asia_session():
-        return jsonify({"status": "ignored", "reason": "outside Asia trading session"}), 200
+    if not common.alert_allowed_now(symbol):
+        reason = (
+            f"{symbol} only accepted on weekends"
+            if symbol in common.WEEKEND_ONLY_SYMBOLS
+            else "outside Asia trading session"
+        )
+        return jsonify({"status": "ignored", "reason": reason}), 200
 
     try:
         entry = float(entry_raw)
@@ -105,6 +110,7 @@ def webhook():
 
     pip_size = common.pip_size_for(symbol, data.get("pip_size"))
     sl, tps = common.compute_levels(entry, side, pip_size)
+    chat_id = common.chat_id_for(symbol)
 
     position = {
         "id": str(uuid.uuid4()),
@@ -122,8 +128,9 @@ def webhook():
         "status": "open",
         "created_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "message_id": None,
+        "chat_id": chat_id,
     }
-    position["message_id"] = common.send_message(common.format_signal_message(position))
+    position["message_id"] = common.send_message(common.format_signal_message(position), chat_id=chat_id)
 
     with common.locked_positions() as all_positions:
         all_positions.append(position)

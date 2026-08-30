@@ -24,6 +24,23 @@ CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 TOPIC_ID = os.environ.get("TELEGRAM_TOPIC_ID", "")  # leave blank to post to the group's main chat
 WEBHOOK_SECRET = os.environ.get("TRADINGVIEW_WEBHOOK_SECRET", "")  # strongly recommended, see README.md
 
+# Route specific symbols to their own Telegram chat instead of the default
+# TELEGRAM_CHAT_ID above. Format: "SYMBOL:chat_id,SYMBOL2:chat_id2".
+# Example: "BTCUSD:-1009876543210" sends BTCUSD signals to a separate
+# channel while everything else still goes to TELEGRAM_CHAT_ID.
+def _parse_symbol_chat_map(raw):
+    mapping = {}
+    for pair in raw.split(","):
+        pair = pair.strip()
+        if not pair or ":" not in pair:
+            continue
+        symbol, chat_id = pair.split(":", 1)
+        mapping[symbol.strip().upper()] = chat_id.strip()
+    return mapping
+
+
+SYMBOL_CHAT_IDS = _parse_symbol_chat_map(os.environ.get("SYMBOL_CHAT_IDS", ""))
+
 SL_PIPS = float(os.environ.get("SL_PIPS", "100"))
 TP_PIPS = [float(x) for x in os.environ.get("TP_PIPS", "80,200,300").split(",") if x.strip()]
 POLL_INTERVAL_SECONDS = int(os.environ.get("POLL_INTERVAL_SECONDS", "30"))
@@ -49,6 +66,12 @@ INCLUDE_SYMBOL_IN_HEADER = os.environ.get("INCLUDE_SYMBOL_IN_HEADER", "true").lo
 # Only take alerts for these symbols (comma-separated, case-insensitive).
 # Defaults to gold only. Leave blank to accept any symbol.
 ALLOWED_SYMBOLS = {s.strip().upper() for s in os.environ.get("ALLOWED_SYMBOLS", "XAUUSD").split(",") if s.strip()}
+
+# Symbols in this list bypass the Asia-session time check entirely and are
+# instead only accepted on Saturday/Sunday (UTC) — any time of day. Meant
+# for crypto (e.g. BTCUSD) as extra weekend-only coverage while forex/gold
+# markets are closed. Comma-separated, case-insensitive; empty by default.
+WEEKEND_ONLY_SYMBOLS = {s.strip().upper() for s in os.environ.get("WEEKEND_ONLY_SYMBOLS", "").split(",") if s.strip()}
 
 # Only take new alerts during the Asia trading session (Tokyo session by
 # default). Positions already open keep being monitored for TP/SL 24/7
@@ -112,6 +135,8 @@ def pip_size_for(symbol, override=None):
         return 0.01
     if s.startswith("XAU"):  # gold
         return 0.1
+    if s.startswith("BTC"):  # crypto — whole-dollar "pips"; override per-alert for finer control
+        return 1.0
     return 0.0001
 
 
@@ -145,9 +170,14 @@ def _telegram_api(method, payload):
     return resp.json()
 
 
-def send_message(text, reply_to=None):
-    payload = {"chat_id": CHAT_ID, "text": text}
-    if TOPIC_ID:
+def chat_id_for(symbol):
+    return SYMBOL_CHAT_IDS.get(symbol.upper(), CHAT_ID)
+
+
+def send_message(text, reply_to=None, chat_id=None):
+    target = chat_id or CHAT_ID
+    payload = {"chat_id": target, "text": text}
+    if TOPIC_ID and target == CHAT_ID:  # topic IDs are specific to the default chat
         payload["message_thread_id"] = int(TOPIC_ID)
     if reply_to:
         payload["reply_to_message_id"] = reply_to
@@ -155,8 +185,8 @@ def send_message(text, reply_to=None):
     return result["result"]["message_id"]
 
 
-def edit_message(message_id, text):
-    payload = {"chat_id": CHAT_ID, "message_id": message_id, "text": text}
+def edit_message(message_id, text, chat_id=None):
+    payload = {"chat_id": chat_id or CHAT_ID, "message_id": message_id, "text": text}
     try:
         _telegram_api("editMessageText", payload)
     except RuntimeError as exc:
@@ -233,6 +263,17 @@ def in_asia_session(now_utc=None):
     return now_utc >= start or now_utc <= end  # window wraps past midnight UTC
 
 
+def is_weekend(now_utc=None):
+    now_utc = now_utc or datetime.now(timezone.utc)
+    return now_utc.weekday() >= 5  # Saturday=5, Sunday=6
+
+
+def alert_allowed_now(symbol, now_utc=None):
+    if symbol.upper() in WEEKEND_ONLY_SYMBOLS:
+        return is_weekend(now_utc)
+    return in_asia_session(now_utc)
+
+
 def secret_matches(provided):
     if not WEBHOOK_SECRET:
         return True  # no secret configured, nothing to check (see README.md warning)
@@ -243,10 +284,16 @@ def secret_matches(provided):
 # Live price feed (Yahoo Finance's public chart endpoint — no API key
 # needed, same "no signup" spirit as the other scripts in this repo).
 # ============================================================
+CRYPTO_BASES = ("BTC", "ETH", "SOL", "XRP", "DOGE", "LTC", "ADA", "BNB")
+
+
 def yahoo_ticker(symbol):
     s = symbol.upper().strip()
-    if "-" in s or s.endswith("USDT") or s.endswith("USDC"):
+    if "-" in s:
         return s  # already in Yahoo's crypto format, e.g. BTC-USD
+    for base in CRYPTO_BASES:
+        if s in (base + "USD", base + "USDT", base + "USDC"):
+            return f"{base}-USD"  # Yahoo has no USDT/USDC pairs; USD is the closest match
     return f"{s}=X"
 
 

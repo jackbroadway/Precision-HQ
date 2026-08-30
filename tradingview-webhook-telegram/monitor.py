@@ -89,9 +89,10 @@ def run_once():
             events = apply_price(position, price)
             if not events:
                 continue
-            common.edit_message(position["message_id"], common.format_signal_message(position))
+            chat_id = position.get("chat_id")  # falls back to the default TELEGRAM_CHAT_ID if absent
+            common.edit_message(position["message_id"], common.format_signal_message(position), chat_id=chat_id)
             for event in events:
-                common.send_message(event, reply_to=position["message_id"])
+                common.send_message(event, reply_to=position["message_id"], chat_id=chat_id)
 
 
 if __name__ == "__main__":

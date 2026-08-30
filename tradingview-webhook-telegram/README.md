@@ -63,6 +63,17 @@ header shows a range (`BUY NOW - EURUSD 1.08500-1.08520`) instead of a
 single price; `entry` (the low/reference price) is still what SL/TP are
 calculated from.
 
+**Multiple symbols, separate channels, separate schedules:** each symbol
+in `ALLOWED_SYMBOLS` runs as its own fully independent pipeline. By
+default `XAUUSD` uses the Asia-session window above; any symbol also
+listed in `WEEKEND_ONLY_SYMBOLS` (e.g. `BTCUSD`) instead skips that check
+entirely and is only accepted on Saturday/Sunday UTC, any time of day —
+useful for crypto as extra weekend coverage while forex/gold markets are
+closed. `SYMBOL_CHAT_IDS` (format `SYMBOL:chat_id,SYMBOL2:chat_id2`)
+sends specific symbols to their own separate Telegram channel instead of
+the default `TELEGRAM_CHAT_ID` — so e.g. XAUUSD signals and BTCUSD
+signals can post to two entirely different channels with no overlap.
+
 The disclaimer footer text is configurable via `DISCLAIMER_TEXT`; the
 symbol in the header can be turned off with `INCLUDE_SYMBOL_IN_HEADER=false`
 if every alert already goes to its own symbol-specific Telegram topic.
