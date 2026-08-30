@@ -226,15 +226,64 @@ Your webhook URL becomes `https://your-app-name.fly.dev/webhook`.
 
 **Genuinely free, always-on — Oracle Cloud's "Always Free" tier:**
 Oracle's Always Free VM instances stay free indefinitely (no trial, no
-expiry) — more manual setup than Fly.io (you provision the VM yourself in
-Oracle's console and SSH in), but zero ongoing cost:
-1. Create a free account at [cloud.oracle.com](https://cloud.oracle.com) and provision an "Always Free"
-   compute instance (Ampere A1 or the VM.Standard.E2.1.Micro shape).
-2. Install Docker on it, open port 443/80 in the instance's security list,
-   `git clone` this repo (or `scp` the `tradingview-webhook-telegram`
-   folder over), fill in `.env`, then `docker compose up -d`.
-3. Point a domain (or the VM's public IP) at it, behind Caddy/nginx for
-   TLS, and use that as your TradingView webhook URL.
+expiry) — more manual setup than Fly.io, but zero ongoing cost. **Set a $0
+budget alert** in Oracle's console right after signup (Billing → Cost
+Management → Budgets) so you're notified immediately if anything is ever
+billed — this is unrelated to code, just good practice on any free-tier
+cloud account.
+
+TradingView **requires HTTPS** for webhook URLs (plain HTTP alerts are
+rejected), so `docker-compose.yml` includes a `caddy` service that gets a
+free TLS certificate automatically — no domain purchase needed, using
+your VM's IP via [sslip.io](https://sslip.io) (a DNS service that resolves
+`<ip-with-dashes>.sslip.io` straight back to that IP, which is enough for
+Let's Encrypt to issue a real cert).
+
+1. **Create the instance**: in the OCI console, Compute → Instances →
+   Create Instance. Pick an "Always Free eligible" shape (Ampere A1, or
+   VM.Standard.E2.1.Micro if A1 isn't available in your region —
+   capacity varies by region, try a different region if you get an "out
+   of capacity" error). Use the default Ubuntu image. Download the SSH
+   key pair it generates.
+2. **Open the port — two separate firewalls, both need it**:
+   - *Cloud level*: on the instance's subnet → Security Lists (or Network
+     Security Group) → Add Ingress Rule → source `0.0.0.0/0`, TCP,
+     destination ports `80,443`.
+   - *OS level*: Oracle's Ubuntu images also ship with `iptables` rules
+     that block everything but SSH by default — this trips up almost
+     everyone, since opening only the cloud-level rule looks like it
+     should be enough. SSH in and run:
+     ```bash
+     sudo iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+     sudo iptables -I INPUT -p tcp --dport 443 -j ACCEPT
+     sudo netfilter-persistent save   # or: sudo apt install iptables-persistent
+     ```
+3. **Install Docker** on the instance:
+   ```bash
+   curl -fsSL https://get.docker.com | sudo sh
+   sudo usermod -aG docker $USER && newgrp docker
+   sudo apt install -y docker-compose-plugin
+   ```
+4. **Get the code onto the VM** — `git clone` this repo (or `scp -r
+   tradingview-webhook-telegram ubuntu@<VM_IP>:~/`), then:
+   ```bash
+   cd tradingview-webhook-telegram
+   cp .env.example .env
+   ```
+   Fill in `.env`: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`,
+   `TRADINGVIEW_WEBHOOK_SECRET`, and `DOMAIN` — set `DOMAIN` to your VM's
+   public IP with dots replaced by dashes, suffixed `.sslip.io`, e.g. IP
+   `140.238.12.34` → `DOMAIN=140-238-12-34.sslip.io`.
+5. **Start it**:
+   ```bash
+   docker compose up -d
+   ```
+   Caddy fetches the TLS cert automatically on first request (may take
+   ~10-30s the very first time). Verify from your own machine:
+   ```bash
+   curl https://140-238-12-34.sslip.io/health
+   ```
+   Your TradingView webhook URL is `https://<your-domain>/webhook`.
 
 **Other options:**
 - **Render / Railway** (free/hobby tier) — same Docker setup; check each

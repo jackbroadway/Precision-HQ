@@ -1,8 +1,25 @@
 services:
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - webhook
+    restart: unless-stopped
+
   webhook:
     build: .
-    ports:
-      - "8080:8080"
+    # Not published to the host — Caddy is the only public entry point,
+    # over HTTPS (TradingView refuses plain HTTP webhook URLs). Reach it
+    # locally for testing via `docker compose exec webhook curl ...` or
+    # temporarily add "127.0.0.1:8080:8080" here.
     environment:
       - RUN_MONITOR_IN_PROCESS=false
       - POSITIONS_FILE=/app/data/positions.json
@@ -25,3 +42,5 @@ services:
 
 volumes:
   positions-data:
+  caddy-data:
+  caddy-config:
