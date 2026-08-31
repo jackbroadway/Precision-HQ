@@ -63,9 +63,10 @@ export default function TermsPage() {
           <strong className="text-ink">Elite</strong> are one-time payments
           for access to the paid Telegram channels described on the site,
           for as long as we continue to operate them. Both can be joined
-          either at a discounted rate alongside signing up with our
-          recommended broker, or as a flat one-time fee without a broker,
-          as set out on the pricing section of the website.
+          either at a discounted rate alongside a £300+ top-up of your own
+          trading account (this is your trading capital, not a fee paid to
+          us), or as a flat one-time fee without a top-up, as set out on the
+          pricing section of the website.
         </p>
         <p>
           <strong className="text-ink">1:1 Mentorship</strong> is an

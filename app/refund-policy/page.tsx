@@ -17,8 +17,9 @@ export default function RefundPolicyPage() {
       <LegalSection heading="VIP and Elite">
         <p>
           VIP and Elite are paid one time, either as a discounted rate
-          alongside signing up with our recommended broker, or as a flat fee
-          without a broker. Because access is granted shortly after payment,
+          alongside a £300+ top-up of your own trading account (this is your
+          trading capital, not a fee paid to us), or as a flat fee without a
+          top-up. Because access is granted shortly after payment,
           these purchases are <strong className="text-ink">non-refundable</strong>,
           whichever route you pick.
         </p>

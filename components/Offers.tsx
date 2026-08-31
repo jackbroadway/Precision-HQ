@@ -158,10 +158,10 @@ export function Offers() {
           </span>
           <div className="mt-3 flex items-baseline gap-2">
             <span className="font-mono text-4xl text-ink">Free</span>
-            <span className="font-mono text-sm text-ink-muted">w/ broker</span>
+            <span className="font-mono text-sm text-ink-muted">w/ top-up</span>
           </div>
           <p className="mt-1 font-mono text-xs text-ink-faint">
-            or £197 one time without a broker
+            or £197 one time without a top-up
           </p>
           <p className="mt-3 font-body text-sm text-ink-muted">
             The setups. Sniper limit orders and scalp setups across every
@@ -175,8 +175,8 @@ export function Offers() {
               Join VIP
             </Button>
             <p className="mt-3 text-center font-mono text-xs text-ink-faint">
-              Free with our recommended broker (£300 min deposit), or £197
-              one time without.
+              Free with a £300+ account top-up (your trading capital, not a
+              fee), or £197 one time without.
             </p>
           </div>
         </Reveal>
@@ -195,10 +195,10 @@ export function Offers() {
           </span>
           <div className="mt-3 flex items-baseline gap-2">
             <span className="font-mono text-4xl text-ink">£197</span>
-            <span className="font-mono text-sm text-ink-muted">w/ broker</span>
+            <span className="font-mono text-sm text-ink-muted">w/ top-up</span>
           </div>
           <p className="mt-1 font-mono text-xs text-ink-faint">
-            or £297 one time without a broker
+            or £297 one time without a top-up
           </p>
           <p className="mt-3 font-body text-sm text-ink-muted">
             Everything in VIP, plus the full education and community.
@@ -215,8 +215,8 @@ export function Offers() {
               Join Elite
             </Button>
             <p className="mt-3 text-center font-mono text-xs text-ink-faint">
-              £197 with our recommended broker (£300 min deposit), or £297
-              one time without.
+              £197 with a £300+ account top-up (your trading capital, not a
+              fee), or £297 one time without.
             </p>
           </div>
         </Reveal>
