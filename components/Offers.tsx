@@ -20,64 +20,81 @@ function Check() {
   );
 }
 
-const COMING_SOON = new Set([
-  "Scalp setups throughout the Asia session",
-  "BTCUSD weekend setups",
-]);
-
-function FeatureList({ features }: { features: string[] }) {
+function Lock() {
   return (
-    <ul className="mt-7 flex flex-col">
-      {features.map((feature, i) => (
-        <li
-          key={feature}
-          className={`flex items-start gap-2.5 py-3 ${
-            i > 0 ? "border-t border-border" : ""
-          }`}
-        >
-          <Check />
-          <span className="font-body text-sm text-ink">
-            {feature}
-            {COMING_SOON.has(feature) && (
-              <span className="ml-2 whitespace-nowrap rounded-full border border-gold-dim px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-gold-dim">
-                Coming Soon
-              </span>
-            )}
-          </span>
-        </li>
-      ))}
-    </ul>
+    <svg
+      viewBox="0 0 20 20"
+      className="mt-0.5 h-4 w-4 shrink-0 text-ink-faint"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="4.5" y="9" width="11" height="8" rx="1.5" />
+      <path d="M6.5 9V6.5a3.5 3.5 0 0 1 7 0V9" />
+    </svg>
   );
 }
 
-const FREE_FEATURES = [
-  "1 to 2 trade ideas per day, selected at random from VIP",
-  "Daily student results shared in the free channel",
-  "No signup or payment required",
+type Tier = "free" | "vip" | "elite";
+const TIER_RANK: Record<Tier, number> = { free: 0, vip: 1, elite: 2 };
+const TIER_LABEL: Record<Tier, string> = {
+  free: "Free",
+  vip: "VIP",
+  elite: "Elite",
+};
+
+const FEATURES: { text: string; unlocksAt: Tier; comingSoon?: boolean }[] = [
+  { text: "Daily trade idea sample", unlocksAt: "free" },
+  { text: "Full signal access, 1 to 4 Sniper limit orders per day", unlocksAt: "vip" },
+  { text: "Scalp setups, London/New York session", unlocksAt: "vip" },
+  { text: "Scalp setups, Asia session", unlocksAt: "vip", comingSoon: true },
+  { text: "BTCUSD weekend setups", unlocksAt: "vip", comingSoon: true },
+  { text: "Market analysis", unlocksAt: "elite" },
+  { text: "Trade breakdowns", unlocksAt: "elite" },
+  { text: "Educational videos", unlocksAt: "elite" },
+  { text: "News updates", unlocksAt: "elite" },
+  { text: "Community chat access", unlocksAt: "elite" },
 ];
 
-const VIP_FEATURES = [
-  "1 to 4 Sniper limit orders per day",
-  "Scalp setups throughout the London/New York session",
-  "Scalp setups throughout the Asia session",
-  "BTCUSD weekend setups",
-];
-
-const ELITE_FEATURES = [
-  "Market analysis",
-  "Trade breakdowns",
-  "Educational videos",
-  "News updates",
-  "Community chat access",
-];
-
-const MENTORSHIP_FEATURES = [
-  "8 weeks of 1:1 sessions with Jack",
-  "A trading plan built around your account and schedule",
-  "Direct reviews of your own trades and journal",
-  "Private direct access for the full 8 weeks",
-  "A structured path from the method to your own execution",
-];
+function FeatureChecklist({ tier }: { tier: Tier }) {
+  return (
+    <ul className="mt-7 flex flex-col">
+      {FEATURES.map((feature, i) => {
+        const unlocked = TIER_RANK[tier] >= TIER_RANK[feature.unlocksAt];
+        return (
+          <li
+            key={feature.text}
+            className={`flex items-start gap-2.5 py-3 ${
+              i > 0 ? "border-t border-border" : ""
+            }`}
+          >
+            {unlocked ? <Check /> : <Lock />}
+            <span
+              className={`font-body text-sm ${
+                unlocked ? "text-ink" : "text-ink-faint"
+              }`}
+            >
+              {feature.text}
+              {unlocked && feature.comingSoon && (
+                <span className="ml-2 whitespace-nowrap rounded-full border border-gold-dim px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-gold-dim">
+                  Coming Soon
+                </span>
+              )}
+              {!unlocked && (
+                <span className="ml-2 whitespace-nowrap font-mono text-[10px] uppercase tracking-wide text-ink-faint">
+                  Unlocks at {TIER_LABEL[feature.unlocksAt]}
+                </span>
+              )}
+            </span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
 
 export function Offers() {
   return (
@@ -91,13 +108,12 @@ export function Offers() {
         </Reveal>
         <Reveal delay={0.14}>
           <p className="mt-4 font-body text-ink-muted">
-            Start free, upgrade for the full setups and education, or go 1:1
-            with Jack directly.
+            Start free, or upgrade for the full setups and education.
           </p>
         </Reveal>
       </div>
 
-      <div className="mx-auto mt-16 grid max-w-6xl gap-8 pt-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto mt-16 grid max-w-5xl gap-8 pt-3 lg:grid-cols-3">
         {/* Free Insights */}
         <Reveal
           delay={0.02}
@@ -116,7 +132,7 @@ export function Offers() {
             A taste of what VIP sees. No signup, no payment, no catch.
           </p>
 
-          <FeatureList features={FREE_FEATURES} />
+          <FeatureChecklist tier="free" />
 
           <div className="mt-auto pt-6">
             <Button
@@ -152,7 +168,7 @@ export function Offers() {
             session.
           </p>
 
-          <FeatureList features={VIP_FEATURES} />
+          <FeatureChecklist tier="vip" />
 
           <div className="mt-auto pt-6">
             <Button href={links.vipJoin} variant="secondary" className="w-full">
@@ -188,7 +204,7 @@ export function Offers() {
             Everything in VIP, plus the full education and community.
           </p>
 
-          <FeatureList features={ELITE_FEATURES} />
+          <FeatureChecklist tier="elite" />
 
           <div className="mt-auto pt-6">
             <Button
@@ -204,46 +220,19 @@ export function Offers() {
             </p>
           </div>
         </Reveal>
-
-        {/* Mentorship */}
-        <Reveal
-          delay={0.14}
-          className="flex flex-col rounded-2xl border border-border-strong bg-gradient-to-b from-surface to-surface p-7"
-        >
-          <div className="flex items-center justify-between">
-            <span className="font-mono text-xs uppercase tracking-[0.15em] text-ink-muted">
-              Mentorship
-            </span>
-            <span className="rounded-full border border-border-strong px-3 py-1 font-mono text-[11px] uppercase tracking-wide text-ink-muted">
-              Apply Only
-            </span>
-          </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="font-mono text-xl text-ink">
-              Discussed On Your Call
-            </span>
-          </div>
-          <p className="mt-3 font-body text-sm text-ink-muted">
-            8 weeks working directly with Jack, 1:1. A 3 month interest free
-            payment plan is available for approved applicants.
-          </p>
-
-          <FeatureList features={MENTORSHIP_FEATURES} />
-
-          <div className="mt-auto pt-6">
-            <Button
-              href={links.mentorshipApplication}
-              variant="secondary"
-              className="w-full"
-            >
-              View &amp; Apply
-            </Button>
-            <p className="mt-3 text-center font-mono text-xs text-ink-faint">
-              Application required. Non refundable once accepted.
-            </p>
-          </div>
-        </Reveal>
       </div>
+
+      <Reveal delay={0.16} className="mx-auto mt-8 max-w-5xl text-center">
+        <p className="font-mono text-xs text-ink-faint">
+          Want to go 1:1 with Jack instead?{" "}
+          <a
+            href={links.mentorshipApplication}
+            className="text-gold hover:underline"
+          >
+            View &amp; apply for mentorship
+          </a>
+        </p>
+      </Reveal>
     </section>
   );
 }
