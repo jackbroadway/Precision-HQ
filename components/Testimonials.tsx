@@ -55,7 +55,7 @@ const TESTIMONIALS = [...TESTIMONIALS_BASE, ...TESTIMONIALS_BASE];
 const MEMBER_VIDEOS: {
   src: string;
   poster: string;
-  posterPosition?: "center" | "top";
+  posterPosition?: string;
 }[] = [
   {
     src: "/video/member-testimonial.mp4",
@@ -73,6 +73,7 @@ const MEMBER_VIDEOS: {
   {
     src: "/video/member-testimonial-4.mp4",
     poster: "/video/member-testimonial-4-poster.jpg",
+    posterPosition: "center 32%",
   },
 ];
 

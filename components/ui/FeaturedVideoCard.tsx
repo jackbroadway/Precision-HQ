@@ -22,7 +22,8 @@ export function FeaturedVideoCard({
 }: {
   src: string;
   poster?: string;
-  posterPosition?: "center" | "top";
+  /** Any valid CSS object-position value, e.g. "center", "top", "center 32%". */
+  posterPosition?: string;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -49,9 +50,8 @@ export function FeaturedVideoCard({
           muted
           playsInline
           preload="none"
-          className={`h-full w-full object-cover ${
-            posterPosition === "top" ? "object-top" : "object-center"
-          }`}
+          className="h-full w-full object-cover"
+          style={{ objectPosition: posterPosition }}
         />
         <div className="absolute inset-0 flex items-center justify-center bg-background/40 transition-colors group-hover/video:bg-background/20">
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gold text-background sm:h-10 sm:w-10">
