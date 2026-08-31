@@ -136,13 +136,13 @@ export function Offers() {
 
           <div className="mt-auto pt-6">
             <Button
-              href={links.freeInsights}
+              href={links.startFreeHere}
               variant="secondary"
               className="w-full"
             >
               Join Free
             </Button>
-            <p className="mt-3 text-center font-mono text-xs text-ink-faint">
+            <p className="mt-3 min-h-12 text-center font-mono text-xs text-ink-faint">
               No signup. No payment.
             </p>
           </div>
@@ -174,7 +174,7 @@ export function Offers() {
             <Button href={links.vipJoin} variant="secondary" className="w-full">
               Join VIP
             </Button>
-            <p className="mt-3 text-center font-mono text-xs text-ink-faint">
+            <p className="mt-3 min-h-12 text-center font-mono text-xs text-ink-faint">
               Free with a £300+ account top-up (your trading capital, not a
               fee), or £197 one time without.
             </p>
@@ -214,7 +214,7 @@ export function Offers() {
             >
               Join Elite
             </Button>
-            <p className="mt-3 text-center font-mono text-xs text-ink-faint">
+            <p className="mt-3 min-h-12 text-center font-mono text-xs text-ink-faint">
               £197 with a £300+ account top-up (your trading capital, not a
               fee), or £297 one time without.
             </p>

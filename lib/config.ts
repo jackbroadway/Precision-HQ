@@ -31,7 +31,6 @@ export const links = {
   indicatorAccessHelp: `https://t.me/${telegramUsername}?text=${encodeURIComponent(indicatorAccessPrefilledMessage)}`,
   vipJoin: `https://t.me/${telegramUsername}?text=${encodeURIComponent(vipJoinPrefilledMessage)}`,
   eliteJoin: `https://t.me/${telegramUsername}?text=${encodeURIComponent(eliteJoinPrefilledMessage)}`,
-  freeInsights: "https://t.me/+GPH7fhGgc1VlNDQ0",
   startFreeHere: "https://t.me/addlist/dDbotJztvoFmZWJk",
   dailyResults: "https://t.me/precisionhqresults",
   mentorshipApplication: "/apply",
