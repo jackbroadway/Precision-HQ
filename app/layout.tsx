@@ -23,10 +23,29 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
+const siteUrl = "https://precisionhq.io";
+const title = "Precision HQ | Trading Education for Gold and FX";
+const description =
+  "Precision HQ teaches a high to low trading method across Daily, 4H and 15M timeframes on XAUUSD, GBPUSD and EURUSD. Free Telegram community, paid membership and 1:1 mentorship with Jack.";
+
 export const metadata: Metadata = {
-  title: "Precision HQ | Trading Education for Gold and FX",
-  description:
-    "Precision HQ teaches a high to low trading method across Daily, 4H and 15M timeframes on XAUUSD, GBPUSD and EURUSD. Free Telegram community, paid membership and 1:1 mentorship with Jack.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: siteUrl,
+    siteName: "Precision HQ",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
