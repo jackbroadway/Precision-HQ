@@ -21,10 +21,10 @@ export default function PrivacyPage() {
           name, contact details, and answers about your trading experience.
         </p>
         <p>
-          <strong className="text-ink">Purchases</strong>: when you buy
-          Community or the Sniper indicator, payment is handled entirely by
-          Stripe. We receive your email address and order details from
-          Stripe; we never see or store your full card number.
+          <strong className="text-ink">Sniper indicator purchases</strong>:
+          payment is handled entirely by Stripe. We receive your email
+          address and order details from Stripe; we never see or store your
+          full card number.
         </p>
         <p>
           <strong className="text-ink">Indicator access</strong>: the
@@ -32,11 +32,12 @@ export default function PrivacyPage() {
           you invite-only access to the indicator.
         </p>
         <p>
-          <strong className="text-ink">Community and support</strong>: if
-          you message us on Telegram, we can see whatever Telegram shares
-          with us as part of that conversation (your Telegram username and
-          messages), governed by Telegram&rsquo;s own privacy policy as well
-          as this one.
+          <strong className="text-ink">VIP, Elite and support</strong>: if
+          you message us on Telegram to join VIP or Elite, ask a question, or
+          get support, we can see whatever Telegram shares with us as part
+          of that conversation (your Telegram username and messages),
+          governed by Telegram&rsquo;s own privacy policy as well as this
+          one.
         </p>
       </LegalSection>
 

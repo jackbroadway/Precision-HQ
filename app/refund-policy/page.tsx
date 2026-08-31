@@ -2,7 +2,7 @@ import { LegalLayout, LegalSection } from "@/components/legal/LegalLayout";
 
 export const metadata = {
   title: "Refund Policy — Precision HQ",
-  description: "Precision HQ's refund and cancellation policy for Community, Mentorship and the Sniper indicator.",
+  description: "Precision HQ's refund and cancellation policy for VIP, Elite, Mentorship and the Sniper indicator.",
 };
 
 export default function RefundPolicyPage() {
@@ -14,11 +14,20 @@ export default function RefundPolicyPage() {
         policy you agree to at checkout.
       </p>
 
-      <LegalSection heading="Community">
+      <LegalSection heading="VIP and Elite">
         <p>
-          Community is a one-time payment of £197 for access to the paid
-          membership community. Because access is granted immediately after
-          payment, this purchase is <strong className="text-ink">non-refundable</strong>.
+          VIP and Elite are paid one time, either as a discounted rate
+          alongside signing up with our recommended broker, or as a flat fee
+          without a broker. Because access is granted shortly after payment,
+          these purchases are <strong className="text-ink">non-refundable</strong>,
+          whichever route you pick.
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="Free Insights">
+        <p>
+          Free Insights is free, with no signup or payment, so there is
+          nothing to refund.
         </p>
       </LegalSection>
 

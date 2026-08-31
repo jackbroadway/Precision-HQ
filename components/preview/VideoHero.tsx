@@ -80,7 +80,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
 
             <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:flex-row">
               <Button href="/#offers" variant="primary">
-                Join Community
+                View Access Tiers
               </Button>
               <Button href={links.mentorshipApplication} variant="secondary">
                 Apply For Mentorship

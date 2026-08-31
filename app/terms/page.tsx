@@ -54,10 +54,18 @@ export default function TermsPage() {
 
       <LegalSection heading="The Services">
         <p>
-          <strong className="text-ink">Community</strong> is a one-time
-          payment for access to the paid Telegram community, education hub,
-          daily trade ideas, and related content, for as long as we
-          continue to operate that community.
+          <strong className="text-ink">Free Insights</strong> is a free
+          Telegram channel with a random selection of trade ideas and daily
+          student results. No signup or payment is required.
+        </p>
+        <p>
+          <strong className="text-ink">VIP</strong> and{" "}
+          <strong className="text-ink">Elite</strong> are one-time payments
+          for access to the paid Telegram channels described on the site,
+          for as long as we continue to operate them. Both can be joined
+          either at a discounted rate alongside signing up with our
+          recommended broker, or as a flat one-time fee without a broker,
+          as set out on the pricing section of the website.
         </p>
         <p>
           <strong className="text-ink">1:1 Mentorship</strong> is an
@@ -77,11 +85,13 @@ export default function TermsPage() {
 
       <LegalSection heading="Payment and Refunds">
         <p>
-          All prices are shown in GBP. Payments are processed securely by
-          Stripe; we do not store your card details. Community and
-          Sniper indicator purchases are one-time, non-refundable payments.
-          Mentorship is non-refundable once your application is accepted and
-          the programme has started. Full detail is in our{" "}
+          All prices are shown in GBP. Sniper indicator payments are
+          processed securely by Stripe; we do not store your card details.
+          Payment details for VIP and Elite are provided directly when you
+          message us to join. VIP, Elite and the Sniper indicator are
+          one-time, non-refundable payments. Mentorship is non-refundable
+          once your application is accepted and the programme has started.
+          Full detail is in our{" "}
           <a href="/refund-policy" className="text-gold hover:underline">
             Refund Policy
           </a>
