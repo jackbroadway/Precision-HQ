@@ -48,7 +48,7 @@ const TIER_LABEL: Record<Tier, string> = {
 
 const FEATURES: { text: string; unlocksAt: Tier; comingSoon?: boolean }[] = [
   { text: "Daily trade idea sample", unlocksAt: "free" },
-  { text: "Full signal access, 1 to 4 Sniper limit orders per day", unlocksAt: "vip" },
+  { text: "Full trade idea access, 1 to 4 Sniper limit orders per day", unlocksAt: "vip" },
   { text: "Scalp setups, London/New York session", unlocksAt: "vip" },
   { text: "Scalp setups, Asia session", unlocksAt: "vip", comingSoon: true },
   { text: "BTCUSD weekend setups", unlocksAt: "vip", comingSoon: true },

@@ -45,7 +45,7 @@ export function MentorBio() {
             <p>
               Beyond the charts, I&rsquo;m also building a life around the
               freedom that disciplined trading creates. Precision HQ is more
-              than signals. It&rsquo;s focused on building profitable
+              than trade ideas. It&rsquo;s focused on building profitable
               traders, developing winning mindsets, and creating a high
               performance trading lifestyle.
             </p>
