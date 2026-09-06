@@ -61,13 +61,13 @@ export default function RootLayout({
       <body>
         {children}
         <Script
-          defer
-          data-domain="precisionhq.io"
-          src="https://plausible.io/js/script.outbound-links.js"
+          async
+          src="https://plausible.io/js/pa-IxRVjlVPafBtZl75Ba9yu.js"
           strategy="afterInteractive"
         />
         <Script id="plausible-queue" strategy="beforeInteractive">
-          {`window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }`}
+          {`window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()`}
         </Script>
       </body>
     </html>
