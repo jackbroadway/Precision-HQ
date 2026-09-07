@@ -32,6 +32,7 @@ export const links = {
   vipJoin: `https://t.me/${telegramUsername}?text=${encodeURIComponent(vipJoinPrefilledMessage)}`,
   eliteJoin: `https://t.me/${telegramUsername}?text=${encodeURIComponent(eliteJoinPrefilledMessage)}`,
   startFreeHere: "https://t.me/addlist/dDbotJztvoFmZWJk",
+  freeInsightsChannel: "https://t.me/+p4zP4jX8sMkxZTdk",
   dailyResults: "https://t.me/precisionhqresults",
   mentorshipApplication: "/apply",
   indicatorCheckout: "https://buy.stripe.com/aFa28k3EJg74dnj2632cg3o",

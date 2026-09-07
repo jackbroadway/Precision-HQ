@@ -79,7 +79,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
             </div>
 
             <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:flex-row">
-              <Button href={links.startFreeHere} variant="primary">
+              <Button href={links.freeInsightsChannel} variant="primary">
                 Free Trade Ideas Here
               </Button>
               <Button href="/#offers" variant="secondary">
