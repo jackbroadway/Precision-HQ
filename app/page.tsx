@@ -8,6 +8,7 @@ import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
+import { ScrollNudge } from "@/components/ScrollNudge";
 
 // Credibility (the funded account pass certificates) is disabled for now,
 // per Jack's request — not deleted, just not rendered, so it's a one-line
@@ -29,6 +30,7 @@ export default function Home() {
         <FinalCTA />
       </main>
       <Footer />
+      <ScrollNudge />
     </>
   );
 }
