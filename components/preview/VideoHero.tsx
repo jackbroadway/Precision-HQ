@@ -63,10 +63,14 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               embedded ? "pt-28 sm:pt-36 lg:pt-40" : "pt-10 sm:pt-16"
             }`}
           >
-            <h1 className="max-w-4xl text-display text-ink">
-              Patience Is
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-gold">
+              Patience Is Precision
+            </p>
+
+            <h1 className="mt-3 max-w-3xl text-display text-ink">
+              Free Daily Trade Ideas,
               <br />
-              <span className="text-gold-underline text-gold">Precision</span>
+              <span className="text-gold-underline text-gold">Sent Straight to Telegram</span>
             </h1>
 
             <div className="mt-4 max-w-xl px-2 sm:mt-6">
@@ -78,17 +82,28 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               </p>
             </div>
 
-            <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:flex-row">
+            <div className="mt-6 sm:mt-8">
               <Button href={links.freeInsightsChannel} variant="primary">
                 Free Trade Ideas Here
               </Button>
-              <Button href="/#offers" variant="secondary">
-                View Access Tiers
-              </Button>
-              <Button href={links.mentorshipApplication} variant="secondary">
-                Apply For Mentorship
-              </Button>
+              <p className="mt-3 font-mono text-xs uppercase tracking-wide text-ink-muted">
+                2,000+ traders already in the free channel
+              </p>
             </div>
+
+            <p className="mt-6 font-mono text-xs text-ink-faint">
+              Want more? {" "}
+              <a href="/#offers" className="text-gold hover:underline">
+                View access tiers
+              </a>{" "}
+              &middot;{" "}
+              <a
+                href={links.mentorshipApplication}
+                className="text-gold hover:underline"
+              >
+                Apply for mentorship
+              </a>
+            </p>
 
             <div className="mt-12 w-full sm:mt-16">
               <Stats />
