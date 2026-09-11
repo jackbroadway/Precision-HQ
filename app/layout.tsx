@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Barlow_Condensed, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Montserrat, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const barlowCondensed = Barlow_Condensed({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["600", "700", "800"],
   variable: "--font-heading",
   display: "swap",
 });
@@ -56,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${barlowCondensed.variable} ${inter.variable} ${ibmPlexMono.variable}`}
+      className={`${montserrat.variable} ${inter.variable} ${ibmPlexMono.variable}`}
     >
       <body>
         {children}

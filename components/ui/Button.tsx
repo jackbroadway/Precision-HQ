@@ -12,7 +12,7 @@ type ButtonProps = {
 };
 
 const base =
-  "inline-flex min-h-[44px] items-center justify-center gap-2 rounded-sm px-7 py-3.5 font-heading text-base uppercase tracking-wide transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
+  "inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-7 py-3.5 font-heading text-base uppercase tracking-wide transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
 
 const variants: Record<NonNullable<ButtonProps["variant"]>, string> = {
   primary: "bg-gold text-background hover:bg-gold-bright",

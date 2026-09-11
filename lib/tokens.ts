@@ -26,15 +26,15 @@ export const fonts = {
   mono: "var(--font-mono)",
 } as const;
 
-/** Type scale in rem, tuned for a condensed uppercase heading face. */
+/** Type scale in rem, tuned for a standard-width uppercase heading face. */
 export const typeScale = {
-  display: "clamp(3rem, 2.2rem + 3.5vw, 5.5rem)",
-  h1: "clamp(2.5rem, 1.9rem + 2.6vw, 4rem)",
-  h2: "clamp(2rem, 1.65rem + 1.6vw, 2.75rem)",
-  h3: "clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem)",
+  display: "clamp(2.25rem, 1.7rem + 2.6vw, 4.25rem)",
+  h1: "clamp(1.875rem, 1.5rem + 2vw, 3.25rem)",
+  h2: "clamp(1.625rem, 1.35rem + 1.3vw, 2.25rem)",
+  h3: "clamp(1.125rem, 1rem + 0.65vw, 1.5rem)",
   body: "1.0625rem",
   small: "0.875rem",
-  stat: "clamp(2rem, 1.6rem + 1.8vw, 3rem)",
+  stat: "clamp(1.625rem, 1.3rem + 1.5vw, 2.5rem)",
 } as const;
 
 /** Standard section vertical rhythm, mobile first. */

@@ -67,10 +67,8 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               Patience Is Precision
             </p>
 
-            <h1 className="mt-3 max-w-3xl text-display text-ink">
-              Free Daily Trade Ideas,
-              <br />
-              <span className="text-gold-underline text-gold">Sent Straight to Telegram</span>
+            <h1 className="mt-3 max-w-2xl text-h1 font-semibold normal-case tracking-normal text-ink">
+              Free daily <span className="text-gold-underline text-gold">trade ideas</span>
             </h1>
 
             <div className="mt-4 max-w-xl px-2 sm:mt-6">
