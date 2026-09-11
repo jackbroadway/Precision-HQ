@@ -5,6 +5,7 @@ import { Method } from "@/components/Method";
 import { Indicator } from "@/components/Indicator";
 import { Offers } from "@/components/Offers";
 import { Testimonials } from "@/components/Testimonials";
+import { LiveProfitScroller } from "@/components/LiveProfitScroller";
 import { FAQ } from "@/components/FAQ";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
@@ -22,6 +23,7 @@ export default function Home() {
       <main>
         <VideoHero embedded />
         <Testimonials />
+        <LiveProfitScroller />
         <Offers />
         <Problem />
         <Method />
