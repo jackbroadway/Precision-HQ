@@ -59,10 +59,18 @@ exports.handler = async (event) => {
     metadata: { contentType: "image/jpeg" },
   });
 
+  // Prefer whoever the message was originally forwarded from (the member
+  // whose result this is), falling back to whoever posted it directly.
+  const name =
+    message.forward_from?.first_name ||
+    message.forward_sender_name ||
+    message.from?.first_name ||
+    "";
+
   const indexStore = getBlobStore("testimonial-shots");
   const existing = (await indexStore.get("index", { type: "json" })) || [];
   const withoutDuplicate = existing.filter((entry) => entry.id !== id);
-  const entry = { id, caption: message.caption || "", date: message.date * 1000 };
+  const entry = { id, name, caption: message.caption || "", date: message.date * 1000 };
   const updatedList = [entry, ...withoutDuplicate].slice(0, MAX_ENTRIES);
   await indexStore.setJSON("index", updatedList);
 

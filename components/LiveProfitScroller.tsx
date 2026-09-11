@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Reveal } from "./ui/Reveal";
 import { Eyebrow } from "./ui/Eyebrow";
 
-type Shot = { id: string; url: string; caption: string; date: number };
+type Shot = { id: string; url: string; name: string; caption: string; date: number };
 
 /**
  * Pulls the latest screenshots posted in the private testimonials group
@@ -49,15 +49,22 @@ export function LiveProfitScroller() {
           {looped.map((shot, i) => (
             <div
               key={`${shot.id}-${i}`}
-              className="h-72 w-52 shrink-0 overflow-hidden rounded-lg border border-border bg-surface"
+              className="w-52 shrink-0 overflow-hidden rounded-lg border border-border bg-surface"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={shot.url}
-                alt={shot.caption || "Member result screenshot"}
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
+              <div className="h-64 w-full overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={shot.url}
+                  alt={shot.caption || "Member result screenshot"}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              {shot.name && (
+                <p className="border-t border-border px-3 py-2 font-mono text-xs uppercase tracking-wide text-ink-muted">
+                  {shot.name}
+                </p>
+              )}
             </div>
           ))}
         </div>
