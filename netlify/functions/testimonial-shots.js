@@ -1,10 +1,10 @@
-const { getStore } = require("@netlify/blobs");
+const { getBlobStore } = require("./_blob-store");
 
 // Returns the list of cached testimonial screenshots (newest first) for the
 // homepage scroller to render. Each entry points back to
 // testimonial-image.js rather than embedding the image itself.
 exports.handler = async () => {
-  const indexStore = getStore("testimonial-shots");
+  const indexStore = getBlobStore("testimonial-shots");
   const list = (await indexStore.get("index", { type: "json" })) || [];
 
   const items = list.map((entry) => ({

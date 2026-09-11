@@ -1,4 +1,4 @@
-const { getStore } = require("@netlify/blobs");
+const { getBlobStore } = require("./_blob-store");
 
 const MAX_ENTRIES = 30;
 
@@ -54,12 +54,12 @@ exports.handler = async (event) => {
   const imageBuffer = Buffer.from(await fileRes.arrayBuffer());
 
   const id = `${message.message_id}-${message.date}`;
-  const imagesStore = getStore("testimonial-shot-images");
+  const imagesStore = getBlobStore("testimonial-shot-images");
   await imagesStore.set(id, imageBuffer, {
     metadata: { contentType: "image/jpeg" },
   });
 
-  const indexStore = getStore("testimonial-shots");
+  const indexStore = getBlobStore("testimonial-shots");
   const existing = (await indexStore.get("index", { type: "json" })) || [];
   const withoutDuplicate = existing.filter((entry) => entry.id !== id);
   const entry = { id, caption: message.caption || "", date: message.date * 1000 };
