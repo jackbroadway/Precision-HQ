@@ -51,12 +51,12 @@ export function LiveProfitScroller() {
               key={`${shot.id}-${i}`}
               className="w-52 shrink-0 overflow-hidden rounded-lg border border-border bg-surface"
             >
-              <div className="h-64 w-full overflow-hidden">
+              <div className="flex h-64 w-full items-center justify-center overflow-hidden bg-background">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={shot.url}
                   alt={shot.caption || "Member result screenshot"}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                   loading="lazy"
                 />
               </div>

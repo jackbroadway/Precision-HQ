@@ -38,7 +38,7 @@ export function HeroProofStrip() {
               src={shot.url}
               alt=""
               aria-hidden="true"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover object-left-top"
               loading="lazy"
             />
           </span>
