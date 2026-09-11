@@ -1,6 +1,7 @@
 import { PillNavbar } from "./PillNavbar";
 import { Stats } from "../Stats";
 import { Button } from "../ui/Button";
+import { HeroProofStrip } from "../HeroProofStrip";
 import { links, media } from "@/lib/config";
 
 type VideoHeroProps = {
@@ -87,21 +88,24 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               <p className="mt-3 font-mono text-xs uppercase tracking-wide text-ink-muted">
                 2,000+ traders already in the free channel
               </p>
+              <HeroProofStrip />
             </div>
 
-            <p className="mt-6 font-mono text-xs text-ink-faint">
-              Want more? {" "}
-              <a href="/#offers" className="text-gold hover:underline">
-                View access tiers
-              </a>{" "}
-              &middot;{" "}
-              <a
-                href={links.mentorshipApplication}
-                className="text-gold hover:underline"
-              >
-                Apply for mentorship
-              </a>
-            </p>
+            <div className="mt-6 flex flex-col items-center gap-1 font-mono text-xs text-ink-faint sm:flex-row sm:gap-2">
+              <span>Want more?</span>
+              <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+                <a href="/#offers" className="text-gold hover:underline">
+                  View access tiers
+                </a>
+                <span aria-hidden="true">&middot;</span>
+                <a
+                  href={links.mentorshipApplication}
+                  className="text-gold hover:underline"
+                >
+                  Apply for mentorship
+                </a>
+              </div>
+            </div>
 
             <div className="mt-12 w-full sm:mt-16">
               <Stats />

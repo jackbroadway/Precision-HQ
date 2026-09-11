@@ -29,7 +29,7 @@ export function LiveProfitScroller() {
   const looped = [...shots, ...shots];
 
   return (
-    <section className="section-y">
+    <section id="live-results" className="section-y">
       <div className="container-px mx-auto max-w-2xl text-center">
         <Reveal>
           <Eyebrow>Live From The Free Channel</Eyebrow>
