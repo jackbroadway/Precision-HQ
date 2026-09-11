@@ -1,6 +1,7 @@
 import { Button } from "./ui/Button";
 import { Eyebrow } from "./ui/Eyebrow";
 import { FeaturedVideoCard } from "./ui/FeaturedVideoCard";
+import { LiveProfitScroller } from "./LiveProfitScroller";
 import { Reveal } from "./ui/Reveal";
 import { links } from "@/lib/config";
 
@@ -107,6 +108,8 @@ export function Testimonials() {
           />
         ))}
       </Reveal>
+
+      <LiveProfitScroller />
 
       <Reveal delay={0.2} className="group mt-10 overflow-hidden">
         <div className="flex w-max animate-marquee-slow gap-6 group-hover:[animation-play-state:paused]">
