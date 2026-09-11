@@ -1,5 +1,4 @@
 import { PillNavbar } from "./PillNavbar";
-import { Stats } from "../Stats";
 import { Button } from "../ui/Button";
 import { HeroProofStrip } from "../HeroProofStrip";
 import { links, media } from "@/lib/config";
@@ -105,10 +104,6 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
                   Apply for mentorship
                 </a>
               </div>
-            </div>
-
-            <div className="mt-12 w-full sm:mt-16">
-              <Stats />
             </div>
           </div>
         </div>
