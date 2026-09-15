@@ -13,6 +13,11 @@
       <a href="{{ url_for('dashboard') }}">Dashboard</a>
       <a href="{{ url_for('add_contact') }}">+ Add brand</a>
       <a href="{{ url_for('settings_page') }}">Settings</a>
+      {% if logged_in %}
+        <form method="post" action="{{ url_for('logout') }}" class="nav-logout-form">
+          <button type="submit" class="link-btn">Log out</button>
+        </form>
+      {% endif %}
     </nav>
   </header>
 

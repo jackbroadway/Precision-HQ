@@ -19,11 +19,12 @@ human (you) always does the actual send, from your own account.
 See README.md for setup instructions.
 """
 
+import hmac
 import os
 from datetime import datetime, timedelta
 
 from dotenv import load_dotenv
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from urllib.parse import quote
 
 load_dotenv()
@@ -33,8 +34,49 @@ import mailer
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev-only-change-me")
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+# Set SESSION_COOKIE_SECURE=1 once this is deployed behind HTTPS (Render/Railway
+# both terminate TLS for you) — off by default so the login also works over
+# plain http://localhost during local development.
+app.config["SESSION_COOKIE_SECURE"] = os.environ.get("SESSION_COOKIE_SECURE", "0") == "1"
+
+ACCESS_PASSWORD = os.environ.get("ACCESS_PASSWORD", "")
 
 FOLLOW_UP_STATUSES = {"emailed", "dm_sent"}
+
+
+@app.before_request
+def require_login():
+    if not ACCESS_PASSWORD:
+        # No password configured — leave the app open (e.g. local dev).
+        return None
+    if request.endpoint in ("login", "static"):
+        return None
+    if not session.get("authenticated"):
+        return redirect(url_for("login", next=request.path))
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if not ACCESS_PASSWORD:
+        return redirect(url_for("dashboard"))
+    if request.method == "POST":
+        submitted = request.form.get("password", "")
+        if hmac.compare_digest(submitted, ACCESS_PASSWORD):
+            session.clear()
+            session["authenticated"] = True
+            session.permanent = True
+            next_url = request.form.get("next") or url_for("dashboard")
+            return redirect(next_url)
+        flash("Wrong password.", "error")
+    return render_template("login.html", next=request.args.get("next", ""))
+
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
 
 
 def render_template_str(template: str, **kwargs) -> str:
@@ -71,6 +113,11 @@ def days_since(iso_timestamp):
 @app.template_filter("status_label")
 def status_label(value):
     return db.STATUS_LABELS.get(value, value)
+
+
+@app.context_processor
+def inject_auth_state():
+    return {"logged_in": bool(ACCESS_PASSWORD) and session.get("authenticated", False)}
 
 
 @app.route("/")

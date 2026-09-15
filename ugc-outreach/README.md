@@ -75,7 +75,21 @@ dashboard directly.
 **Volume note:** Gmail rate-limits sending to roughly 500 messages/day,
 which is far more than manual brand outreach needs.
 
-## 3. Run it
+## 3. Password-protect it
+
+Before this is reachable by anyone other than you (deployed online, or
+even just on shared wifi), set a password so it's not wide open:
+
+```
+ACCESS_PASSWORD=pick-something-only-you-two-know
+```
+
+in `.env`. Once set, every page redirects to a login screen until the
+right password is entered — there's no per-user accounts, just the one
+shared password. Leave it blank to skip login entirely (fine while you're
+just running it on your own laptop for local testing).
+
+## 4. Run it
 
 ```bash
 python3 app.py
@@ -84,14 +98,14 @@ python3 app.py
 Open http://localhost:5000 in a browser. On first run it creates
 `outreach.db` automatically.
 
-## 4. Fill in your outreach templates
+## 5. Fill in your outreach templates
 
 Go to **Settings** and fill in your name, portfolio link, rates, and the
 email/DM templates. Templates support these placeholders:
 `{brand_name}`, `{creator_name}`, `{niche}`, `{portfolio_link}`,
 `{rate_info}`.
 
-## 5. Day-to-day use
+## 6. Day-to-day use
 
 1. Browse Instagram/TikTok yourself for brands worth pitching (there's no
    safe way to automate *finding* brands either — Instagram doesn't offer
@@ -113,16 +127,18 @@ to start it, but for her to use it independently, the easiest options are:
   [Render](https://render.com) or [Railway](https://railway.app) free tier
   — both support a Python/Flask app out of the box (`pip install -r
   requirements.txt` then `python app.py`, or a `gunicorn app:app` start
-  command). Set `GMAIL_ADDRESS`, `GMAIL_APP_PASSWORD`, and
-  `FLASK_SECRET_KEY` as environment variables/secrets in their dashboard,
-  same as this README's `.env` values. She'd get a permanent URL to bookmark.
+  command). Set `GMAIL_ADDRESS`, `GMAIL_APP_PASSWORD`, `FLASK_SECRET_KEY`,
+  and `ACCESS_PASSWORD` as environment variables/secrets in their
+  dashboard, same as this README's `.env` values — also set
+  `SESSION_COOKIE_SECURE=1` since Render/Railway serve over HTTPS. She'd
+  get a permanent URL to bookmark, protected by the password screen.
 - **Local, always-on machine:** run it on a laptop/desktop that stays on,
   and have her open `http://<that-computer's-IP>:5000` from her phone on
   the same wifi.
 
-There's no login/auth built in — anyone with the URL can use it, so if you
-host it publicly, treat the URL itself as the access control (don't post
-it publicly), or ask if you'd like basic password protection added.
+Make sure `ACCESS_PASSWORD` is set before deploying anywhere reachable off
+your own machine (see step 3) — without it, anyone with the URL can use
+the dashboard and send email as you.
 
 ## Troubleshooting
 
