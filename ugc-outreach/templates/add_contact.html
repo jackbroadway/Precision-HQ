@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Add brand — UGC Outreach{% endblock %}
+{% block content %}
+
+<h1>Add a brand</h1>
+<p class="muted">Found a brand on Instagram/TikTok you want to pitch? Add it here to draft outreach for it.</p>
+
+<form method="post" class="form">
+  <label>Brand name *
+    <input type="text" name="brand_name" value="{{ form.brand_name or '' }}" required autofocus>
+  </label>
+  <label>Instagram handle
+    <input type="text" name="instagram_handle" value="{{ form.instagram_handle or '' }}" placeholder="brandname (no @)">
+  </label>
+  <label>TikTok handle
+    <input type="text" name="tiktok_handle" value="{{ form.tiktok_handle or '' }}" placeholder="brandname (no @)">
+  </label>
+  <label>Email
+    <input type="email" name="email" value="{{ form.email or '' }}" placeholder="hello@brand.com">
+  </label>
+  <label>Website
+    <input type="text" name="website" value="{{ form.website or '' }}" placeholder="https://brand.com">
+  </label>
+  <label>Niche
+    <input type="text" name="niche" value="{{ form.niche or '' }}" placeholder="skincare, fitness, fashion...">
+  </label>
+  <label>Notes
+    <textarea name="notes" rows="3">{{ form.notes or '' }}</textarea>
+  </label>
+  <button type="submit" class="btn btn-primary">Add brand</button>
+</form>
+
+{% endblock %}

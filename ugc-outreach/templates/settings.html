@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Settings — UGC Outreach{% endblock %}
+{% block content %}
+
+<h1>Settings</h1>
+<p class="muted">
+  These fill in the {brand_name}, {creator_name}, {niche}, {portfolio_link} and
+  {rate_info} placeholders in your outreach templates below.
+</p>
+
+<form method="post" class="form">
+  <label>Your name
+    <input type="text" name="creator_name" value="{{ settings.creator_name }}">
+  </label>
+  <label>Portfolio link
+    <input type="text" name="portfolio_link" value="{{ settings.portfolio_link }}" placeholder="https://...">
+  </label>
+  <label>Default niches
+    <input type="text" name="niches" value="{{ settings.niches }}" placeholder="fitness, beauty, skincare">
+  </label>
+  <label>Rate info
+    <input type="text" name="rate_info" value="{{ settings.rate_info }}">
+  </label>
+  <label>Follow-up reminder after (days)
+    <input type="number" name="follow_up_days" value="{{ settings.follow_up_days }}" min="1">
+  </label>
+
+  <h2>Email template</h2>
+  <label>Subject
+    <input type="text" name="email_subject_template" value="{{ settings.email_subject_template }}">
+  </label>
+  <label>Body
+    <textarea name="email_body_template" rows="10">{{ settings.email_body_template }}</textarea>
+  </label>
+
+  <h2>Instagram DM template</h2>
+  <label>Message
+    <textarea name="dm_template" rows="4">{{ settings.dm_template }}</textarea>
+  </label>
+
+  <button type="submit" class="btn btn-primary">Save settings</button>
+</form>
+
+{% endblock %}
