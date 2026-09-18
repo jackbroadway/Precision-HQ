@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+    scrollbar-color: #8a7233 #0a0800;
+    scrollbar-width: thin;
+    /* Offsets anchor-link jumps (#method, #offers, #jack, etc.) so the
+       fixed Nav bar doesn't cover the top of the target section. */
+    scroll-padding-top: 88px;
+  }
+
+  @media (min-width: 640px) {
+    html {
+      scroll-padding-top: 104px;
+    }
+  }
+
+  body {
+    @apply bg-background text-ink font-body antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #8a7233;
+    border-radius: 999px;
+    border: 2px solid #0a0800;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c9a84c;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading uppercase tracking-wide;
+  }
+
+  ::selection {
+    background: rgba(201, 168, 76, 0.32);
+    color: #f3f1e8;
+  }
+}
+
+@layer utilities {
+  .container-px {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8 lg:px-10;
+  }
+
+  .section-y {
+    @apply py-12 sm:py-16 lg:py-20;
+  }
+
+  .text-gold-underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  .text-gold-underline::after {
+    content: "";
+    position: absolute;
+    left: 2%;
+    right: 2%;
+    bottom: -0.08em;
+    height: 0.06em;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      #c9a84c 15%,
+      #e4c877 50%,
+      #c9a84c 85%,
+      transparent
+    );
+    border-radius: 999px;
+  }
+
+  .noise-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
