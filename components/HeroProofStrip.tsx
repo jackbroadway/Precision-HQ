@@ -2,48 +2,34 @@
 
 import { useEffect, useState } from "react";
 
-type Shot = { id: string; url: string; name: string; caption: string; date: number };
-
 /**
- * Compact 4-thumbnail preview of the live testimonials feed, meant to sit
- * right under the hero CTA so a cold ad-click sees proof before scrolling.
- * Links down to the full LiveProfitScroller section (#live-results).
- * Renders nothing if the feed is empty/unreachable, so always safe to mount.
+ * Lightweight link to the live testimonials feed, meant to sit right under
+ * the hero CTA so a cold ad-click sees proof exists before scrolling.
+ * Only checks whether the feed has anything (cheap JSON call), it doesn't
+ * load any images here - the 4-photo avatar version was slow to pop in
+ * since it pulled full-resolution screenshots just to shrink them into
+ * tiny circles. The actual photos still show, properly sized, further
+ * down in LiveProfitScroller (#live-results). Renders nothing if the feed
+ * is empty/unreachable, so always safe to mount.
  */
 export function HeroProofStrip() {
-  const [shots, setShots] = useState<Shot[]>([]);
+  const [hasShots, setHasShots] = useState(false);
 
   useEffect(() => {
     fetch("/.netlify/functions/testimonial-shots")
       .then((res) => (res.ok ? res.json() : []))
-      .then((data) => setShots(Array.isArray(data) ? data.slice(0, 4) : []))
-      .catch(() => setShots([]));
+      .then((data) => setHasShots(Array.isArray(data) && data.length > 0))
+      .catch(() => setHasShots(false));
   }, []);
 
-  if (shots.length === 0) return null;
+  if (!hasShots) return null;
 
   return (
     <a
       href="#live-results"
-      className="mt-4 inline-flex items-center gap-3 rounded-full border border-border-strong bg-surface px-3 py-2 transition-colors hover:border-gold"
+      className="mt-4 inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-4 py-2 transition-colors hover:border-gold"
     >
-      <span className="flex -space-x-3">
-        {shots.map((shot) => (
-          <span
-            key={shot.id}
-            className="h-9 w-9 overflow-hidden rounded-full border-2 border-surface"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={shot.url}
-              alt=""
-              aria-hidden="true"
-              className="h-full w-full object-cover object-left-top"
-              loading="lazy"
-            />
-          </span>
-        ))}
-      </span>
+      <span className="h-2 w-2 shrink-0 animate-pulse-gold rounded-full bg-gold" aria-hidden="true" />
       <span className="font-mono text-xs uppercase tracking-wide text-ink-muted">
         Live profit shots, posted daily &rarr;
       </span>
