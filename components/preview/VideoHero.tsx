@@ -76,14 +76,10 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               <VSL />
             </div>
 
-            <div className="mt-4 max-w-xl px-2 sm:mt-6">
-              <p className="font-body text-lg text-ink sm:text-xl">
-                No chasing moves.
-              </p>
-              <p className="mt-2 font-body text-base text-ink-muted sm:text-lg">
-                Just methods that wait for the market to confirm itself.
-              </p>
-            </div>
+            <p className="mt-4 max-w-md font-heading text-base font-medium normal-case text-ink-muted sm:mt-6 sm:text-lg">
+              No chasing moves — Just methods that wait for the market to
+              confirm itself.
+            </p>
 
             <div className="mt-6 sm:mt-8">
               <Button href={links.freeInsightsChannel} variant="primary">
