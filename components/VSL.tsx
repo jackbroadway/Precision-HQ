@@ -43,7 +43,8 @@ export function VSL() {
         </Reveal>
       </div>
 
-      <Reveal delay={0.2} className="container-px mx-auto mt-10 max-w-3xl">
+      <Reveal delay={0.2} className="container-px mt-10">
+        <div className="mx-auto max-w-lg">
         <div className="relative aspect-video overflow-hidden rounded-lg border border-border-strong bg-surface shadow-[0_40px_100px_-30px_rgba(0,0,0,0.6)]">
           {playing ? (
             <video
@@ -73,6 +74,7 @@ export function VSL() {
               </div>
             </button>
           )}
+        </div>
         </div>
       </Reveal>
     </section>
