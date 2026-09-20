@@ -1,5 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { VideoHero } from "@/components/preview/VideoHero";
+import { VSL } from "@/components/VSL";
 import { Problem } from "@/components/Problem";
 import { Method } from "@/components/Method";
 import { Indicator } from "@/components/Indicator";
@@ -21,6 +22,7 @@ export default function Home() {
       <Nav />
       <main>
         <VideoHero embedded />
+        <VSL />
         <Testimonials />
         <Offers />
         <Problem />
