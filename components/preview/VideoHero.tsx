@@ -1,6 +1,7 @@
 import { PillNavbar } from "./PillNavbar";
 import { Button } from "../ui/Button";
 import { HeroProofStrip } from "../HeroProofStrip";
+import { VSL } from "../VSL";
 import { links, media } from "@/lib/config";
 
 type VideoHeroProps = {
@@ -70,6 +71,10 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
             <h1 className="mt-3 max-w-2xl text-h1 font-semibold normal-case tracking-normal text-ink">
               Free daily <span className="text-gold-underline text-gold">trade ideas</span>
             </h1>
+
+            <div className="mt-6 w-full px-2 sm:mt-8">
+              <VSL />
+            </div>
 
             <div className="mt-4 max-w-xl px-2 sm:mt-6">
               <p className="font-body text-lg text-ink sm:text-xl">
