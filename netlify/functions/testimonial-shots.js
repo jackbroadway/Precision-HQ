@@ -9,6 +9,10 @@ exports.handler = async () => {
 
   const items = list.map((entry) => ({
     ...entry,
+    // Truncate to first word only, even for entries cached before the
+    // webhook started doing this itself - never show a member's full name
+    // next to their financial results.
+    name: (entry.name || "").trim().split(/\s+/)[0] || "",
     url: `/.netlify/functions/testimonial-image?id=${encodeURIComponent(entry.id)}`,
   }));
 

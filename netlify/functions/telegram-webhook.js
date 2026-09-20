@@ -61,11 +61,16 @@ exports.handler = async (event) => {
 
   // Prefer whoever the message was originally forwarded from (the member
   // whose result this is), falling back to whoever posted it directly.
-  const name =
+  // Only the first word is kept - some Telegram profiles put a full name
+  // (e.g. "Oliver Kay-Wright") in a single field, and displaying a
+  // member's full name next to their financial results isn't something
+  // they'd expect when posting in the group.
+  const fullName =
     message.forward_from?.first_name ||
     message.forward_sender_name ||
     message.from?.first_name ||
     "";
+  const name = fullName.trim().split(/\s+/)[0] || "";
 
   const indexStore = getBlobStore("testimonial-shots");
   const existing = (await indexStore.get("index", { type: "json" })) || [];
