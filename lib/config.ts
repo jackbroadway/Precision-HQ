@@ -18,7 +18,7 @@ const needAccountCreationPrefilledMessage =
 const indicatorAccessPrefilledMessage =
   "Hey, I've just purchased the Sniper indicator. Here's my TradingView username in case it's needed again:";
 const vipEliteInterestMessage =
-  "Hi 👋\n\nI've been in the free channel and I'm interested in VIP/Elite access. Can you talk me through what's included and the cost?";
+  "Hi 👋\n\nI've been in the free channel and I'm interested in VIP/Elite access. Can you talk me through what's included?";
 
 export const links = {
   telegramCommunity: `https://t.me/${telegramUsername}?text=${encodeURIComponent(telegramPrefilledMessage)}`,
