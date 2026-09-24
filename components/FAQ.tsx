@@ -8,7 +8,7 @@ const FAQS = [
   {
     question: "Do I need experience to join?",
     answer:
-      "No. Free Insights and VIP are built to take you from the basics of the method through to applying it yourself, and Elite adds the full education on top. Mentorship works best once you already understand the core concepts and want direct feedback on your own execution.",
+      "No. Free Insights is built to take you from the basics of the method through to applying it yourself. VIP and Elite go further with the full setups and education. Mentorship works best once you already understand the core concepts and want direct feedback on your own execution.",
   },
   {
     question: "What markets do you trade?",
@@ -18,12 +18,12 @@ const FAQS = [
   {
     question: "What is the difference between VIP, Elite and Mentorship?",
     answer:
-      "VIP gives you the setups, our Sniper limit orders and scalp setups across every session. Elite includes everything in VIP plus the full education, trade breakdowns and community chat. Mentorship is 1:1, eight weeks working directly with Jack on your own trading, your own psychology and your own plan.",
+      "VIP gives you the setups, our Sniper limit orders and scalp setups across every session. Elite includes everything in VIP plus the full education, trade breakdowns and community chat. Mentorship is 1:1, eight weeks working directly with Jack on your own trading, your own psychology and your own plan. VIP and Elite aren't sold through the site - message us on Telegram and we'll go through what's included and the cost based on what you're after.",
   },
   {
     question: "What is your refund policy?",
     answer:
-      "VIP, Elite, Mentorship and the Sniper indicator are all non refundable. VIP and Elite are one time payments for instant access to existing content, whichever route you pick in. Mentorship spots are limited and reserved for you once accepted. The Sniper indicator grants invite-only access directly to your TradingView account shortly after checkout, so refunds are not offered on any of these.",
+      "VIP, Elite, Mentorship and the Sniper indicator are all non refundable. VIP and Elite are one time payments for instant access to existing content, whichever route you pick. Mentorship spots are limited and reserved for you once accepted. The Sniper indicator grants invite-only access directly to your TradingView account shortly after checkout, so refunds are not offered on any of these.",
   },
   {
     question: "How do I apply for mentorship?",

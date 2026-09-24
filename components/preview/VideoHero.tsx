@@ -95,7 +95,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               <span>Want more?</span>
               <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
                 <a href="/#offers" className="text-gold hover:underline">
-                  View access tiers
+                  See what&rsquo;s free
                 </a>
                 <span aria-hidden="true">&middot;</span>
                 <a

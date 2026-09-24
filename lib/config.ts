@@ -17,10 +17,8 @@ const needAccountCreationPrefilledMessage =
   "Hey, I need to create an account for Precision HQ.";
 const indicatorAccessPrefilledMessage =
   "Hey, I've just purchased the Sniper indicator. Here's my TradingView username in case it's needed again:";
-const vipJoinPrefilledMessage =
-  "Hi 👋\n\nI would like to join VIP by:\n\n• Registering with your recommended broker (FREE)\n– Minimum deposit: £300\n\n• By paying a one off lifetime access fee\n– £197\n\nPick 1 or 2:";
-const eliteJoinPrefilledMessage =
-  "Hi 👋\n\nI would like to join Elite by:\n\n• Registering with your recommended broker\n– Minimum deposit: £300\n– One-off fee: £197\n\n• By paying a one off lifetime access fee\n– £297\n\nPick 1 or 2:";
+const vipEliteInterestMessage =
+  "Hi 👋\n\nI've been in the free channel and I'm interested in VIP/Elite access. Can you talk me through what's included and the cost?";
 
 export const links = {
   telegramCommunity: `https://t.me/${telegramUsername}?text=${encodeURIComponent(telegramPrefilledMessage)}`,
@@ -29,8 +27,7 @@ export const links = {
   needHelpSetup: `https://t.me/${telegramUsername}?text=${encodeURIComponent(needHelpSetupPrefilledMessage)}`,
   needAccountCreation: `https://t.me/${telegramUsername}?text=${encodeURIComponent(needAccountCreationPrefilledMessage)}`,
   indicatorAccessHelp: `https://t.me/${telegramUsername}?text=${encodeURIComponent(indicatorAccessPrefilledMessage)}`,
-  vipJoin: `https://t.me/${telegramUsername}?text=${encodeURIComponent(vipJoinPrefilledMessage)}`,
-  eliteJoin: `https://t.me/${telegramUsername}?text=${encodeURIComponent(eliteJoinPrefilledMessage)}`,
+  vipEliteInterest: `https://t.me/${telegramUsername}?text=${encodeURIComponent(vipEliteInterestMessage)}`,
   startFreeHere: "https://t.me/addlist/dDbotJztvoFmZWJk",
   freeInsightsChannel: "https://t.me/+GPH7fhGgc1VlNDQ0",
   dailyResults: "https://t.me/precisionhqresults",

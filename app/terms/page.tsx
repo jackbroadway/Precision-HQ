@@ -65,8 +65,8 @@ export default function TermsPage() {
           for as long as we continue to operate them. Both can be joined
           either at a discounted rate alongside a £300+ top-up of your own
           trading account (this is your trading capital, not a fee paid to
-          us), or as a flat one-time fee without a top-up, as set out on the
-          pricing section of the website.
+          us), or as a flat one-time fee without a top-up, at the rate
+          agreed directly with us when you message to join.
         </p>
         <p>
           <strong className="text-ink">1:1 Mentorship</strong> is an

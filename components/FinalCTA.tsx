@@ -22,7 +22,7 @@ export function FinalCTA() {
           </p>
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <Button href="/#offers" variant="primary">
-              View Access Tiers
+              Join Free
             </Button>
             <Button href={links.mentorshipApplication} variant="secondary">
               View &amp; Apply For Mentorship
