@@ -83,7 +83,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
 
             <div className="mt-6 sm:mt-8">
               <Button href={links.freeInsightsChannel} variant="primary">
-                Free Trade Ideas Here
+                Get Free Trade Ideas
               </Button>
               <p className="mt-3 font-mono text-xs uppercase tracking-wide text-ink-muted">
                 2,000+ traders already in the free channel
