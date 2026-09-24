@@ -94,10 +94,6 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
             <div className="mt-6 flex flex-col items-center gap-1 font-mono text-xs text-ink-faint sm:flex-row sm:gap-2">
               <span>Want more?</span>
               <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-                <a href="/#offers" className="text-gold hover:underline">
-                  See what&rsquo;s free
-                </a>
-                <span aria-hidden="true">&middot;</span>
                 <a
                   href={links.mentorshipApplication}
                   className="text-gold hover:underline"

@@ -8,8 +8,7 @@ import { links } from "@/lib/config";
 
 const NAV_LINKS = [
   { label: "Method", href: "#method" },
-  { label: "Community", href: "#offers" },
-  { label: "Mentorship", href: "#offers" },
+  { label: "Mentorship", href: links.mentorshipApplication },
   { label: "Results", href: "#results" },
   { label: "FAQ", href: "#faq" },
 ];

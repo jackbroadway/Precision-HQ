@@ -3,7 +3,6 @@ import { VideoHero } from "@/components/preview/VideoHero";
 import { Problem } from "@/components/Problem";
 import { Method } from "@/components/Method";
 import { Indicator } from "@/components/Indicator";
-import { Offers } from "@/components/Offers";
 import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
 import { FinalCTA } from "@/components/FinalCTA";
@@ -15,6 +14,10 @@ import { ScrollNudge } from "@/components/ScrollNudge";
 // re-add later. Re-import and drop <Credibility /> back in below Method
 // when he wants it back.
 
+// Offers (the free/VIP/Elite pricing section) is disabled for now, per
+// Jack's request - not deleted, just not rendered. The hero's "Get Free
+// Trade Ideas" button is the only join-free CTA now.
+
 export default function Home() {
   return (
     <>
@@ -22,7 +25,6 @@ export default function Home() {
       <main>
         <VideoHero embedded />
         <Testimonials />
-        <Offers />
         <Problem />
         <Method />
         <Indicator />

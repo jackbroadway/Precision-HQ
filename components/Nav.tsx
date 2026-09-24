@@ -11,7 +11,6 @@ import { links } from "@/lib/config";
 const NAV_LINKS = [
   { label: "Home", href: "/#top" },
   { label: "Results", href: "/#results" },
-  { label: "Community", href: "/#offers" },
   { label: "Method", href: "/#method" },
   { label: "Mentorship", href: "/apply" },
   { label: "FAQ", href: "/#faq" },
