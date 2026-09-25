@@ -10,6 +10,10 @@ Two roles:
   Playbook as 10 separate modules with progress tracking, and reference guides
   (Quick Reference, Glossary, FAQ). Broker, IB account ID and $/lot rate are
   admin-only: sub-IBs can't read them, even through the API.
+- **Announcements**: admins post updates (optionally pinned); they appear on
+  every partner's dashboard and under News.
+- **Marketing assets**: admins upload images and ready-to-post captions;
+  partners copy captions in one tap and download images.
 
 Security lives in the database. RLS policies in
 `supabase/migrations/…_phase1_auth_roles.sql` mean a sub-IB can only ever read
@@ -114,6 +118,8 @@ src/app/login, forgot-password, set-password, auth/confirm   sign-in flows
 src/app/(portal)/dashboard      partner hub: continue learning, modules, guides, profile
 src/app/(portal)/learn          playbook overview + one page per module (mark complete → next)
 src/app/(portal)/guides         reference guides
+src/app/(portal)/announcements  partner news feed (admin manages at /admin/announcements)
+src/app/(portal)/assets         images + captions (admin uploads at /admin/assets)
 src/content/                    generated playbook content (see "Updating the playbook")
 src/app/(portal)/admin          partner list, add, edit, deactivate, delete
 supabase/migrations/            tables, triggers, RLS policies

@@ -3,6 +3,20 @@ import { Logo } from "@/components/ui";
 import { requireUser } from "@/lib/auth";
 import { signOut } from "../actions";
 
+const PARTNER_NAV = [
+  ["/dashboard", "Dashboard"],
+  ["/learn", "Playbook"],
+  ["/assets", "Assets"],
+  ["/announcements", "News"],
+] as const;
+
+const ADMIN_NAV = [
+  ["/admin", "Partners"],
+  ["/admin/announcements", "Announcements"],
+  ["/admin/assets", "Assets"],
+  ["/learn", "Playbook"],
+] as const;
+
 export default async function PortalLayout({ children }: LayoutProps<"/">) {
   const { profile } = await requireUser();
   const isAdmin = profile.role === "admin";
@@ -15,13 +29,12 @@ export default async function PortalLayout({ children }: LayoutProps<"/">) {
             <Link href="/">
               <Logo />
             </Link>
-            <nav className="flex gap-4 font-mono text-xs tracking-wider uppercase">
-              <Link href={isAdmin ? "/admin" : "/dashboard"} className="text-dim hover:text-accent">
-                {isAdmin ? "Partners" : "Dashboard"}
-              </Link>
-              <Link href="/learn" className="text-dim hover:text-accent">
-                Playbook
-              </Link>
+            <nav className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs tracking-wider uppercase">
+              {(isAdmin ? ADMIN_NAV : PARTNER_NAV).map(([href, label]) => (
+                <Link key={href} href={href} className="text-dim hover:text-accent">
+                  {label}
+                </Link>
+              ))}
             </nav>
           </div>
           <div className="flex items-center gap-4 text-sm">

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { AnnouncementCard, AssetCard } from "@/components/content-cards";
 import { GuideCard, ModuleCard, ProgressBar } from "@/components/learning";
 import { ButtonLink, Card, PageHeader, Stat } from "@/components/ui";
 import { requireUser } from "@/lib/auth";
+import { getAnnouncements, getAssets } from "@/lib/content";
 import { getCompletedModules, moduleLabel, playbook, summarize } from "@/lib/learning";
 
 export const metadata: Metadata = { title: "Dashboard" };
@@ -26,7 +28,11 @@ export default async function DashboardPage() {
   if (profile.role === "admin") redirect("/admin");
 
   // Broker, IB account and rate are admin-only (not readable by sub-IBs).
-  const completed = await getCompletedModules(user.id);
+  const [completed, announcements, assets] = await Promise.all([
+    getCompletedModules(user.id),
+    getAnnouncements(3),
+    getAssets({ limit: 3 }),
+  ]);
   const progress = summarize(completed);
   const firstName = profile.full_name?.split(" ")[0];
 
@@ -34,7 +40,19 @@ export default async function DashboardPage() {
     <div className="space-y-10">
       <PageHeader eyebrow="Partner dashboard" title={firstName ? `Welcome, ${firstName}` : "Welcome"} />
 
-      {/* 1. Continue learning */}
+      {/* 1. Announcements */}
+      {announcements.length > 0 && (
+        <section>
+          <SectionTitle title="Announcements" href="/announcements" linkLabel="All announcements" />
+          <div className="grid gap-4 lg:grid-cols-3">
+            {announcements.map((a) => (
+              <AnnouncementCard key={a.id} a={a} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 2. Continue learning */}
       <Card>
         <p className="font-mono text-xs tracking-wider text-accent uppercase">
           {progress.finished ? "Playbook complete" : "Continue learning"}
@@ -61,7 +79,19 @@ export default async function DashboardPage() {
         </ButtonLink>
       </Card>
 
-      {/* 2. Playbook modules */}
+      {/* 3. Marketing assets */}
+      {assets.length > 0 && (
+        <section>
+          <SectionTitle title="Marketing assets" href="/assets" linkLabel="All assets" />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {assets.map((a) => (
+              <AssetCard key={a.id} asset={a} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 4. Playbook modules */}
       <section>
         <SectionTitle title={playbook.title} href="/learn" linkLabel="Overview" />
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -71,7 +101,7 @@ export default async function DashboardPage() {
         </div>
       </section>
 
-      {/* 3. Guides */}
+      {/* 5. Guides */}
       <section>
         <SectionTitle title="Guides" />
         <div className="grid gap-3 sm:grid-cols-3">
@@ -81,7 +111,7 @@ export default async function DashboardPage() {
         </div>
       </section>
 
-      {/* 4. Profile */}
+      {/* 6. Profile */}
       <Card>
         <h2 className="mb-5 font-display text-xl font-bold tracking-wide uppercase">Your profile</h2>
         <dl className="grid gap-5 sm:grid-cols-3">
