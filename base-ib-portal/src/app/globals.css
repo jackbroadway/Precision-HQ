@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+/* Base.IB palette — matches base-ib-playbook.html */
+:root {
+  --bg: #eef0f0;
+  --surface: #ffffff;
+  --surface-2: #e4e7e6;
+  --line: #cbd1d0;
+  --text: #141a1f;
+  --text-dim: #4c5760;
+  --text-faint: #7a848c;
+  --accent: #8a6a1f;
+  --accent-soft: #e8dcc0;
+  --accent-2: #1f7a5c;
+  --accent-2-soft: #d8ebe3;
+  --danger: #a24a34;
+  --danger-soft: #f3e0d9;
+  --on-accent: #ffffff;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0e13;
+    --surface: #12171f;
+    --surface-2: #1a212b;
+    --line: #2a323d;
+    --text: #ece7da;
+    --text-dim: #aeb6be;
+    --text-faint: #77828c;
+    --accent: #d2ac5a;
+    --accent-soft: #2b2412;
+    --accent-2: #49b695;
+    --accent-2-soft: #123128;
+    --danger: #e08b71;
+    --danger-soft: #3a2019;
+    --on-accent: #0b0e13;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-dim: var(--text-dim);
+  --color-faint: var(--text-faint);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-ok: var(--accent-2);
+  --color-ok-soft: var(--accent-2-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-on-accent: var(--on-accent);
+
+  --font-display: var(--font-big-shoulders);
+  --font-serif: var(--font-source-serif);
+  --font-mono: var(--font-jetbrains);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ---------------------------------------------------------------------------
+   Lesson content (playbook modules + guides).
+   Ported from base-ib-playbook.html, tuned for comfortable reading:
+   larger type, looser leading, narrower measure.
+   --------------------------------------------------------------------------- */
+.lesson {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--text);
+}
+.lesson > * { max-width: 68ch; }
+.lesson p { margin: 0 0 1.15em; }
+.lesson a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.lesson strong { font-weight: 650; }
+.lesson em { color: var(--text); }
+.lesson ul, .lesson ol { margin: 0 0 1.4em; padding-left: 1.35em; }
+.lesson ul { list-style: disc; }
+.lesson ol { list-style: decimal; }
+.lesson li { margin-bottom: .55em; padding-left: .2em; }
+.lesson li::marker { color: var(--accent); }
+.lesson .mono { font-family: var(--font-jetbrains), ui-monospace, monospace; }
+
+.lesson h3 {
+  font-size: 1.45rem;
+  line-height: 1.3;
+  font-weight: 700;
+  margin: 2.6rem 0 .8rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+}
+.lesson > h3:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.lesson h4 {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin: 2rem 0 .7rem;
+}
+/* "Module NN takeaways" box */
+.lesson h4 + ul {
+  list-style: none;
+  padding: 1.1rem 1.3rem;
+  background: var(--accent-2-soft);
+  border-radius: 3px;
+}
+.lesson h4 + ul li { position: relative; padding-left: 1.5em; }
+.lesson h4 + ul li::before {
+  content: "✓";
+  position: absolute; left: 0;
+  color: var(--accent-2); font-weight: 700;
+}
+
+.lesson .callout {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 1.1rem 1.3rem;
+  border-radius: 0 3px 3px 0;
+  margin: 1.8rem 0;
+}
+.lesson .callout p:last-child { margin-bottom: 0; }
+.lesson .lbl, .lesson .swipe-card b, .lesson .shot-step, .lesson .week .wk {
+  display: block;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .45rem;
+}
+.lesson .callout.warn { border-left-color: var(--danger); background: var(--danger-soft); }
+.lesson .callout.warn .lbl { color: var(--danger); }
+.lesson .callout.grow { border-left-color: var(--accent-2); background: var(--accent-2-soft); }
+.lesson .callout.grow .lbl { color: var(--accent-2); }
+
+.lesson .placeholder {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: .85em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: .05em .4em;
+  border-radius: 2px;
+}
+
+.lesson .tbl-wrap { max-width: 100%; overflow-x: auto; margin: 1.4rem 0 1.8rem; border: 1px solid var(--line); border-radius: 3px; }
+.lesson table { border-collapse: collapse; width: 100%; font-size: .95rem; line-height: 1.55; }
+.lesson caption { caption-side: top; text-align: left; padding: .7rem .9rem 0; font-family: var(--font-jetbrains), monospace; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-faint); }
+.lesson th, .lesson td { text-align: left; padding: .7rem .9rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.lesson tr:last-child td { border-bottom: 0; }
+.lesson th { font-family: var(--font-jetbrains), monospace; font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; background: var(--surface-2); }
+.lesson td.mono { font-variant-numeric: tabular-nums; }
+
+.lesson .checklist { list-style: none; padding: 0; margin: 1.4rem 0 1.8rem; display: flex; flex-direction: column; gap: .35rem; }
+.lesson .checklist li { display: flex; align-items: flex-start; gap: .8rem; margin: 0; padding: .6rem .8rem; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; }
+.lesson .checklist input { margin-top: .45em; accent-color: var(--accent-2); width: 17px; height: 17px; flex: none; }
+.lesson .checklist .li-text { flex: 1; min-width: 0; }
+
+.lesson .stat-row { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 1.8rem 0; border-radius: 3px; overflow: hidden; }
+.lesson .stat { background: var(--surface); padding: .9rem 1.3rem; flex: 1 1 140px; }
+.lesson .stat .n { font-family: var(--font-jetbrains), monospace; font-weight: 700; font-size: 1.3rem; color: var(--accent-2); }
+.lesson .stat .l { font-family: var(--font-jetbrains), monospace; font-size: .66rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-faint); }
+
+.lesson .week-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; margin: 1.8rem 0; max-width: none; }
+.lesson .week { background: var(--surface); padding: 1.1rem 1.2rem; }
+.lesson .week h4 { margin: 0 0 .5rem; color: var(--text); font-family: var(--font-source-serif), serif; font-size: 1.02rem; font-weight: 700; letter-spacing: 0; text-transform: none; }
+.lesson .week ul { margin: 0; padding: 0 0 0 1.1em; font-size: .95rem; background: none; list-style: disc; }
+.lesson .week ul li { padding-left: .2em; }
+.lesson .week ul li::before { content: none; }
+
+.lesson .funnel { display: flex; flex-direction: column; gap: 3px; margin: 1.8rem 0; }
+.lesson .funnel .stage { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent-2); padding: .8rem 1.1rem; border-radius: 0 3px 3px 0; }
+.lesson .funnel .stage b { display: block; font-family: var(--font-jetbrains), monospace; font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-2); margin-bottom: .15rem; }
+.lesson .funnel .stage span { font-size: 1rem; color: var(--text-dim); }
+
+.lesson .swipe { display: flex; flex-direction: column; gap: .6rem; margin: 1.6rem 0; }
+.lesson .swipe-card { background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 1rem 1.2rem; }
+.lesson .swipe-card p { margin: 0; font-style: italic; color: var(--text-dim); }
+
+.lesson .shot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.6rem 0 2rem; max-width: none; }
+.lesson .shot { background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: .9rem; }
+.lesson .shot img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 2px; margin-bottom: .7rem; }
+.lesson .shot-cap { font-size: .9rem; line-height: 1.5; color: var(--text-dim); }
+.lesson figure { margin: 2rem 0; max-width: none; }
+.lesson figure img, .lesson figure svg { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 3px; background: var(--surface); }
+.lesson figcaption { font-family: var(--font-jetbrains), monospace; font-size: .74rem; color: var(--text-faint); margin-top: .6rem; }
+.lesson .divider { height: 1px; background: var(--line); margin: 2.5rem 0; }
+
+/* Guides */
+.lesson .glossary dt { font-family: var(--font-jetbrains), monospace; font-weight: 700; color: var(--accent); margin-top: 1.3rem; }
+.lesson .glossary dd { margin: .25rem 0 0; color: var(--text-dim); }
+.lesson .quickref { list-style: none; padding: 0; counter-reset: qr; }
+.lesson .quickref li { counter-increment: qr; display: flex; gap: 1rem; padding: .9rem 0; margin: 0; border-bottom: 1px solid var(--line); }
+.lesson .quickref li::before { content: counter(qr, decimal-leading-zero); font-family: var(--font-jetbrains), monospace; font-size: .85rem; color: var(--accent); flex: none; padding-top: .2rem; }
+.lesson .quickref span { color: var(--text-dim); }
+.lesson .faq-item { border: 1px solid var(--line); background: var(--surface); border-radius: 3px; padding: 1.1rem 1.3rem; margin-bottom: .8rem; }
+.lesson .faq-item h3 { margin: 0 0 .5rem; padding: 0; border: 0; font-size: 1.12rem; }
+.lesson .faq-item p:last-child { margin-bottom: 0; }
+
+@media (max-width: 640px) {
+  .lesson { font-size: 1.0625rem; line-height: 1.7; }
+  .lesson h3 { font-size: 1.3rem; }
+}
