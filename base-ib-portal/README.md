@@ -6,9 +6,14 @@ Two roles:
 
 - **Admin**: adds sub-IBs (broker, IB account ID, $/lot rate), edits them,
   deactivates or deletes them, and sees each partner's training progress.
-- **Sub-IB**: signs in to a partner hub: their profile and rate, the Base IB
+- **Sub-IB**: signs in to a partner hub: their profile, the Base IB
   Playbook as 10 separate modules with progress tracking, and reference guides
-  (Quick Reference, Glossary, FAQ).
+  (Quick Reference, Glossary, FAQ). Broker, IB account ID and $/lot rate are
+  admin-only: sub-IBs can't read them, even through the API.
+- **Announcements**: admins post updates (optionally pinned); they appear on
+  every partner's dashboard and under News.
+- **Marketing assets**: admins upload images and ready-to-post captions;
+  partners copy captions in one tap and download images.
 
 Security lives in the database. RLS policies in
 `supabase/migrations/…_phase1_auth_roles.sql` mean a sub-IB can only ever read
@@ -22,7 +27,7 @@ Supabase API directly with the public key.
 1. **Create a project** at <https://supabase.com/dashboard>. Pick a region close to your users.
 2. **Run the schema.** Go to *SQL Editor → New query*, paste the whole of
    `supabase/migrations/20260925000000_phase1_auth_roles.sql`, and click **Run**.
-   Then do the same with `supabase/migrations/20260926000000_learning_progress.sql`.
+   Then do the same, in order, with the other files in `supabase/migrations/`.
 3. **Turn off public sign-ups.** Go to *Authentication → Sign In / Providers*
    and switch off **Allow new users to sign up**. Only admins create accounts
    (the admin API still works with this off).
@@ -110,9 +115,11 @@ src/lib/auth.ts                 requireUser() / requireAdmin(): role read from D
 src/lib/supabase/server.ts      client acting AS the user (RLS applies)
 src/lib/supabase/admin.ts       secret-key client, only for auth admin calls
 src/app/login, forgot-password, set-password, auth/confirm   sign-in flows
-src/app/(portal)/dashboard      partner hub: continue learning, rate, modules, guides, profile
+src/app/(portal)/dashboard      partner hub: continue learning, modules, guides, profile
 src/app/(portal)/learn          playbook overview + one page per module (mark complete → next)
 src/app/(portal)/guides         reference guides
+src/app/(portal)/announcements  partner news feed (admin manages at /admin/announcements)
+src/app/(portal)/assets         images + captions (admin uploads at /admin/assets)
 src/content/                    generated playbook content (see "Updating the playbook")
 src/app/(portal)/admin          partner list, add, edit, deactivate, delete
 supabase/migrations/            tables, triggers, RLS policies

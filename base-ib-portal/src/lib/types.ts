@@ -24,3 +24,23 @@ export type SubIb = {
 export type SubIbWithProfile = SubIb & {
   profile: Pick<Profile, "email" | "full_name"> | null;
 };
+
+export type Announcement = {
+  id: string;
+  title: string;
+  body: string;
+  pinned: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+export type AssetCategory = "post" | "story" | "telegram" | "general";
+
+export type MarketingAsset = {
+  id: string;
+  title: string;
+  caption: string | null;
+  image_path: string | null;
+  category: AssetCategory;
+  created_at: string;
+};
