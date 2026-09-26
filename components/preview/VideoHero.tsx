@@ -1,0 +1,124 @@
+import { PillNavbar } from "./PillNavbar";
+import { Button } from "../ui/Button";
+import { HeroProofStrip } from "../HeroProofStrip";
+import { VSL } from "../VSL";
+import { links, media } from "@/lib/config";
+
+type VideoHeroProps = {
+  /**
+   * True when mounted under the site's real fixed Nav (which already
+   * provides navigation + the scroll progress bar). Hides the built-in
+   * PillNavbar to avoid a duplicate, and adds top clearance so the
+   * headline doesn't sit under the fixed bar.
+   */
+  embedded?: boolean;
+};
+
+/**
+ * Video hero variant, built to preview a floating-pill-nav + full-bleed
+ * hero pattern against Precision HQ's actual brand. Reskinned from a
+ * generic SaaS reference: dark theme (the brand is dark only), gold
+ * instead of orange, Barlow Condensed instead of a serif accent (the
+ * brand spec never called for a serif face), and no hotlinked third
+ * party video. Set lib/config.ts `media.heroVideoUrl` to your own hosted
+ * clip once you have one; until then this falls back to the same radial
+ * gold glow used on the real homepage hero.
+ */
+export function VideoHero({ embedded = false }: VideoHeroProps) {
+  return (
+    <div id="top" className={`w-full bg-background p-3 sm:p-4 ${embedded ? "" : "min-h-screen"}`}>
+      <div
+        className={`relative w-full overflow-hidden rounded-2xl bg-surface sm:rounded-3xl ${
+          embedded ? "" : "h-[calc(100vh-24px)] sm:h-[calc(100vh-32px)]"
+        }`}
+      >
+        {media.heroVideoUrl ? (
+          <video
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            disableRemotePlayback
+            poster={media.heroPosterUrl || undefined}
+            src={media.heroVideoUrl}
+          />
+        ) : (
+          <div className="absolute inset-0" aria-hidden="true">
+            <div className="absolute -top-1/4 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-gold opacity-[0.1] blur-[160px]" />
+            <div className="noise-overlay" />
+          </div>
+        )}
+
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/20 to-background"
+          aria-hidden="true"
+        />
+
+        <div className="relative z-10 flex h-full flex-col">
+          {!embedded && <PillNavbar />}
+
+          <div
+            className={`flex flex-col items-center px-4 pb-8 text-center sm:pb-12 ${
+              embedded ? "pt-28 sm:pt-36 lg:pt-40" : "pt-10 sm:pt-16"
+            }`}
+          >
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-gold">
+              Patience Is Precision
+            </p>
+
+            <h1 className="mt-3 max-w-2xl text-h1 font-semibold normal-case tracking-normal text-ink">
+              Free daily <span className="text-gold-underline text-gold">trade ideas</span>
+            </h1>
+
+            <div className="mt-6 w-full px-2 sm:mt-8">
+              <VSL />
+            </div>
+
+            <p className="mt-4 max-w-md font-heading text-base font-medium normal-case text-ink-muted sm:mt-6 sm:text-lg">
+              Free trade ideas sent here daily.
+            </p>
+
+            <div className="mt-6 sm:mt-8">
+              <Button
+                href={links.freeInsightsChannel}
+                variant="primary"
+                className="gap-3 bg-gradient-to-r from-gold-dim via-gold to-gold-bright px-8 py-4 text-base hover:opacity-90"
+              >
+                Join Telegram Channel
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M21 4L3 11.5l6 2.2m12-9.7l-3.2 15.5L9 13.7m12-9.7L9 13.7m0 0v5.3l2.9-3.1" stroke="currentColor" strokeWidth={1.8} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Button>
+              <p className="mt-3 max-w-xs font-body text-sm text-ink-muted">
+                Opens directly in Telegram.
+              </p>
+              <p className="mt-2 font-mono text-xs uppercase tracking-wide text-ink-muted">
+                2,000+ traders already in the free channel
+              </p>
+              <HeroProofStrip />
+            </div>
+
+            <div className="mt-6 flex flex-col items-center gap-1 font-mono text-xs text-ink-faint sm:flex-row sm:gap-2">
+              <span>Want more?</span>
+              <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+                <a
+                  href={links.mentorshipApplication}
+                  className="text-gold hover:underline"
+                >
+                  Apply for mentorship
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
