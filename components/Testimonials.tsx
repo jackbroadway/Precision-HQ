@@ -51,7 +51,17 @@ const TESTIMONIALS_BASE = [
   },
 ];
 
-const TESTIMONIALS = [...TESTIMONIALS_BASE, ...TESTIMONIALS_BASE];
+function Stars() {
+  return (
+    <div className="flex gap-1 text-gold" aria-hidden="true">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg key={i} viewBox="0 0 20 20" className="h-4 w-4" fill="currentColor">
+          <path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.7z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
 
 const MEMBER_VIDEOS: {
   src: string;
@@ -111,25 +121,28 @@ export function Testimonials() {
 
       <LiveProfitScroller />
 
-      <Reveal delay={0.2} className="group mt-10 overflow-hidden">
-        <div className="flex w-max animate-marquee-slow gap-6 group-hover:[animation-play-state:paused]">
-          {TESTIMONIALS.map((t, i) => (
-            <div
-              key={`${t.name}-${t.role}-${i}`}
-              className="flex w-80 shrink-0 flex-col justify-between rounded-lg border border-border bg-surface p-7 sm:w-96"
-            >
-              <p className="font-body text-sm leading-relaxed text-ink-muted">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div className="mt-6 border-t border-border pt-4">
-                <p className="font-heading text-sm uppercase tracking-wide text-ink">
-                  {t.name}
-                </p>
-                <p className="font-mono text-xs text-ink-faint">{t.role}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+      <Reveal delay={0.18} className="mt-14 text-center">
+        <p className="font-heading text-sm uppercase tracking-[0.15em] text-gold">
+          Real Members. Real Results.
+        </p>
+      </Reveal>
+
+      <Reveal
+        stagger
+        className="container-px mx-auto mt-6 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {TESTIMONIALS_BASE.map((t) => (
+          <div
+            key={`${t.name}-${t.role}`}
+            className="flex flex-col rounded-2xl border border-border bg-surface p-6"
+          >
+            <Stars />
+            <p className="mt-4 font-body text-sm leading-relaxed text-ink">
+              &ldquo;{t.quote}&rdquo;
+            </p>
+            <p className="mt-4 font-heading text-sm text-ink">{t.name}</p>
+          </div>
+        ))}
       </Reveal>
 
       <Reveal delay={0.26} className="container-px mx-auto mt-12 text-center">
