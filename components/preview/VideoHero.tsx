@@ -77,8 +77,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
             </div>
 
             <p className="mt-4 max-w-md font-heading text-base font-medium normal-case text-ink-muted sm:mt-6 sm:text-lg">
-              No chasing moves — Just methods that wait for the market to
-              confirm itself.
+              Free trade ideas sent here daily.
             </p>
 
             <div className="mt-6 sm:mt-8">
@@ -98,7 +97,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
                 </svg>
               </Button>
               <p className="mt-3 max-w-xs font-body text-sm text-ink-muted">
-                Free trade ideas, sent daily &mdash; opens directly in Telegram.
+                Opens directly in Telegram.
               </p>
               <p className="mt-2 font-mono text-xs uppercase tracking-wide text-ink-muted">
                 2,000+ traders already in the free channel
