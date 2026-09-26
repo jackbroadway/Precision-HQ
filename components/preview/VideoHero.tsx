@@ -82,10 +82,25 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
             </p>
 
             <div className="mt-6 sm:mt-8">
-              <Button href={links.freeInsightsChannel} variant="primary">
-                Get Free Trade Ideas
+              <Button
+                href={links.freeInsightsChannel}
+                variant="primary"
+                className="gap-3 bg-gradient-to-r from-gold-dim via-gold to-gold-bright px-8 py-4 text-base hover:opacity-90"
+              >
+                Join Telegram Channel
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M21 4L3 11.5l6 2.2m12-9.7l-3.2 15.5L9 13.7m12-9.7L9 13.7m0 0v5.3l2.9-3.1" stroke="currentColor" strokeWidth={1.8} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </Button>
-              <p className="mt-3 font-mono text-xs uppercase tracking-wide text-ink-muted">
+              <p className="mt-3 max-w-xs font-body text-sm text-ink-muted">
+                Free trade ideas, sent daily &mdash; opens directly in Telegram.
+              </p>
+              <p className="mt-2 font-mono text-xs uppercase tracking-wide text-ink-muted">
                 2,000+ traders already in the free channel
               </p>
               <HeroProofStrip />
