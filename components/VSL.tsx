@@ -50,7 +50,7 @@ export function VSL() {
               className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center bg-background/30 transition-colors group-hover/vsl:bg-background/20">
-              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gold text-background transition-transform group-hover/vsl:scale-105 sm:h-20 sm:w-20">
+              <span className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/60 bg-gold/30 text-ink backdrop-blur-sm transition-transform group-hover/vsl:scale-105 sm:h-20 sm:w-20">
                 <PlayIcon />
               </span>
             </div>
