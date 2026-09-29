@@ -84,7 +84,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               <Button
                 href={links.skoolAcademy}
                 variant="primary"
-                className="gap-3 bg-gradient-to-r from-gold-dim via-gold to-gold-bright hover:opacity-90"
+                className="gap-3 bg-gradient-to-r from-gold to-gold-bright hover:opacity-90"
               >
                 Join The Academy
                 <svg
