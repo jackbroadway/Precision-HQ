@@ -107,7 +107,6 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
                 Optional: $39/mo for daily setups, live calls &amp; full
                 video library.
               </p>
-              <HeroProofStrip />
             </div>
 
             <div className="mt-4 flex flex-col items-center gap-2 sm:mt-8">
@@ -118,6 +117,10 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               >
                 Apply For 1:1 Coaching
               </a>
+            </div>
+
+            <div className="mt-4">
+              <HeroProofStrip />
             </div>
           </div>
         </div>
