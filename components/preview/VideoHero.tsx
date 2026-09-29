@@ -111,16 +111,14 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               <HeroProofStrip />
             </div>
 
-            <div className="mt-6 flex flex-col items-center gap-1 font-mono text-xs text-ink-faint sm:flex-row sm:gap-2">
-              <span>Want more?</span>
-              <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-                <a
-                  href={links.mentorshipApplication}
-                  className="text-gold hover:underline"
-                >
-                  Apply for mentorship
-                </a>
-              </div>
+            <div className="mt-8 flex flex-col items-center gap-2">
+              <span className="font-mono text-xs text-ink-faint">Want more?</span>
+              <a
+                href={links.mentorshipApplication}
+                className="rounded-full border border-gold/50 bg-gold/10 px-5 py-2 font-mono text-xs uppercase tracking-wide text-gold shadow-[0_0_30px_-6px_rgba(201,168,76,0.65)] transition-shadow hover:shadow-[0_0_40px_-4px_rgba(201,168,76,0.85)]"
+              >
+                Apply For 1:1 Coaching
+              </a>
             </div>
           </div>
         </div>
