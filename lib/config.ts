@@ -28,8 +28,8 @@ export const links = {
   needAccountCreation: `https://t.me/${telegramUsername}?text=${encodeURIComponent(needAccountCreationPrefilledMessage)}`,
   indicatorAccessHelp: `https://t.me/${telegramUsername}?text=${encodeURIComponent(indicatorAccessPrefilledMessage)}`,
   vipEliteInterest: `https://t.me/${telegramUsername}?text=${encodeURIComponent(vipEliteInterestMessage)}`,
-  startFreeHere: "https://t.me/addlist/dDbotJztvoFmZWJk",
-  freeInsightsChannel: "https://t.me/+GPH7fhGgc1VlNDQ0",
+  skoolAcademy:
+    "https://www.skool.com/precision-hq-academy-5092/about?ref=01076be44d0747ffae219b7745f540ec",
   dailyResults: "https://t.me/precisionhqresults",
   mentorshipApplication: "/apply",
   indicatorCheckout: "https://buy.stripe.com/aFa28k3EJg74dnj2632cg3o",

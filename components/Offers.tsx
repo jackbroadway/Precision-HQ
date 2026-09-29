@@ -21,11 +21,12 @@ export function Offers() {
         </Reveal>
         <Reveal delay={0.14}>
           <p className="mt-4 font-body text-ink-muted">
-            Join the free channel first and see the method for yourself.
+            Join Precision HQ Academy for free and see the method for
+            yourself.
           </p>
         </Reveal>
         <Reveal delay={0.2} className="mt-8">
-          <Button href={links.startFreeHere} variant="primary">
+          <Button href={links.skoolAcademy} variant="primary">
             Join Free
           </Button>
         </Reveal>
