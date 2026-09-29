@@ -61,26 +61,26 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
 
           <div
             className={`flex flex-col items-center px-4 pb-8 text-center sm:pb-12 ${
-              embedded ? "pt-28 sm:pt-36 lg:pt-40" : "pt-10 sm:pt-16"
+              embedded ? "pt-16 sm:pt-36 lg:pt-40" : "pt-10 sm:pt-16"
             }`}
           >
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-gold">
               Patience Is Precision
             </p>
 
-            <h1 className="mt-3 max-w-2xl text-h1 font-semibold normal-case tracking-normal text-ink">
+            <h1 className="mt-2 max-w-2xl text-h1 font-semibold normal-case tracking-normal text-ink sm:mt-3">
               Learn To Trade <span className="text-gold-underline text-gold">With Precision</span>
             </h1>
 
-            <div className="mt-6 w-full px-2 sm:mt-8">
+            <div className="mt-4 w-full px-2 sm:mt-8">
               <VSL />
             </div>
 
-            <p className="mt-4 max-w-md font-heading text-base font-medium normal-case text-ink-muted sm:mt-6 sm:text-lg">
+            <p className="mt-3 max-w-md font-heading text-base font-medium normal-case text-ink-muted sm:mt-6 sm:text-lg">
               Trade ideas sent daily.
             </p>
 
-            <div className="mt-6 sm:mt-8">
+            <div className="mt-4 sm:mt-8">
               <Button
                 href={links.skoolAcademy}
                 variant="primary"
@@ -100,18 +100,17 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
               </Button>
-              <p className="mt-3 max-w-xs font-body text-sm text-ink-muted">
+              <p className="mt-2 max-w-xs font-body text-sm text-ink-muted">
                 Free access. Takes less than a minute.
               </p>
-              <p className="mt-2 max-w-sm font-body text-xs text-ink-faint">
-                Optional extra: $39/month unlocks daily trade ideas, live
-                Sunday outlook calls, the full educational video library, VIP
-                community and more.
+              <p className="mt-1 max-w-sm font-body text-xs text-ink-faint">
+                Optional: $39/mo for daily setups, live calls &amp; full
+                video library.
               </p>
               <HeroProofStrip />
             </div>
 
-            <div className="mt-8 flex flex-col items-center gap-2">
+            <div className="mt-4 flex flex-col items-center gap-2 sm:mt-8">
               <span className="font-mono text-xs text-ink-faint">Want more?</span>
               <a
                 href={links.mentorshipApplication}
