@@ -69,7 +69,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
             </p>
 
             <h1 className="mt-3 max-w-2xl text-h1 font-semibold normal-case tracking-normal text-ink">
-              Free daily <span className="text-gold-underline text-gold">trade ideas</span>
+              Learn To Trade <span className="text-gold-underline text-gold">With Precision</span>
             </h1>
 
             <div className="mt-6 w-full px-2 sm:mt-8">
@@ -77,7 +77,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
             </div>
 
             <p className="mt-4 max-w-md font-heading text-base font-medium normal-case text-ink-muted sm:mt-6 sm:text-lg">
-              Free trade ideas sent here daily.
+              Trade ideas sent daily.
             </p>
 
             <div className="mt-6 sm:mt-8">
@@ -102,6 +102,11 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               </Button>
               <p className="mt-3 max-w-xs font-body text-sm text-ink-muted">
                 Free access. Takes less than a minute.
+              </p>
+              <p className="mt-2 max-w-sm font-body text-xs text-ink-faint">
+                Optional extra: $39/month unlocks daily trade ideas, live
+                Sunday outlook calls, the full educational video library, VIP
+                community and more.
               </p>
               <HeroProofStrip />
             </div>
