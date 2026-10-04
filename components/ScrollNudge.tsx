@@ -47,10 +47,10 @@ export function ScrollNudge() {
         Still Deciding?
       </p>
       <p className="mt-1 font-body text-sm text-ink-muted">
-        Join Precision HQ Academy for free.
+        Join our free trade ideas group.
       </p>
       <div className="mt-4" onClick={dismiss}>
-        <Button href={links.skoolAcademy} variant="primary" className="w-full">
+        <Button href={links.joinFree} variant="primary" className="w-full">
           Join Free
         </Button>
       </div>

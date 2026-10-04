@@ -26,7 +26,7 @@ export function Offers() {
           </p>
         </Reveal>
         <Reveal delay={0.2} className="mt-8">
-          <Button href={links.skoolAcademy} variant="primary">
+          <Button href={links.joinFree} variant="primary">
             Join Free
           </Button>
         </Reveal>

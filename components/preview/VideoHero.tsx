@@ -82,11 +82,11 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
 
             <div className="mt-4 sm:mt-8">
               <Button
-                href={links.skoolAcademy}
+                href={links.joinFree}
                 variant="primary"
                 className="gap-3 bg-gradient-to-r from-gold to-gold-bright hover:opacity-90"
               >
-                Join The Academy
+                Join Free Group
                 <svg
                   viewBox="0 0 24 24"
                   className="h-5 w-5"
@@ -102,10 +102,6 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
               </Button>
               <p className="mt-2 max-w-xs font-body text-sm text-ink-muted">
                 Free access. Takes less than a minute.
-              </p>
-              <p className="mt-1 max-w-sm font-body text-xs text-ink-faint">
-                Optional: $39/mo for daily setups, live calls &amp; full
-                video library.
               </p>
             </div>
 

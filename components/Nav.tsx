@@ -80,7 +80,7 @@ export function Nav() {
         </ul>
 
         <div className="hidden lg:block">
-          <Button href={links.skoolAcademy} variant="primary" className="px-5 py-2.5 text-sm">
+          <Button href={links.joinFree} variant="primary" className="px-5 py-2.5 text-sm">
             Start Free Here
           </Button>
         </div>
@@ -132,7 +132,7 @@ export function Nav() {
             ))}
           </ul>
           <Button
-            href={links.skoolAcademy}
+            href={links.joinFree}
             variant="primary"
             className="mt-4 w-full"
           >
