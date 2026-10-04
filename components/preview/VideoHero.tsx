@@ -86,7 +86,7 @@ export function VideoHero({ embedded = false }: VideoHeroProps) {
                 variant="primary"
                 className="gap-3 bg-gradient-to-r from-gold to-gold-bright hover:opacity-90"
               >
-                Join Free Group
+                Join Free Academy
                 <svg
                   viewBox="0 0 24 24"
                   className="h-5 w-5"
