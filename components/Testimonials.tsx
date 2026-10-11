@@ -73,18 +73,12 @@ const MEMBER_VIDEOS: {
     poster: "/video/member-testimonial-poster.jpg",
   },
   {
-    src: "/video/member-testimonial-3.mp4",
-    poster: "/video/member-testimonial-3-poster.jpg",
-    posterPosition: "top",
-  },
-  {
     src: "/video/member-testimonial-2.mp4",
     poster: "/video/member-testimonial-2-poster.jpg",
   },
   {
-    src: "/video/member-testimonial-4.mp4",
-    poster: "/video/member-testimonial-4-poster.jpg",
-    posterPosition: "center 32%",
+    src: "/video/member-testimonial-5.mp4",
+    poster: "/video/member-testimonial-5-poster.jpg",
   },
 ];
 
